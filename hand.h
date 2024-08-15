@@ -11,7 +11,7 @@ class hand
   public:
     hand(/* args */);
     hand addcard() {};
-    hand calculatevalue() {};
+    int calculatevalue() {};
     bool checkblackjack() {};
 };
 
