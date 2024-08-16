@@ -9,6 +9,11 @@ class player
     hand hand;
   public:
     player(/* args */);
+    player hit() {}
+    player stand() {}
+    player doubledown() {}
+    player split() {}
+    player surrender() {}
 
 };
 
