@@ -3,12 +3,13 @@
 
 #include "hand.h"
 
-class player
+class Player
 {
   private:
-    hand hand;
+    Hand hand;
+
   public:
-    player(/* args */);
+    Player();
 
 };
 

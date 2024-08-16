@@ -1,11 +1,27 @@
 #ifndef GAME_U
 #define GAME_U
 
-class game {
+class Game {
   private:
-    /* data */
+    bool isRunning;
+
   public:
-    game(/* args */);
+
+    Game() {
+      isRunning = true;
+    }
+
+    Game start() {
+      Game();
+
+      while (isRunning) {
+
+      }
+    }
+
+    Game end() {
+
+    }
 };
 
 #endif

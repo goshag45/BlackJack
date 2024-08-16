@@ -4,15 +4,15 @@
 #include <vector>
 #include "card.h"
 
-class deck {
+class Deck {
   private:
-    std::vector<card> cards;
+    std::vector<Card> cards;
   public:
-    deck(/* args */);
-    deck shuffle() {
+    Deck(/* args */);
+    Deck shuffle() {
 
     }
-    card draw() {
+    Card draw() {
 
     }
 };

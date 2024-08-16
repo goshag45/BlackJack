@@ -4,15 +4,27 @@
 #include <vector>
 #include "card.h"
 
-class hand
+class Hand
 {
   private:  
-    std::vector<card> cards;
+    std::vector<Card> cards;
   public:
-    hand(/* args */);
-    hand addcard() {};
-    int calculatevalue() {};
-    bool checkblackjack() {};
+    Hand(/* args */);
+    Hand addcard() {
+
+    };
+    int calculatevalue() {
+
+    };
+    bool checkblackjack() {
+
+    };
+    Hand showplayerhand() {
+
+    }
+    Hand showdealerhand() {
+      
+    }
 };
 
 
