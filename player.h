@@ -10,11 +10,11 @@ class Player
 
   public:
     Player();
-    player hit() {}
-    player stand() {}
-    player doubledown() {}
-    player split() {}
-    player surrender() {}
+    Player hit() {}
+    Player stand() {}
+    Player doubledown() {}
+    Player split() {}
+    Player surrender() {}
 
 };
 
