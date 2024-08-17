@@ -6,25 +6,46 @@
 
 class Hand
 {
-  private:  
-    std::vector<Card> cards;
   public:
-    Hand(/* args */);
-    Hand addcard() {
+    int totalvalue;
 
-    };
-    int calculatevalue() {
+    Hand(std::vector<Card> hand): hand(hand) {};
 
+    void addCard(Card card) {
+      hand.push_back(card);
     };
-    bool checkblackjack() {
 
+    int getTotalValue(std::vector<Card> hand) {
+      int value;
+
+      for (Card card : hand) {
+        value =+ card.getValue();
+      }
+
+      totalvalue = value;
+      return value;
     };
-    Hand showplayerhand() {
+
+    bool isBlackjack() {
+      if (totalvalue == 21) {
+        return true;
+      }
+      return false;
+    };
+
+    bool isBust() {
+      if (totalvalue > 21) {
+        return true;
+      }
+      return false;
+    };
+
+    std::string showHand() {
 
     }
-    Hand showdealerhand() {
-      
-    }
+
+  private:  
+    std::vector<Card> hand;
 };
 
 
