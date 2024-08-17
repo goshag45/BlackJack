@@ -2,6 +2,7 @@
 #define HAND_H 
 
 #include <vector>
+#include <algorithm>
 #include "card.h"
 
 class Hand
@@ -9,35 +10,45 @@ class Hand
   public:
     int totalvalue;
 
-    Hand(std::vector<Card> hand): hand(hand) {};
-
-    void addCard(Card card) {
-      hand.push_back(card);
+    Hand() {
+        std::vector<Card> hand;
     };
 
-    int getTotalValue(std::vector<Card> hand) {
-      int value;
+    void addCard(Card card) {
+        hand.push_back(card);
+    };
 
-      for (Card card : hand) {
-        value =+ card.getValue();
-      }
+    int getTotalValue() {
+        int value;
 
-      totalvalue = value;
-      return value;
+        for (Card card : hand) {
+            value += card.getValue();
+        }
+
+        if (std::find_if(hand.begin(), hand.end(), [](const Card& card) {
+                return card.getValue() == static_cast<int>(Card::Value::ACE);
+            }) != hand.end()) {
+            /* hand contains ACE card */
+        } else {
+            /* hand does not contain ACE card */
+        }
+
+        totalvalue = value;
+        return value;
     };
 
     bool isBlackjack() {
-      if (totalvalue == 21) {
-        return true;
-      }
-      return false;
+        if (totalvalue == 21) {
+            return true;
+        }
+        return false;
     };
 
     bool isBust() {
-      if (totalvalue > 21) {
-        return true;
-      }
-      return false;
+        if (totalvalue > 21) {
+            return true;
+        }
+        return false;
     };
 
     std::string showHand() {
