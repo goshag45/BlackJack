@@ -1,6 +1,7 @@
 #ifndef CARD_H
 #define CARD_H
 
+#include <map>
 #include <string>
 
 class Card {
@@ -21,6 +22,27 @@ class Card {
         case Suit::DIAMONDS: return "Diamonds";
         default: return "unkown";
       }
+    }
+
+    std::string getFace() const {
+        static const std::map<Value, std::string> valueToFace {
+            {Value::TWO, "TWO"},
+            {Value::THREE, "THREE"},
+            {Value::FOUR, "FOUR"},
+            {Value::FIVE, "FIVE"},
+            {Value::SIX, "SIX"},
+            {Value::SEVEN, "SEVEN"},
+            {Value::EIGHT, "EIGHT"},
+            {Value::NINE, "NINE"},
+            {Value::TEN, "TEN"},
+            {Value::KING, "KING"},
+            {Value::QUEEN, "QUEEN"},
+            {Value::JACK, "JACK"},
+            {Value::ACE, "ACE"}
+        };
+
+        auto it = valueToFace.find(value);
+        return (it != valueToFace.end()) ? it->second : "UNKNOWN";
     }
 
     int getValue() const {

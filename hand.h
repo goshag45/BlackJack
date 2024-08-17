@@ -3,16 +3,13 @@
 
 #include <vector>
 #include <algorithm>
+#include <iostream>
 #include "card.h"
 
 class Hand
 {
   public:
-    int totalvalue;
-
-    Hand() {
-        std::vector<Card> hand;
-    };
+    Hand() : hand() {}
 
     void addCard(Card card) {
         hand.push_back(card);
@@ -41,25 +38,25 @@ class Hand
     };
 
     bool isBlackjack() {
-        if (totalvalue == 21) {
-            return true;
-        }
-        return false;
+        return totalvalue == 21;
     };
 
     bool isBust() {
-        if (totalvalue > 21) {
-            return true;
-        }
-        return false;
+        return totalvalue > 21;
     };
 
     std::string showHand() {
-
+        std::string handStr;
+        for (const Card& card : hand) {
+            handStr += card.getFace() + " of " + card.getSuit() + "\n";
+        }
+        return handStr;
     }
+
 
   private:  
     std::vector<Card> hand;
+    int totalvalue;
 };
 
 
