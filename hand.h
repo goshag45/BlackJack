@@ -19,18 +19,21 @@ class Hand
     };
 
     int getTotalValue() {
-        int value;
+        int value = 0;
+        int acecount = 0;
 
-        for (Card card : hand) {
+        for (const Card& card : hand) {
+            if (card.getValue() == 11) {
+                acecount++;
+            }
             value += card.getValue();
         }
 
-        if (std::find_if(hand.begin(), hand.end(), [](const Card& card) {
-                return card.getValue() == static_cast<int>(Card::Value::ACE);
-            }) != hand.end()) {
-            /* hand contains ACE card */
-        } else {
-            /* hand does not contain ACE card */
+        if (value > 21) {
+            while (value > 21 && acecount > 0) {
+                value -= 10;
+                acecount--;
+            }
         }
 
         totalvalue = value;
