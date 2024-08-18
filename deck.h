@@ -45,6 +45,7 @@ class Deck {
     }
 
     void shuffle() {
+        std::vector<Card> unshuffled = deck;
         // this is so ridiculous
         // https://stackoverflow.com/questions/7560114/random-number-c-in-some-range
         std::random_device rd;
@@ -58,10 +59,13 @@ class Deck {
             std::swap(deck[i], deck[j]);
         }
 
-        // Check deck is shuffled somehow maybe?
-        // compare order before --> order after
+        if (unshuffled == deck) {
+            throw std::runtime_error("Deck has not been shuffled!");
+        }
     }
 
+    // before running:
+    // deck.empty() != true
     Card draw() {
         Card lastcard = deck.back();
         deck.pop_back();
