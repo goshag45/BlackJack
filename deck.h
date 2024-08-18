@@ -4,6 +4,9 @@
 #include <vector>
 #include <array>
 #include <stdexcept>
+#include <random>
+#include <utility>
+
 #include "card.h"
 
 class Deck {
@@ -41,8 +44,22 @@ class Deck {
         }
     }
 
-    Deck shuffle() {
+    void shuffle() {
+        // this is so ridiculous
+        // https://stackoverflow.com/questions/7560114/random-number-c-in-some-range
+        std::random_device rd;
+        std::mt19937 gen(rd());
+
         // Fisher-Yates shuffle i reckon
+        int n = deck.size();
+        for (int i = n-1; i > 1; i--) {
+            std::uniform_int_distribution<> distr(0, i);
+            int j = distr(gen);
+            std::swap(deck[i], deck[j]);
+        }
+
+        // Check deck is shuffled somehow maybe?
+        // compare order before --> order after
     }
 
     Card draw() {
