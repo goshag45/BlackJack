@@ -42,11 +42,13 @@ class Deck {
     }
 
     Deck shuffle() {
-
+        // Fisher-Yates shuffle i reckon
     }
 
     Card draw() {
-
+        Card lastcard = deck.back();
+        deck.pop_back();
+        return lastcard;
     }
 
   private:
