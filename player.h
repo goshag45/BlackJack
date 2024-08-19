@@ -7,7 +7,9 @@
 class Player
 {
   public:
-    Player() : hand() {}
+    // pass deck by reference in constructor
+    Player(Deck& deckref) : deck(deckref), hand() {}
+    
     void hit() {
         hand.addCard(deck.draw());
     }
@@ -18,6 +20,8 @@ class Player
   
   private:
     Hand hand;
+    // reference to deck in deck class
+    Deck& deck;
 };
 
 #endif
