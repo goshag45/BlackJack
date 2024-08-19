@@ -11,7 +11,7 @@ class Game {
       isRunning = true;
     }
 
-    Game start() {
+    void start() {
       Game();
 
       while (isRunning) {
@@ -19,7 +19,7 @@ class Game {
       }
     }
 
-    Game end() {
+    void end() {
 
     }
 };

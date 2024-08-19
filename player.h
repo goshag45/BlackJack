@@ -2,20 +2,23 @@
 #define PLAYER_H
 
 #include "hand.h"
+#include "deck.h"
 
 class Player
 {
-  private:
-    Hand hand;
-
   public:
     Player();
-    Player hit() {}
-    Player stand() {}
-    Player doubledown() {}
-    Player split() {}
-    Player surrender() {}
-
+    void hit() {
+        hand.addCard(deck.draw());
+    }
+    void stand() {}
+    void doubledown() {}
+    void split() {}
+    void surrender() {}
+  
+  private:
+    Hand hand;
+    Deck deck
 };
 
 #endif
