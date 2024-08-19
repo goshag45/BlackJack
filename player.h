@@ -7,7 +7,7 @@
 class Player
 {
   public:
-    Player();
+    Player() : hand() {}
     void hit() {
         hand.addCard(deck.draw());
     }
@@ -18,7 +18,6 @@ class Player
   
   private:
     Hand hand;
-    Deck deck
 };
 
 #endif
