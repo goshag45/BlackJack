@@ -12,8 +12,13 @@ class Player
     
     void hit() {
         hand.addCard(deck.draw());
+        if (hand.isBust()) {
+            isbusted = true;
+        }
     }
-    void stand() {}
+    void stand() {
+        isstanding = true;
+    }
     void doubledown() {}
     void split() {}
     void surrender() {}
@@ -22,6 +27,8 @@ class Player
     Hand hand;
     // reference to deck in deck class
     Deck& deck;
+    bool isstanding;
+    bool isbusted;
 };
 
 #endif

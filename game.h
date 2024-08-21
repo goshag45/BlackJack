@@ -15,7 +15,8 @@ class Game {
     }
 
     void start() {
-        Player player;
+        Deck deck;
+        Player player(Deck& deck);
 
         while (isRunning) {
             switch () {

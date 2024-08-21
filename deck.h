@@ -51,7 +51,7 @@ class Deck {
         std::random_device rd;
         std::mt19937 gen(rd());
 
-        // Fisher-Yates shuffle i reckon
+        // Fisher-Yates shuffle
         int n = deck.size();
         for (int i = n-1; i > 1; i--) {
             std::uniform_int_distribution<> distr(0, i);
