@@ -9,6 +9,8 @@
 class Hand
 {
   public:
+    std::vector<Card> hand;
+
     Hand() : hand() {}
 
     void addCard(Card card) {
@@ -53,9 +55,7 @@ class Hand
         return handStr;
     }
 
-
   private:  
-    std::vector<Card> hand;
     int totalvalue;
 };
 
