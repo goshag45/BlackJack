@@ -5,9 +5,6 @@
 #include "player.h"
 
 class Game {
-  private:
-    bool isRunning;
-
   public:
 
     Game() {
@@ -33,6 +30,9 @@ class Game {
     void end() {
 
     }
+
+  private:
+    bool isRunning;
 };
 
 #endif
