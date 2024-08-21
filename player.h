@@ -23,16 +23,8 @@ class Player {
         hit();
     }
 
-    bool canSplit() {
-        // if card 1 in hand == card 2 in hand
-        if (hand.hand[0].getValue() == hand.hand[1].getValue()) {
-            return true;
-        }
-        return false;
-    }
-
     void split() {
-        if (canSplit) {
+        if (hand.canSplit()) {
 
         }
     }

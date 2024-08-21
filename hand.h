@@ -9,8 +9,6 @@
 class Hand
 {
   public:
-    std::vector<Card> hand;
-
     Hand() : hand() {}
 
     void addCard(Card card) {
@@ -47,6 +45,14 @@ class Hand
         return totalvalue > 21;
     };
 
+    bool canSplit() {
+        // if card 1 in hand == card 2 in hand
+        if (hand[0].getValue() == hand[1].getValue()) {
+            return true;
+        }
+        return false;
+    }
+
     std::string showHand() {
         std::string handStr;
         for (const Card& card : hand) {
@@ -56,6 +62,7 @@ class Hand
     }
 
   private:  
+    std::vector<Card> hand;
     int totalvalue;
 };
 
