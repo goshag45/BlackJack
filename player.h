@@ -1,6 +1,8 @@
 #ifndef PLAYER_H
 #define PLAYER_H
 
+#include <vector>
+
 #include "cash.h"
 #include "deck.h"
 #include "hand.h"
@@ -10,6 +12,7 @@ class Player {
     // pass deck by reference in constructor
     Player(Deck& deckref, Cash& cashref) : deck(deckref), cash(cashref) {
             Hand hand;
+            hands;
         }
   
     void hit() {
@@ -26,7 +29,7 @@ class Player {
 
     void split() {
         if (hand.canSplit()) {
-            secondhand = hand.split();
+            hands.push_back(hand.split());
         }
     }
 
@@ -38,15 +41,13 @@ class Player {
         isstanding = false;
         isbusted = false;
         issurrendered = false;
-        hand.clearhand();
-        secondhand.clearhand();
+        hands.resize(1);
+        hands[0].clearhand();
     }
 
   private:
-    // only 2 hands
-    // need better implementation than this for more splits
     Hand hand;
-    Hand secondhand;
+    std::vector<Hand> hands;
     Deck& deck;
     Cash& cash;
 
