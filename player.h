@@ -10,10 +10,7 @@
 class Player {
   public:
     // pass deck by reference in constructor
-    Player(Deck& deckref, Cash& cashref) : deck(deckref), cash(cashref) {
-            Hand hand;
-            hands;
-        }
+    Player(Deck& deckref, Cash& cashref) : deck(deckref), cash(cashref), hand(), hands(1, Hand()) {}
   
     void hit() {
         hand.addCard(deck.draw());
@@ -45,7 +42,7 @@ class Player {
         hands[0].clearhand();
     }
 
-  private:
+  protected:
     Hand hand;
     std::vector<Hand> hands;
     Deck& deck;

@@ -1,14 +1,21 @@
 #ifndef DEALER_H
 #define DEALER_H
 
+#include "iostream"
 #include "player.h"
 
-class Dealer : Player {
+class Dealer : public Player {
   public:
-    dealer();
-  private:
-    
+    Dealer(Deck& deckref, Cash& cashref) : Player(deckref, cashref) {}
 
+    void dealerhit() {
+        if (hand.getTotalValue() < 17) {
+            hit();            
+        } else { canhit = false; }
+    }
+
+  private:
+    bool canhit = true;
 };
 
 #endif
