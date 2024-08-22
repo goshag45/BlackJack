@@ -15,6 +15,10 @@ class Game {
         Deck deck;
         Player player(Deck& deck);
 
+        // need to loop through amount of player hands
+
+        // need to write dealer ai FUCK
+
         while (isRunning) {
             switch () {
                 case 1: player.hit();

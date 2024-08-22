@@ -13,6 +13,7 @@ class Hand
 
     void addCard(Card card) {
         hand.push_back(card);
+        totalvalue = getTotalValue();
     };
 
     int getTotalValue() {
@@ -51,6 +52,18 @@ class Hand
             return true;
         }
         return false;
+    }
+
+    void clearhand() {
+        hand.clear();
+    }
+
+    Hand split() {
+        Hand secondhand;
+        secondhand.hand.push_back(Hand::hand[1]);
+        Hand::hand.pop_back();
+        return secondhand;
+        secondhand.totalvalue = getTotalValue();
     }
 
     std::string showHand() {

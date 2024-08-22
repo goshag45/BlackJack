@@ -8,8 +8,9 @@
 class Player {
   public:
     // pass deck by reference in constructor
-    Player(Deck& deckref, Cash& cashref, Hand& handref)
-        : deck(deckref), cash(cashref), hand(handref) {}
+    Player(Deck& deckref, Cash& cashref) : deck(deckref), cash(cashref) {
+            Hand hand;
+        }
   
     void hit() {
         hand.addCard(deck.draw());
@@ -25,7 +26,7 @@ class Player {
 
     void split() {
         if (hand.canSplit()) {
-
+            secondhand = hand.split();
         }
     }
 
@@ -37,11 +38,15 @@ class Player {
         isstanding = false;
         isbusted = false;
         issurrendered = false;
+        hand.clearhand();
+        secondhand.clearhand();
     }
 
   private:
-    Hand& hand;
-    // reference to deck in deck class
+    // only 2 hands
+    // need better implementation than this for more splits
+    Hand hand;
+    Hand secondhand;
     Deck& deck;
     Cash& cash;
 
