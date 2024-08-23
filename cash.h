@@ -15,6 +15,8 @@ class Cash {
         cash -= currentBet;
         currentBet *= 2;
     }
+
+    void setCash(int input) {cash = input;}
     
   private:
     int currentBet = 0;;
