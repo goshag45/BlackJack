@@ -18,7 +18,7 @@ class Cash {
 
     void setCash(int input) {cash = input;}
     
-  private:
+  protected:
     int currentBet = 0;;
     int cash;
 };

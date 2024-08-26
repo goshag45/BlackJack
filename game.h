@@ -3,32 +3,41 @@
 
 #include <iostream>
 
+#include "card.h"
+#include "cash.h"
+#include "dealer.h"
+#include "deck.h"
+#include "hand.h"
 #include "player.h"
 
 class Game {
   public:
-    Game() { isRunning = true; }
+    Game() { 
+        // initialise relevant game objects
+        Deck deck;
+        Cash cash;
+        Player player = Player(deck, cash);
+        Hand playerHand;
+        // dont like that im sharing cash object here!
+        Dealer dealer = Dealer(deck, cash);
+        Hand dealerHand;
+
+        isRunning = true; 
+    }
     
     void initialiseGame() {
         // maybe?
     }
 
     void coreLoop() {
-        while (isRunning) {
-            switch () {
-                case 1: ;
-                case 2: ;
-                case 3: ;
-                case 4: ;
-                case 5: ;
-                default: break;
-                }
-            }
+        while (isRunning) { }
+
     }
 
-    void playerTurn() {
+    void getPlayerBet() {
         std::cout << "Please Enter your bet for this round: " << std::endl;
-
+        // add type checking?
+        std::cin >> bet;
     }
 
     void start() {
@@ -36,14 +45,14 @@ class Game {
         Player player(Deck& deck);
 
         // need to loop through amount of player hands
-
-        // need to write dealer ai FUCK
     }
 
     void end() {}
 
   private:
     bool isRunning;
+    // THIS NEEDS TO LINK TO CASH
+    int bet = 0;
 };
 
 #endif
