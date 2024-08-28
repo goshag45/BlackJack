@@ -1,7 +1,12 @@
 #include <iostream>
 
+#include "game.h"
+
 int main() {
     std::cout << "Test!" << std::endl;
+
+    Game game;
+    game.coreLoop();
 
     return 0;
 }

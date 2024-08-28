@@ -49,6 +49,10 @@ class Card {
       return static_cast<int>(value);
     }
 
+    bool operator==(const Card& other) const {
+        return suit == other.suit && value == other.value;
+    }
+
   private:
     Suit suit;
     Value value;

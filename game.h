@@ -32,15 +32,21 @@ class Game {
         while (isRunning) { 
             std::cout << "-----------Starting Game-----------" << std::endl;
             sleep(1000);
-            std::cout << "dealing..." << std::endl;
-            dealer.hit();
-            dealer.hit();
-            player.hit();
-            player.hit();
-            std::cout << "Player: " << player.getHand().showHand() << std::endl;
-            std::cout << "Dealer: " << dealer.getHand().showHand() << std::endl;
+            dealAndShowHands();
+            std::cout << "Press Enter to Continue";
+            std::cin.ignore();
         }
 
+    }
+
+    void dealAndShowHands() {
+        std::cout << "dealing..." << std::endl;
+        dealer.hit();
+        dealer.hit();
+        player.hit();
+        player.hit();
+        std::cout << "Player: " << player.getHand().showHand() << std::endl;
+        std::cout << "Dealer: " << dealer.getHand().showHand() << std::endl;
     }
 
     void getPlayerBet() {

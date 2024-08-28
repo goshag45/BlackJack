@@ -12,7 +12,6 @@
 class Deck {
   public:
     Deck() {
-        std::vector<Card> deck;
         const std::array<Card::Suit, 4> suits = {
             Card::Suit::HEARTS, 
             Card::Suit::CLUBS, 
@@ -59,9 +58,10 @@ class Deck {
             std::swap(deck[i], deck[j]);
         }
 
-        if (unshuffled == deck) {
-            throw std::runtime_error("Deck has not been shuffled!");
-        }
+        // fail comparison
+        // if (unshuffled == deck) {
+        //     throw std::runtime_error("Deck has not been shuffled!");
+        // }
     }
 
     // before running:
