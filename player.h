@@ -42,6 +42,10 @@ class Player {
         hands[0].clearhand();
     }
 
+    const Hand& getHand() const {
+        return hand;
+    }
+
   protected:
     Hand hand;
     std::vector<Hand> hands;

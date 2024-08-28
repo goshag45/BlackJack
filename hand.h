@@ -66,7 +66,7 @@ class Hand
         secondhand.totalvalue = getTotalValue();
     }
 
-    std::string showHand() {
+    std::string showHand() const{
         std::string handStr;
         for (const Card& card : hand) {
             handStr += card.getFace() + " of " + card.getSuit() + "\n";

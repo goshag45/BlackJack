@@ -2,6 +2,8 @@
 #define GAME_U
 
 #include <iostream>
+#include <chrono>
+#include <thread>
 
 #include "card.h"
 #include "cash.h"
@@ -20,16 +22,23 @@ class Game {
     { 
         isRunning = true; 
     }
-    
-    void initialiseGame() {
-        // maybe?
+
+    void sleep(int ms) {
+        std::this_thread::sleep_for(std::chrono::milliseconds(ms));
     }
 
     void coreLoop() {
         isRunning = true;
         while (isRunning) { 
             std::cout << "-----------Starting Game-----------" << std::endl;
-
+            sleep(1000);
+            std::cout << "dealing..." << std::endl;
+            dealer.hit();
+            dealer.hit();
+            player.hit();
+            player.hit();
+            std::cout << "Player: " << player.getHand().showHand() << std::endl;
+            std::cout << "Dealer: " << dealer.getHand().showHand() << std::endl;
         }
 
     }
