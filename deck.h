@@ -41,6 +41,7 @@ class Deck {
         if (deck.size() != 52) {
             throw std::runtime_error("Deck initialised with less than 52 cards!");
         }
+        shuffle();
     }
 
     void shuffle() {
