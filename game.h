@@ -12,16 +12,12 @@
 
 class Game {
   public:
-    Game() { 
-        // initialise relevant game objects
-        Deck deck;
-        Cash cash;
-        Player player = Player(deck, cash);
-        Hand playerHand;
-        // dont like that im sharing cash object here!
-        Dealer dealer = Dealer(deck, cash);
-        Hand dealerHand;
-
+    Game()
+        : deck(),
+          cash(),
+          player(deck, cash),
+          dealer(deck, cash)
+    { 
         isRunning = true; 
     }
     
@@ -30,26 +26,31 @@ class Game {
     }
 
     void coreLoop() {
-        while (isRunning) { }
+        isRunning = true;
+        while (isRunning) { 
+            std::cout << "-----------Starting Game-----------" << std::endl;
+
+        }
 
     }
 
     void getPlayerBet() {
-        std::cout << "Please Enter your bet for this round: " << std::endl;
+        std::cout << "Enter bet: " << std::endl;
         // add type checking?
         std::cin >> bet;
     }
 
     void start() {
-        Deck deck;
-        Player player(Deck& deck);
-
         // need to loop through amount of player hands
     }
 
     void end() {}
 
   private:
+    Deck deck;
+    Cash cash;
+    Player player;
+    Dealer dealer;
     bool isRunning;
     // THIS NEEDS TO LINK TO CASH
     int bet = 0;
