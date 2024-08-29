@@ -28,23 +28,23 @@ class Game {
         while (isRunning) { 
             std::cout << "-----------Starting Game-----------" << std::endl;
             sleep(1000);
-            dealAndShowHands();
+            dealPlayerAndDealer();
+            std::cout << "Player: " << player.getHand().showHand() << std::endl;
+            // possible ideas for a dealer showhand:
+            // overloaded showhand method with flag?
+            // super specific method showDealerHandTurnOne()
+            std::cout << "Dealer: " << dealer.getHand().showHand() << std::endl;
             continuePrompt();
         }
 
     }
 
-    void dealAndShowHands() {
+    void dealPlayerAndDealer() {
         std::cout << "dealing..." << std::endl;
         dealer.hit();
         dealer.hit();
         player.hit();
         player.hit();
-        std::cout << "Player: " << player.getHand().showHand() << std::endl;
-        // possible ideas for a dealer showhand:
-        // overloaded showhand method with flag?
-        // super specific method showDealerHandTurnOne()
-        std::cout << "Dealer: " << dealer.getHand().showHand() << std::endl;
     }
 
     void getPlayerBet() {
