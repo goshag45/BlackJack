@@ -23,18 +23,13 @@ class Game {
         isRunning = true; 
     }
 
-    void sleep(int ms) {
-        std::this_thread::sleep_for(std::chrono::milliseconds(ms));
-    }
-
     void coreLoop() {
         isRunning = true;
         while (isRunning) { 
             std::cout << "-----------Starting Game-----------" << std::endl;
             sleep(1000);
             dealAndShowHands();
-            std::cout << "Press Enter to Continue";
-            std::cin.ignore();
+            continuePrompt();
         }
 
     }
@@ -46,6 +41,9 @@ class Game {
         player.hit();
         player.hit();
         std::cout << "Player: " << player.getHand().showHand() << std::endl;
+        // possible ideas for a dealer showhand:
+        // overloaded showhand method with flag?
+        // super specific method showDealerHandTurnOne()
         std::cout << "Dealer: " << dealer.getHand().showHand() << std::endl;
     }
 
@@ -54,12 +52,6 @@ class Game {
         // add type checking?
         std::cin >> bet;
     }
-
-    void start() {
-        // need to loop through amount of player hands
-    }
-
-    void end() {}
 
   private:
     Deck deck;
@@ -70,5 +62,14 @@ class Game {
     // THIS NEEDS TO LINK TO CASH
     int bet = 0;
 };
+
+inline void sleep(int ms) {
+    std::this_thread::sleep_for(std::chrono::milliseconds(ms));
+}
+
+inline void continuePrompt() {
+    std::cout << "Press Enter to Continue";
+    std::cin.ignore();
+} 
 
 #endif
