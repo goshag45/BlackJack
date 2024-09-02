@@ -31,17 +31,26 @@ class Game {
         isRunning = true;
         dealerFirstTurn = false;
         while (isRunning) { 
-            std::cout << "-----------Starting Game-----------" << std::endl;
+            std::cout << "\n-----------Starting Game-----------" << std::endl;
             sleep(1000);
             dealPlayerAndDealer();
-            std::cout << "Player: \n" << player.getHand().showHand(dealerFirstTurn) << std::endl;
+            showHandString(true, dealerFirstTurn);
             dealerFirstTurn = true;
-            std::cout << "Dealer: \n " << dealer.getHand().showHand(dealerFirstTurn) << std::endl;
+            showHandString(false, dealerFirstTurn);
             dealerFirstTurn = false;
             continuePrompt();
             promptPlayer();
+            showHandString(true, dealerFirstTurn);
+            showHandString(true, dealerFirstTurn);
         }
+    }
 
+    void showHandString(bool playerCheck, bool dealerFirstTurn) {
+        if (playerCheck) {
+            std::cout << "Player: \n" << player.getHand().showHand(dealerFirstTurn) << std::endl;
+            return;
+        }
+        std::cout << "Dealer: \n " << dealer.getHand().showHand(dealerFirstTurn) << std::endl;
     }
 
     void promptPlayer() {
@@ -97,7 +106,7 @@ class Game {
     bool isRunning;
     // THIS NEEDS TO LINK TO CASH
     int bet = 0;
-    bool dealerFirstTurn = false;
+    bool dealerFirstTurn;
 };
 
 inline void sleep(int ms) {
