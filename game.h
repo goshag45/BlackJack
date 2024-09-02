@@ -41,20 +41,21 @@ class Game {
             continuePrompt();
             promptPlayer();
             showHandString(true, dealerFirstTurn);
-            showHandString(true, dealerFirstTurn);
+            showHandString(false, dealerFirstTurn);
+            continuePrompt();
         }
     }
 
-    void showHandString(bool playerCheck, bool dealerFirstTurn) {
+    void showHandString(bool playerCheck, bool firstTurn) {
         if (playerCheck) {
-            std::cout << "Player: \n" << player.getHand().showHand(dealerFirstTurn) << std::endl;
+            std::cout << "Player: \n" << player.getHand().showHand(firstTurn) << std::endl;
             return;
         }
-        std::cout << "Dealer: \n " << dealer.getHand().showHand(dealerFirstTurn) << std::endl;
+        std::cout << "Dealer: \n" << dealer.getHand().showHand(firstTurn) << std::endl;
     }
 
     void promptPlayer() {
-        std::cout << "----------Choose your play----------" << std::endl;
+        std::cout << "\n----------Choose your play----------" << std::endl;
         std::cout << "1. Hit" << std::endl;
         std::cout << "2. Stand" << std::endl;
         std::cout << "3. Double Down" << std::endl;
@@ -65,16 +66,21 @@ class Game {
         std::cin >> choice;
         switch (choice) {
             case 1: 
+                // NEED A HIT LOOP HERE
                 player.hit();
+                choiceMessage("Hit");
                 break;
             case 2:
                 player.stand();
+                choiceMessage("Stand");
                 break;
             case 3:
                 player.doubleDown();
+                choiceMessage("Double Down");
                 break;
             case 4:
                 player.split();
+                choiceMessage("Split");
                 break;
             case 5:
                 // nothing here yet!
@@ -82,6 +88,10 @@ class Game {
             default:
                 std::cout << "Invalid choise!" << std::endl;
         }
+    }
+
+    void choiceMessage(std::string choice) {
+        std::cout << "\n" << "You chose: " << choice << "\n" << std::endl;
     }
 
     void dealPlayerAndDealer() {
