@@ -29,18 +29,45 @@ class Game {
 
     void coreLoop() {
         isRunning = true;
+        dealerFirstTurn = false;
         while (isRunning) { 
             std::cout << "-----------Starting Game-----------" << std::endl;
             sleep(1000);
             dealPlayerAndDealer();
-            std::cout << "Player: \n" << player.getHand().showHand() << std::endl;
-            // possible ideas for a dealer showhand:
-            // overloaded showhand method with flag?
-            // super specific method showDealerHandTurnOne()
-            std::cout << "Dealer: " << dealer.getHand().showHand() << std::endl;
+            std::cout << "Player: \n" << player.getHand().showHand(dealerFirstTurn) << std::endl;
+            dealerFirstTurn = true;
+            std::cout << "Dealer: \n " << dealer.getHand().showHand(dealerFirstTurn) << std::endl;
+            dealerFirstTurn = false;
             continuePrompt();
+            promptPlayer();
         }
 
+    }
+
+    void promptPlayer() {
+        std::cout << "----------Choose your play----------" << std::endl;
+        std::cout << "1. Hit" << std::endl;
+        std::cout << "2. Stand" << std::endl;
+        std::cout << "3. Double Down" << std::endl;
+        std::cout << "4. Split" << std::endl;
+        std::cout << "5. Insurance" << std::endl;
+        int choice;
+        //TYPE CHECKING!!!
+        std::cin >> choice;
+        switch (choice) {
+            case 1: 
+                break;
+            case 2:
+                break;
+            case 3:
+                break;
+            case 4:
+                break;
+            case 5:
+                break;
+            default:
+                std::cout << "Invalid choise!" << std::endl;
+        }
     }
 
     void dealPlayerAndDealer() {
@@ -65,6 +92,7 @@ class Game {
     bool isRunning;
     // THIS NEEDS TO LINK TO CASH
     int bet = 0;
+    bool dealerFirstTurn = false;
 };
 
 inline void sleep(int ms) {

@@ -14,6 +14,10 @@ class Dealer : public Player {
         } else { canhit = false; }
     }
 
+    void showHand() {
+      
+    }
+
   private:
     bool canhit = true;
 };

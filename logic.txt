@@ -4,7 +4,7 @@ ask player for bet
 2 cards delt to player
 2 cards delt to dealer [1 facedown]
 show options for player
- - bust
+ - hit
  - stand
  - double down
  - split
