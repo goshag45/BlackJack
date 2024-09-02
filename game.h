@@ -12,6 +12,10 @@
 #include "hand.h"
 #include "player.h"
 
+// Function declarations
+inline void sleep(int ms);
+inline void continuePrompt();
+
 class Game {
   public:
     Game()
@@ -29,7 +33,7 @@ class Game {
             std::cout << "-----------Starting Game-----------" << std::endl;
             sleep(1000);
             dealPlayerAndDealer();
-            std::cout << "Player: " << player.getHand().showHand() << std::endl;
+            std::cout << "Player: \n" << player.getHand().showHand() << std::endl;
             // possible ideas for a dealer showhand:
             // overloaded showhand method with flag?
             // super specific method showDealerHandTurnOne()
