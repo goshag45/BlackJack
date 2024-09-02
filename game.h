@@ -56,14 +56,19 @@ class Game {
         std::cin >> choice;
         switch (choice) {
             case 1: 
+                player.hit();
                 break;
             case 2:
+                player.stand();
                 break;
             case 3:
+                player.doubleDown();
                 break;
             case 4:
+                player.split();
                 break;
             case 5:
+                // nothing here yet!
                 break;
             default:
                 std::cout << "Invalid choise!" << std::endl;
