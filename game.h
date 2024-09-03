@@ -31,7 +31,7 @@ class Game {
         isRunning = true;
         dealerFirstTurn = false;
         while (isRunning) { 
-            std::cout << "\n-----------Starting Game-----------" << std::endl;
+            std::cout << "\n-----------Starting Game-----------\n";
             sleep(1000);
             dealPlayerAndDealer();
             showHandString(true, dealerFirstTurn);
@@ -48,19 +48,19 @@ class Game {
 
     void showHandString(bool playerCheck, bool firstTurn) {
         if (playerCheck) {
-            std::cout << "Player: \n" << player.getHand().showHand(firstTurn) << std::endl;
+            std::cout << "Player: \n" << player.getHand().showHand(firstTurn) << '\n';
             return;
         }
-        std::cout << "Dealer: \n" << dealer.getHand().showHand(firstTurn) << std::endl;
+        std::cout << "Dealer: \n" << dealer.getHand().showHand(firstTurn) << '\n';
     }
 
     void promptPlayer() {
         std::cout << "\n----------Choose your play----------" << std::endl;
-        std::cout << "1. Hit" << std::endl;
-        std::cout << "2. Stand" << std::endl;
-        std::cout << "3. Double Down" << std::endl;
-        std::cout << "4. Split" << std::endl;
-        std::cout << "5. Insurance" << std::endl;
+        std::cout << "1. Hit\n";
+        std::cout << "2. Stand\n";
+        std::cout << "3. Double Down\n";
+        std::cout << "4. Split\n";
+        std::cout << "5. Insurance\n";
         int choice;
         //TYPE CHECKING!!!
         std::cin >> choice;
@@ -86,12 +86,12 @@ class Game {
                 // nothing here yet!
                 break;
             default:
-                std::cout << "Invalid choise!" << std::endl;
+                std::cout << "Invalid choise!\n";
         }
     }
 
     void choiceMessage(std::string choice) {
-        std::cout << "\n" << "You chose: " << choice << "\n" << std::endl;
+        std::cout << "\n" << "You chose: " << choice << '\n' << std::endl;
     }
 
     void dealPlayerAndDealer() {
