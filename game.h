@@ -55,7 +55,7 @@ class Game {
     }
 
     void promptPlayer() {
-        std::cout << "\n----------Choose your play----------" << std::endl;
+        std::cout << "\n----------Choose your play----------\n";
         std::cout << "1. Hit\n";
         std::cout << "2. Stand\n";
         std::cout << "3. Double Down\n";
@@ -91,11 +91,11 @@ class Game {
     }
 
     void choiceMessage(std::string choice) {
-        std::cout << "\n" << "You chose: " << choice << '\n' << std::endl;
+        std::cout << "\n" << "You chose: " << choice << '\n';
     }
 
     void dealPlayerAndDealer() {
-        std::cout << "dealing..." << std::endl;
+        std::cout << "dealing...\n";
         dealer.hit();
         dealer.hit();
         player.hit();
@@ -103,7 +103,7 @@ class Game {
     }
 
     void getPlayerBet() {
-        std::cout << "Enter bet: " << std::endl;
+        std::cout << "Enter bet: \n";
         // add type checking?
         std::cin >> bet;
     }
