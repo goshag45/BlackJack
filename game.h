@@ -15,6 +15,7 @@
 // Function declarations
 inline void sleep(int ms);
 inline void continuePrompt();
+inline void choiceMessage(std::string choice);
 
 class Game {
   public:
@@ -27,27 +28,6 @@ class Game {
         isRunning = true; 
     }
 
-    void coreLoop() {
-        isRunning = true;
-        dealerFirstTurn = false;
-        while (isRunning) { 
-            std::cout << "\n-----------Starting Game-----------\n";
-            sleep(1000);
-            dealPlayerAndDealer();
-            showHandString(true, dealerFirstTurn);
-            dealerFirstTurn = true;
-            showHandString(false, dealerFirstTurn);
-            dealerFirstTurn = false;
-            continuePrompt();
-            promptPlayer();
-            showHandString(true, dealerFirstTurn);
-            showHandString(false, dealerFirstTurn);
-            continuePrompt();
-            dealerTurn(false, dealerFirstTurn);
-            continuePrompt();
-        }
-    }
-
     void showHandString(bool playerCheck, bool firstTurn) {
         if (playerCheck) {
             std::cout << "Player: \n" << player.getHand().showHand(firstTurn) << '\n';
@@ -58,11 +38,11 @@ class Game {
 
     void promptPlayer() {
         std::cout << "\n----------Choose your play----------\n";
-        std::cout << "1. Hit\n";
-        std::cout << "2. Stand\n";
-        std::cout << "3. Double Down\n";
-        std::cout << "4. Split\n";
-        std::cout << "5. Insurance\n";
+        std::cout << "[1] Hit\n";
+        std::cout << "[2] Stand\n";
+        std::cout << "[3] Double Down\n";
+        std::cout << "[4] Split\n";
+        std::cout << "[5] Insurance\n";
         int choice;
         //TYPE CHECKING!!!
         std::cin >> choice;
@@ -91,6 +71,20 @@ class Game {
                 std::cout << "Invalid choise!\n";
         }
     }
+    
+    // void playerHitLoop() {
+    //     while (!player.hand.isBust() && !player.hand.isBlackjack()) {
+    //         std::cout << "Would you like to [1]Hit or [2] Stand\n";
+    //         int choice;
+    //         std::cin >> choice;
+    //         switch (choice) {
+    //             case 1: 
+    //                 break;
+    //             case 2:
+    //                 break;
+    //         }
+    //     }
+    // }
 
     void dealerTurn(bool isDealer, bool firstTurnCheck) {
         std::cout << "Dealer playing...\n";
@@ -101,10 +95,6 @@ class Game {
                 showHandString(isDealer, firstTurnCheck);
             }
         }
-    }
-
-    void choiceMessage(std::string choice) {
-        std::cout << "\n" << "You chose: " << choice << '\n';
     }
 
     void dealPlayerAndDealer() {
@@ -121,7 +111,28 @@ class Game {
         std::cin >> bet;
     }
 
-  private:
+    void coreLoop() {
+        isRunning = true;
+        dealerFirstTurn = false;
+        while (isRunning) { 
+            std::cout << "\n-----------Starting Game-----------\n";
+            sleep(1000);
+            dealPlayerAndDealer();
+            showHandString(true, dealerFirstTurn);
+            dealerFirstTurn = true;
+            showHandString(false, dealerFirstTurn);
+            dealerFirstTurn = false;
+            continuePrompt();
+            promptPlayer();
+            showHandString(true, dealerFirstTurn);
+            showHandString(false, dealerFirstTurn);
+            continuePrompt();
+            dealerTurn(false, dealerFirstTurn);
+            continuePrompt();
+        }
+    }
+
+  protected:
     Deck deck;
     Cash cash;
     Player player;
@@ -130,6 +141,7 @@ class Game {
     // THIS NEEDS TO LINK TO CASH
     int bet = 0;
     bool dealerFirstTurn;
+
 };
 
 inline void sleep(int ms) {
@@ -140,5 +152,9 @@ inline void continuePrompt() {
     std::cout << "Press Enter to Continue\n";
     std::cin.ignore();
 } 
+
+inline void choiceMessage(std::string choice) {
+    std::cout << "\n" << "You chose: " << choice << '\n';
+}
 
 #endif

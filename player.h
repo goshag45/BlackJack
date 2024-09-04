@@ -9,6 +9,15 @@
 
 class Player {
   public:
+    Hand hand;
+    std::vector<Hand> hands;
+    Deck& deck;
+    Cash& cash;
+
+    bool isstanding;
+    bool isbusted;
+    bool issurrendered;
+
     // pass deck by reference in constructor
     Player(Deck& deckref, Cash& cashref) : deck(deckref), cash(cashref), hand(), hands(1, Hand()) {}
   
@@ -45,16 +54,6 @@ class Player {
     const Hand& getHand() const {
         return hand;
     }
-
-  protected:
-    Hand hand;
-    std::vector<Hand> hands;
-    Deck& deck;
-    Cash& cash;
-
-    bool isstanding;
-    bool isbusted;
-    bool issurrendered;
 };
 
 #endif
