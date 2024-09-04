@@ -43,6 +43,8 @@ class Game {
             showHandString(true, dealerFirstTurn);
             showHandString(false, dealerFirstTurn);
             continuePrompt();
+            dealerTurn(false, dealerFirstTurn);
+            continuePrompt();
         }
     }
 
@@ -90,6 +92,17 @@ class Game {
         }
     }
 
+    void dealerTurn(bool isDealer, bool firstTurnCheck) {
+        std::cout << "Dealer playing...\n";
+        sleep(1000);
+        while (dealer.canhit) {
+            dealer.dealerhit();
+            if (dealer.canhit) {
+                showHandString(isDealer, firstTurnCheck);
+            }
+        }
+    }
+
     void choiceMessage(std::string choice) {
         std::cout << "\n" << "You chose: " << choice << '\n';
     }
@@ -124,7 +137,7 @@ inline void sleep(int ms) {
 }
 
 inline void continuePrompt() {
-    std::cout << "Press Enter to Continue";
+    std::cout << "Press Enter to Continue\n";
     std::cin.ignore();
 } 
 

@@ -6,6 +6,8 @@
 
 class Dealer : public Player {
   public:
+    bool canhit = true;
+
     Dealer(Deck& deckref, Cash& cashref) : Player(deckref, cashref) {}
 
     void dealerhit() {
@@ -17,9 +19,6 @@ class Dealer : public Player {
     void showHand() {
       
     }
-
-  private:
-    bool canhit = true;
 };
 
 #endif
