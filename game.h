@@ -48,9 +48,10 @@ class Game {
         std::cin >> choice;
         switch (choice) {
             case 1: 
-                // NEED A HIT LOOP HERE
                 player.hit();
-                choiceMessage("Hit");
+                choiceMessage("Hit!");
+                showHandString(true, dealerFirstTurn);
+                playerHitLoop();
                 break;
             case 2:
                 player.stand();
@@ -74,16 +75,26 @@ class Game {
     
     void playerHitLoop() {
         while (!player.hand.isBust() && !player.hand.isBlackjack()) {
-            std::cout << "Would you like to [1]Hit or [2] Stand\n";
+            std::cout << "Would you like to [1] Hit or [2] Stand\n";
             int choice;
             std::cin >> choice;
             switch (choice) {
                 case 1: 
+                    player.hit();
+                    choiceMessage("Hit!");
+                    showHandString(true, dealerFirstTurn);
                     break;
                 case 2:
+                    player.stand();
+                    choiceMessage("Stand!");
+                    showHandString(true, dealerFirstTurn);
                     break;
             }
         }
+    }
+
+    void playerHandStateMessage() {
+        // IF BUST WRITE BUST, IF BJ WRITE BJ
     }
 
     void dealerTurn(bool isDealer, bool firstTurnCheck) {
@@ -124,8 +135,8 @@ class Game {
             dealerFirstTurn = false;
             continuePrompt();
             promptPlayer();
-            showHandString(true, dealerFirstTurn);
-            showHandString(false, dealerFirstTurn);
+            // showHandString(true, dealerFirstTurn);
+            // showHandString(false, dealerFirstTurn);
             continuePrompt();
             dealerTurn(false, dealerFirstTurn);
             continuePrompt();
