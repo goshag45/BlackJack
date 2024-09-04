@@ -72,19 +72,19 @@ class Game {
         }
     }
     
-    // void playerHitLoop() {
-    //     while (!player.hand.isBust() && !player.hand.isBlackjack()) {
-    //         std::cout << "Would you like to [1]Hit or [2] Stand\n";
-    //         int choice;
-    //         std::cin >> choice;
-    //         switch (choice) {
-    //             case 1: 
-    //                 break;
-    //             case 2:
-    //                 break;
-    //         }
-    //     }
-    // }
+    void playerHitLoop() {
+        while (!player.hand.isBust() && !player.hand.isBlackjack()) {
+            std::cout << "Would you like to [1]Hit or [2] Stand\n";
+            int choice;
+            std::cin >> choice;
+            switch (choice) {
+                case 1: 
+                    break;
+                case 2:
+                    break;
+            }
+        }
+    }
 
     void dealerTurn(bool isDealer, bool firstTurnCheck) {
         std::cout << "Dealer playing...\n";
