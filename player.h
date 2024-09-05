@@ -51,6 +51,10 @@ class Player {
         hands[0].clearhand();
     }
 
+    void showHandString() {
+        std::cout << "Player: \n" << getHand().showHand(false) << '\n';
+    }
+
     const Hand& getHand() const {
         return hand;
     }

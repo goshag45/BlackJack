@@ -28,14 +28,6 @@ class Game {
         isRunning = true; 
     }
 
-    void showHandString(bool playerCheck, bool firstTurn) {
-        if (playerCheck) {
-            std::cout << "Player: \n" << player.getHand().showHand(firstTurn) << '\n';
-            return;
-        }
-        std::cout << "Dealer: \n" << dealer.getHand().showHand(firstTurn) << '\n';
-    }
-
     void promptPlayer() {
         std::cout << "\n----------Choose your play----------\n";
         std::cout << "[1] Hit\n";
@@ -143,7 +135,7 @@ class Game {
         }
     }
 
-  protected:
+  private:
     Deck deck;
     Cash cash;
     Player player;
@@ -151,8 +143,6 @@ class Game {
     bool isRunning;
     // THIS NEEDS TO LINK TO CASH
     int bet = 0;
-    bool dealerFirstTurn;
-
 };
 
 inline void sleep(int ms) {

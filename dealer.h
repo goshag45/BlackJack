@@ -7,6 +7,7 @@
 class Dealer : public Player {
   public:
     bool canhit = true;
+    bool isFirstTurn = true;
 
     Dealer(Deck& deckref, Cash& cashref) : Player(deckref, cashref) {}
 
@@ -16,8 +17,8 @@ class Dealer : public Player {
         } else { canhit = false; }
     }
 
-    void showHand() {
-      
+    void showHandString() {
+        std::cout << "Dealer: \n" << getHand().showHand(isFirstTurn) << '\n';
     }
 };
 

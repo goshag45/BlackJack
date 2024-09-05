@@ -66,9 +66,9 @@ class Hand
         secondhand.totalvalue = getTotalValue();
     }
 
-    std::string showHand(bool dealerFirstTurn) const{
+    std::string showHand(bool isDealerFirstTurn) const{
         std::string handStr;
-        if (dealerFirstTurn) {
+        if (isDealerFirstTurn) {
             handStr += "*CARD HIDDEN*\n";
             handStr += hand[1].getFace() + " of " + hand[1].getSuit() + "\n";
             return handStr;
