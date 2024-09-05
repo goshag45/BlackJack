@@ -42,7 +42,7 @@ class Game {
             case 1: 
                 player.hit();
                 choiceMessage("Hit!");
-                showHandString(true, dealerFirstTurn);
+                player.showHandString();
                 playerHitLoop();
                 break;
             case 2:
@@ -74,12 +74,12 @@ class Game {
                 case 1: 
                     player.hit();
                     choiceMessage("Hit!");
-                    showHandString(true, dealerFirstTurn);
+                    player.showHandString();
                     break;
                 case 2:
                     player.stand();
                     choiceMessage("Stand!");
-                    showHandString(true, dealerFirstTurn);
+                    player.showHandString();
                     break;
             }
         }
@@ -89,13 +89,13 @@ class Game {
         // IF BUST WRITE BUST, IF BJ WRITE BJ
     }
 
-    void dealerTurn(bool isDealer, bool firstTurnCheck) {
+    void dealerTurn() {
         std::cout << "Dealer playing...\n";
         sleep(1000);
         while (dealer.canhit) {
             dealer.dealerhit();
             if (dealer.canhit) {
-                showHandString(isDealer, firstTurnCheck);
+                dealer.showHandString();
             }
         }
     }
@@ -116,21 +116,17 @@ class Game {
 
     void coreLoop() {
         isRunning = true;
-        dealerFirstTurn = false;
         while (isRunning) { 
             std::cout << "\n-----------Starting Game-----------\n";
             sleep(1000);
             dealPlayerAndDealer();
-            showHandString(true, dealerFirstTurn);
-            dealerFirstTurn = true;
-            showHandString(false, dealerFirstTurn);
-            dealerFirstTurn = false;
+            player.showHandString();
+            dealer.showHandString();
+            dealer.isFirstTurn = false;
             continuePrompt();
             promptPlayer();
-            // showHandString(true, dealerFirstTurn);
-            // showHandString(false, dealerFirstTurn);
             continuePrompt();
-            dealerTurn(false, dealerFirstTurn);
+            dealerTurn();
             continuePrompt();
         }
     }
