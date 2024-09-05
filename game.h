@@ -11,11 +11,8 @@
 #include "deck.h"
 #include "hand.h"
 #include "player.h"
+#include "ui.h"
 
-// Function declarations
-inline void sleep(int ms);
-inline void continuePrompt();
-inline void choiceMessage(std::string choice);
 
 class Game {
   public:
@@ -23,7 +20,8 @@ class Game {
         : deck(),
           cash(),
           player(deck, cash),
-          dealer(deck, cash)
+          dealer(deck, cash),
+          ui()
     { 
         isRunning = true; 
     }
@@ -67,9 +65,7 @@ class Game {
     
     void playerHitLoop() {
         while (!player.hand.isBust() && !player.hand.isBlackjack()) {
-            std::cout << "Would you like to [1] Hit or [2] Stand\n";
-            int choice;
-            std::cin >> choice;
+            int choice = ui.getPlayerInputInt("Would you like to [1] Hit or [2] Stand");
             switch (choice) {
                 case 1: 
                     player.hit();
@@ -90,7 +86,7 @@ class Game {
     }
 
     void dealerTurn() {
-        std::cout << "Dealer playing...\n";
+        ui.showMessage("Dealer playing...");
         sleep(1000);
         while (dealer.canhit) {
             dealer.dealerhit();
@@ -101,7 +97,7 @@ class Game {
     }
 
     void dealPlayerAndDealer() {
-        std::cout << "dealing...\n";
+        ui.showMessage("dealing...");
         dealer.hit();
         dealer.hit();
         player.hit();
@@ -109,9 +105,7 @@ class Game {
     }
 
     void getPlayerBet() {
-        std::cout << "Enter bet: \n";
-        // add type checking?
-        std::cin >> bet;
+        bet = ui.getPlayerInputInt("Enter bet: ");
     }
 
     void coreLoop() {
@@ -136,6 +130,7 @@ class Game {
     Cash cash;
     Player player;
     Dealer dealer;
+    Ui ui;
     bool isRunning;
     // THIS NEEDS TO LINK TO CASH
     int bet = 0;
@@ -143,15 +138,6 @@ class Game {
 
 inline void sleep(int ms) {
     std::this_thread::sleep_for(std::chrono::milliseconds(ms));
-}
-
-inline void continuePrompt() {
-    std::cout << "Press Enter to Continue\n";
-    std::cin.ignore();
-} 
-
-inline void choiceMessage(std::string choice) {
-    std::cout << "\n" << "You chose: " << choice << '\n';
 }
 
 #endif
