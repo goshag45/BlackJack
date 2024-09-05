@@ -27,39 +27,32 @@ class Game {
     }
 
     void promptPlayer() {
-        std::cout << "\n----------Choose your play----------\n";
-        std::cout << "[1] Hit\n";
-        std::cout << "[2] Stand\n";
-        std::cout << "[3] Double Down\n";
-        std::cout << "[4] Split\n";
-        std::cout << "[5] Insurance\n";
-        int choice;
-        //TYPE CHECKING!!!
-        std::cin >> choice;
+        ui.playerPlayMenu();
+        int choice = ui.getPlayerInputInt("");
         switch (choice) {
             case 1: 
                 player.hit();
-                choiceMessage("Hit!");
+                ui.choiceMessage("Hit!");
                 player.showHandString();
                 playerHitLoop();
                 break;
             case 2:
                 player.stand();
-                choiceMessage("Stand");
+                ui.choiceMessage("Stand");
                 break;
             case 3:
                 player.doubleDown();
-                choiceMessage("Double Down");
+                ui.choiceMessage("Double Down");
                 break;
             case 4:
                 player.split();
-                choiceMessage("Split");
+                ui.choiceMessage("Split");
                 break;
             case 5:
                 // nothing here yet!
                 break;
             default:
-                std::cout << "Invalid choise!\n";
+                ui.showMessage("Invalid choise!");
         }
     }
     
@@ -69,12 +62,12 @@ class Game {
             switch (choice) {
                 case 1: 
                     player.hit();
-                    choiceMessage("Hit!");
+                    ui.choiceMessage("Hit!");
                     player.showHandString();
                     break;
                 case 2:
                     player.stand();
-                    choiceMessage("Stand!");
+                    ui.choiceMessage("Stand!");
                     player.showHandString();
                     break;
             }
@@ -96,7 +89,7 @@ class Game {
         }
     }
 
-    void dealPlayerAndDealer() {
+    void dealInitialCards() {
         ui.showMessage("dealing...");
         dealer.hit();
         dealer.hit();
@@ -111,17 +104,17 @@ class Game {
     void coreLoop() {
         isRunning = true;
         while (isRunning) { 
-            std::cout << "\n-----------Starting Game-----------\n";
-            sleep(1000);
-            dealPlayerAndDealer();
+            ui.showMessage("-----------Starting Game-----------");
+            // sleep(1000);
+            dealInitialCards();
             player.showHandString();
             dealer.showHandString();
             dealer.isFirstTurn = false;
-            continuePrompt();
+            ui.continuePrompt();
             promptPlayer();
-            continuePrompt();
+            ui.continuePrompt();
             dealerTurn();
-            continuePrompt();
+            ui.continuePrompt();
         }
     }
 
@@ -136,6 +129,7 @@ class Game {
     int bet = 0;
 };
 
+// might not need this?
 inline void sleep(int ms) {
     std::this_thread::sleep_for(std::chrono::milliseconds(ms));
 }
