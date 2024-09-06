@@ -10,11 +10,12 @@
 class Player {
   public:
     Hand hand;
+    // THIS IS NOT PROPERLY IMPLEMENTED
     std::vector<Hand> hands;
     Deck& deck;
     Cash& cash;
 
-    bool isstanding;
+    bool isstanding = false;
     bool isbusted;
     bool issurrendered;
 
@@ -43,10 +44,11 @@ class Player {
 
     void surrender() { issurrendered = true; }
 
-    void resetPlayer() {
+    void reset() {
         isstanding = false;
         isbusted = false;
         issurrendered = false;
+        hand.clearhand();
         hands.resize(1);
         hands[0].clearhand();
     }

@@ -57,7 +57,7 @@ class Game {
     }
     
     void playerHitLoop() {
-        while (!player.hand.isBust() && !player.hand.isBlackjack()) {
+        while (!player.hand.isBust() && !player.hand.isBlackjack() && !(player.isstanding)) {
             int choice = ui.getPlayerInputInt("Would you like to [1] Hit or [2] Stand");
             switch (choice) {
                 case 1: 
@@ -69,6 +69,7 @@ class Game {
                     player.stand();
                     ui.choiceMessage("Stand!");
                     player.showHandString();
+                    // NEED TO SOMEHOW BREAK OUT OF THE LOOP HERE
                     break;
             }
         }
@@ -80,7 +81,7 @@ class Game {
 
     void dealerTurn() {
         ui.showMessage("Dealer playing...");
-        sleep(1000);
+        // sleep(1000);
         while (dealer.canhit) {
             dealer.dealerhit();
             if (dealer.canhit) {
@@ -101,9 +102,15 @@ class Game {
         bet = ui.getPlayerInputInt("Enter bet: ");
     }
 
+    void resetGame() {
+        player.reset();
+        dealer.reset();
+    }
+
     void coreLoop() {
         isRunning = true;
         while (isRunning) { 
+            resetGame();
             ui.showMessage("-----------Starting Game-----------");
             // sleep(1000);
             dealInitialCards();
@@ -112,7 +119,6 @@ class Game {
             dealer.isFirstTurn = false;
             ui.continuePrompt();
             promptPlayer();
-            ui.continuePrompt();
             dealerTurn();
             ui.continuePrompt();
         }
