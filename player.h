@@ -18,6 +18,7 @@ class Player {
     bool isstanding = false;
     bool isbusted;
     bool issurrendered;
+    bool isBlackjack;
 
     // pass deck by reference in constructor
     Player(Deck& deckref, Cash& cashref) : deck(deckref), cash(cashref), hand(), hands(1, Hand()) {}
@@ -26,6 +27,9 @@ class Player {
         hand.addCard(deck.draw());
         if (hand.isBust()) {
             isbusted = true;
+        }
+        if (hand.isBlackjack()) {
+            isBlackjack = true;
         }
     }
 
@@ -48,6 +52,7 @@ class Player {
         isstanding = false;
         isbusted = false;
         issurrendered = false;
+        isBlackjack = false;
         hand.clearhand();
         hands.resize(1);
         hands[0].clearhand();

@@ -34,6 +34,7 @@ class Game {
                 player.hit();
                 ui.choiceMessage("Hit!");
                 player.showHandString();
+                checkEndGameState();
                 playerHitLoop();
                 break;
             case 2:
@@ -64,6 +65,7 @@ class Game {
                     player.hit();
                     ui.choiceMessage("Hit!");
                     player.showHandString();
+                    checkEndGameState();
                     break;
                 case 2:
                     player.stand();
@@ -100,6 +102,23 @@ class Game {
 
     void getPlayerBet() {
         bet = ui.getPlayerInputInt("Enter bet: ");
+    }
+
+    void playerBustCheck() {
+        if (player.isbusted) {
+            ui.showMessage("You are BUST!");
+        }
+    }
+
+    void playerBlackJackCheck() {
+        if (player.isBlackjack) {
+            ui.showMessage("You have BLACKJACK!");
+        }
+    }
+
+    void checkEndGameState() {
+        playerBustCheck();
+        playerBlackJackCheck();
     }
 
     void resetGame() {
