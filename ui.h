@@ -3,6 +3,8 @@
 
 #include <iostream>
 #include <string>
+#include <ios>
+#include <limits>
 
 class Ui {
   public:
@@ -17,6 +19,7 @@ class Ui {
     }
 
     void continuePrompt() {
+        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
         std::cout << "Press Enter to Continue\n";
         std::cin.ignore();
     } 

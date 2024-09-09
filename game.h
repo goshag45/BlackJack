@@ -119,6 +119,9 @@ class Game {
     void checkEndGameState() {
         playerBustCheck();
         playerBlackJackCheck();
+        if (player.isbusted || player.isBlackjack) {
+            ui.continuePrompt();
+        }
     }
 
     void resetGame() {
@@ -134,6 +137,7 @@ class Game {
             // sleep(1000);
             dealInitialCards();
             player.showHandString();
+            checkEndGameState();
             dealer.showHandString();
             dealer.isFirstTurn = false;
             ui.continuePrompt();
