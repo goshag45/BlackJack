@@ -82,13 +82,16 @@ class Game {
     }
 
     void dealerTurn() {
-        ui.showMessage("Dealer playing...");
-        // sleep(1000);
+        if (dealer.canhit) { ui.showMessage("Dealer playing..."); }
         while (dealer.canhit) {
             dealer.dealerhit();
             if (dealer.canhit) {
                 dealer.showHandString();
             }
+        }
+        if (!dealer.canhit) {
+            ui.showMessage("Dealer Final Hand");
+            dealer.showHandString();
         }
     }
 
@@ -119,6 +122,9 @@ class Game {
     void checkEndGameState() {
         playerBustCheck();
         playerBlackJackCheck();
+        if (player.isbusted) {
+
+        }
         if (player.isbusted || player.isBlackjack) {
             ui.continuePrompt();
         }
