@@ -31,6 +31,10 @@ class Ui {
         std::cout << messageText << '\n';
     }
 
+    void showMessage(std::string messageText, auto inputVariable) {
+        std::cout << messageText << inputVariable << '\n';
+    }
+
     void playerPlayMenu() {
         std::cout << "\n----------Choose your play----------\n";
         std::cout << "[1] Hit\n";

@@ -59,7 +59,7 @@ class Player {
     }
 
     void showHandString() {
-        std::cout << "Player: \n" << getHand().showHand(false) << '\n';
+        std::cout << getHand().showHand(false) << '\n';
     }
 
     const Hand& getHand() const {

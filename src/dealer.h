@@ -18,7 +18,7 @@ class Dealer : public Player {
     }
 
     void showHandString() {
-        std::cout << "Dealer: \n" << getHand().showHand(isFirstTurn) << '\n';
+        std::cout << getHand().showHand(isFirstTurn) << '\n';
     }
 };
 
