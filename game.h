@@ -105,7 +105,7 @@ class Game {
 
     void playerBustCheck() {
         if (player.isbusted) {
-            ui.showMessage("You are BUST!");
+            ui.showMessage("You are BUST! With a hand value of");
         }
     }
 

@@ -1,7 +1,20 @@
 # C++ Blackjack
 
-### Requirements:
- - working blackjack with some randomisation
- - customise number of decks
- - if i lock tf in, add a gui
- - maybe add some ai players?
+### Classes
+ - Card
+ - Hand
+ - Deck
+ - Player
+ - Dealer
+ - Cash
+ - Game
+ - UI
+
+
+### Roadmap
+
+- [x] Game relevant classes
+- [ ] Game logic
+- [ ] Terminal UI class
+- [ ] GUI
+- [ ] AI players
