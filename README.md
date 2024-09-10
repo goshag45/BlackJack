@@ -18,3 +18,6 @@
 - [ ] Terminal UI class
 - [ ] GUI
 - [ ] AI players
+
+
+[Refactoring to utilise imGUI + SFML ](https://edw.is/using-imgui-with-sfml-pt1/)
