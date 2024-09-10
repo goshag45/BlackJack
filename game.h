@@ -77,10 +77,6 @@ class Game {
         }
     }
 
-    void playerHandStateMessage() {
-        // IF BUST WRITE BUST, IF BJ WRITE BJ
-    }
-
     void dealerTurn() {
         if (dealer.canhit) { ui.showMessage("Dealer playing..."); }
         while (dealer.canhit) {
@@ -123,9 +119,11 @@ class Game {
         playerBustCheck();
         playerBlackJackCheck();
         if (player.isbusted) {
-
+            
+            // WHAT HERE?
+            ui.continuePrompt();
         }
-        if (player.isbusted || player.isBlackjack) {
+        if (player.isBlackjack) {
             ui.continuePrompt();
         }
     }

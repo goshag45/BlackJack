@@ -9,11 +9,11 @@
 
 class Player {
   public:
+    Deck& deck;
+    Cash& cash;
     Hand hand;
     // THIS IS NOT PROPERLY IMPLEMENTED
     std::vector<Hand> hands;
-    Deck& deck;
-    Cash& cash;
 
     bool isstanding = false;
     bool isbusted;

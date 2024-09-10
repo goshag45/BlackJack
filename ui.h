@@ -19,9 +19,8 @@ class Ui {
     }
 
     void continuePrompt() {
-        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
         std::cout << "Press Enter to Continue\n";
-        std::cin.ignore();
+        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
     } 
 
     void choiceMessage(std::string choice) {

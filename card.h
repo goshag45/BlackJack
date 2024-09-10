@@ -12,7 +12,7 @@ class Card {
         ACE = 11, KING = 10, QUEEN = 10, JACK = 10
     };
 
-    Card(Suit Suit, Value Value): suit(Suit), value(Value) {}
+    Card(Suit _suit, Value _value): suit(_suit), value(_value) {}
 
     std::string getSuit() const {
       switch(suit) {

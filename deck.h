@@ -52,10 +52,10 @@ class Deck {
         std::mt19937 gen(rd());
 
         // Fisher-Yates shuffle
-        int n = deck.size();
-        for (int i = n-1; i > 1; i--) {
-            std::uniform_int_distribution<> distr(0, i);
-            int j = distr(gen);
+        size_t n = deck.size();
+        for (size_t i = n-1; i > 1; i--) {
+            std::uniform_int_distribution<size_t> distr(0, i);
+            size_t j = distr(gen);
             std::swap(deck[i], deck[j]);
         }
 
