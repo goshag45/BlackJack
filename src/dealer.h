@@ -18,6 +18,9 @@ class Dealer : public Player {
     }
 
     void showHandString() {
+        if (!isFirstTurn) {
+            std::cout << "Hand Value: " << hand.getTotalValue() << '\n';
+        }
         std::cout << getHand().showHand(isFirstTurn) << '\n';
     }
 };

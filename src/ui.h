@@ -5,6 +5,8 @@
 #include <string>
 #include <ios>
 #include <limits>
+#include <chrono>
+#include <thread>
 
 class Ui {
   public:
@@ -31,6 +33,7 @@ class Ui {
         std::cout << messageText << '\n';
     }
 
+    // this use of auto MAY be sus - might be better way to do this? im not sure
     void showMessage(std::string messageText, auto inputVariable) {
         std::cout << messageText << inputVariable << '\n';
     }
@@ -45,6 +48,9 @@ class Ui {
     }
 };
 
-
+// after game logic is done, use this to add some flair to dealing/drawing methods
+inline void sleep(int ms) {
+    std::this_thread::sleep_for(std::chrono::milliseconds(ms));
+}
 
 #endif

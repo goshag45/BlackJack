@@ -59,6 +59,7 @@ class Player {
     }
 
     void showHandString() {
+        std::cout << "Hand Value: " << hand.getTotalValue() << '\n';
         std::cout << getHand().showHand(false) << '\n';
     }
 

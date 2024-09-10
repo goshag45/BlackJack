@@ -70,11 +70,11 @@ class Hand
         std::string handStr;
         if (isDealerFirstTurn) {
             handStr += "*CARD HIDDEN*\n";
-            handStr += hand[1].getFace() + " of " + hand[1].getSuit() + "\n";
+            handStr += hand[1].getFace() + " of " + hand[1].getSuit() + '\n';
             return handStr;
         }
         for (const Card& card : hand) {
-            handStr += card.getFace() + " of " + card.getSuit() + "\n";
+            handStr += card.getFace() + " of " + card.getSuit() + '\n';
         }
         return handStr;
     }
