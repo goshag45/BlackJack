@@ -4,7 +4,7 @@
 
 int main() {
     std::cout << "Test!" << std::endl;
-
+    
     Game game;
     game.coreLoop();
 

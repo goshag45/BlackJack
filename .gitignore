@@ -37,3 +37,4 @@
 .vscode/settings.json
 .vscode/launch.json
 .VSCodeCounter
+build/
