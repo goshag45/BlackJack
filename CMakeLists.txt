@@ -8,21 +8,8 @@ project(Blackjack VERSION 1.0)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
 
-# Source files
-set(SOURCES
-    src/main.cpp
-    src/card.h
-    src/cash.h
-    src/dealer.h
-    src/deck.h
-    src/game.h
-    src/hand.h
-    src/player.h
-    src/ui.h
-)
-
-# Add executable
-add_executable(Blackjack ${SOURCES})
+add_subdirectory(dependencies)
+add_subdirectory(src)
 
 # Specify include directories
 target_include_directories(Blackjack PUBLIC "${PROJECT_SOURCE_DIR}/src")
