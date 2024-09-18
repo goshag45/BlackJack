@@ -38,3 +38,4 @@
 .vscode/launch.json
 .VSCodeCounter
 build/
+CMakeFiles
