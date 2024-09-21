@@ -11,4 +11,4 @@ add_executable(Blackjack
     player.h
     ui.h
 )
-target_link_libraries(output PRIVATE ImGui-SFML::ImGui-SFML)
+target_link_libraries(Blackjack PRIVATE ImGui-SFML::ImGui-SFML)
