@@ -151,7 +151,6 @@ class Game {
         }
     }
 
-  private:
     Deck deck;
     Cash cash;
     Player player;
