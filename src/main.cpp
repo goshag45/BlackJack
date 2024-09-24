@@ -1,20 +1,40 @@
-#include <iostream>
-
-#include "game.h"
+#include <SFML/Graphics.hpp>
+#include <imgui.h>
+#include <imgui-SFML.h>
 
 int main() {
-    std::cout << "Test!" << std::endl;
+    sf::RenderWindow window(sf::VideoMode(800, 600), "Blackjack GUI");
+    window.setFramerateLimit(60);
     
-    Game game;
-    game.coreLoop();
+    // Initialize ImGui and SFML
+    ImGui::SFML::Init(window);
+    
+    sf::Clock deltaClock;
 
+    while (window.isOpen()) {
+        sf::Event event;
+        while (window.pollEvent(event)) {
+            ImGui::SFML::ProcessEvent(event);
+            if (event.type == sf::Event::Closed) {
+                window.close();
+            }
+        }
+
+        ImGui::SFML::Update(window, deltaClock.restart());
+
+        // Clear the window and draw ImGui interface
+        window.clear();
+        // Add your ImGui logic here
+        ImGui::Begin("Blackjack");
+
+        // Draw UI elements for your classes
+
+        ImGui::End();
+        ImGui::SFML::Render(window);
+        window.display();
+    }
+
+    // Clean up
+    ImGui::SFML::Shutdown();
     return 0;
 }
-
-
-// CHATGPT PROMPT:
-/* 
-tell me a little bit more about the proposed ___ class, 
-remember im trying to learn so no code, and dont give me any answers, 
-just pointers and ideas to think about
-*/ 
