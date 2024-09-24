@@ -33,11 +33,16 @@ class Gui {
             // Clear the window and draw ImGui interface
             window.clear();
             // Add your ImGui logic here
-            ImGui::Begin("Blackjack");
-
+            ImGui::Begin("Game Screen");
+            sf::Image Image;
+            if (!Image.loadFromFile("C:\\Users\\George\\Documents\\_code\\BlackJack\\src\\ace_of_spades.png")) {
+                // Error...
+            }
             // Draw UI elements for your classes
 
             ImGui::End();
+
+
             ImGui::SFML::Render(window);
             window.display();
         }

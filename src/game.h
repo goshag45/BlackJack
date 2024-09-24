@@ -13,7 +13,6 @@
 #include "player.h"
 #include "ui.h"
 
-
 class Game {
   public:
     Game()
