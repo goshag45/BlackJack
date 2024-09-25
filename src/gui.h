@@ -51,6 +51,8 @@ class Gui {
                 // Error...
             }
             // Draw UI elements for your classes
+            GameplayActions();
+
             ImGui::End();
             //----------------------------------------------------------------------------//
             
