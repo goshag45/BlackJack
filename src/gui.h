@@ -41,20 +41,7 @@ class Gui {
             // Clear the window and draw ImGui interface
             window.clear();
 
-            //-----------------------------------------------------------------------------//
-            // Add your ImGui logic here
-            ImGui::Begin("Game Screen");
-            std::string imgFilePath = "C:\\Users\\George\\Documents\\_code\\BlackJack\\src\\ace_of_spades.png";
-
-            sf::Image Image;
-            if (!Image.loadFromFile("C:\\Users\\George\\Documents\\_code\\BlackJack\\src\\ace_of_spades.png")) {
-                // Error...
-            }
-            // Draw UI elements for your classes
-            GameplayActions();
-
-            ImGui::End();
-            //----------------------------------------------------------------------------//
+            GameWindow();
             
             ImGui::SFML::Render(window);
             window.display();
@@ -77,6 +64,30 @@ class Gui {
         if (ImGui::Button("Split")) {
             std::cout << "Split\n";
         }
+    }
+
+    void GameWindow() {
+        ImGui::Begin("Game Screen");
+
+        // Load the texture
+        static sf::Texture texture;
+        std::string imgFilePath = "C:\\Users\\George\\Documents\\_code\\BlackJack\\src\\ace_of_spades.png";
+
+        if (!texture.loadFromFile(imgFilePath)) {
+            std::cout << "Image import error\n";
+        } else {
+            // Get the texture size
+            sf::Vector2u texSize = texture.getSize();
+            
+            ImVec2 imgSize = ImVec2(83.3f, 121.0f);  // Desired width and height
+
+            // Render the image with the specified size
+            ImGui::Image(texture, imgSize);
+        }
+        
+        GameplayActions();
+
+        ImGui::End();
     }
 };
 
