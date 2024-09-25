@@ -8,6 +8,14 @@
 #include <imgui.h>
 #include <imgui-SFML.h>
 
+#include "card.h"
+#include "cash.h"
+#include "dealer.h"
+#include "deck.h"
+#include "hand.h"
+#include "player.h"
+#include "ui.h"
+
 class Gui {
   public:
     Gui() {
@@ -32,17 +40,20 @@ class Gui {
 
             // Clear the window and draw ImGui interface
             window.clear();
+
+            //-----------------------------------------------------------------------------//
             // Add your ImGui logic here
             ImGui::Begin("Game Screen");
+            std::string imgFilePath = "C:\\Users\\George\\Documents\\_code\\BlackJack\\src\\ace_of_spades.png";
+
             sf::Image Image;
             if (!Image.loadFromFile("C:\\Users\\George\\Documents\\_code\\BlackJack\\src\\ace_of_spades.png")) {
                 // Error...
             }
             // Draw UI elements for your classes
-
             ImGui::End();
-
-
+            //----------------------------------------------------------------------------//
+            
             ImGui::SFML::Render(window);
             window.display();
         }
@@ -51,6 +62,20 @@ class Gui {
         ImGui::SFML::Shutdown();
     }
 
+    void GameplayActions() {
+        if (ImGui::Button("Hit")) {
+            std::cout << "Hit\n";
+        }
+        if (ImGui::Button("Stand")) {
+            std::cout << "Stand\n";
+        }
+        if (ImGui::Button("Double Down")) {
+            std::cout << "Double Down\n";
+        }
+        if (ImGui::Button("Split")) {
+            std::cout << "Split\n";
+        }
+    }
 };
 
 #endif
