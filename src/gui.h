@@ -42,6 +42,7 @@ class Gui {
             window.clear();
 
             GameWindow();
+            PlayerWindow();
             
             ImGui::SFML::Render(window);
             window.display();
@@ -71,9 +72,10 @@ class Gui {
 
         // Load the texture
         static sf::Texture texture;
-        std::string imgFilePath = "C:\\Users\\George\\Documents\\_code\\BlackJack\\src\\ace_of_spades.png";
+        std::string imgFilePath = "C:\\Users\\George\\Documents\\_code\\BlackJack\\src\\";
+        std::string ace = "ace_of_spades.png";
 
-        if (!texture.loadFromFile(imgFilePath)) {
+        if (!texture.loadFromFile(imgFilePath+ace)) {
             std::cout << "Image import error\n";
         } else {
             // Get the texture size
@@ -84,7 +86,12 @@ class Gui {
             // Render the image with the specified size
             ImGui::Image(texture, imgSize);
         }
-        
+
+        ImGui::End();
+    }
+    void PlayerWindow() {
+        ImGui::Begin("Actions");
+
         GameplayActions();
 
         ImGui::End();
