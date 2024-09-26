@@ -20,4 +20,5 @@
 - [ ] AI players
 
 
-[Refactoring to utilise imGUI + SFML ](https://edw.is/using-imgui-with-sfml-pt1/)
+[Playing Cards images source](http://byronknoll.blogspot.com/2011/03/vector-playing-cards.html)
+

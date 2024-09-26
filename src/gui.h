@@ -72,7 +72,7 @@ class Gui {
 
         // Load the texture
         static sf::Texture texture;
-        std::string imgFilePath = "..\\..\\src\\";
+        std::string imgFilePath = "..\\..\\src\\img\\";
         std::string ace = "ace_of_spades.png";
 
         if (!texture.loadFromFile(imgFilePath+ace)) {
@@ -80,11 +80,10 @@ class Gui {
         } else {
             // Get the texture size
             sf::Vector2u texSize = texture.getSize();
-            
-            ImVec2 imgSize = ImVec2(83.3f, 121.0f);  // Desired width and height
+            ImVec2 cardSize = ImVec2(83.3f, 121.0f);  // Desired width and height
 
             // Render the image with the specified size
-            ImGui::Image(texture, imgSize);
+            ImGui::Image(texture, cardSize);
         }
 
         ImGui::End();
@@ -95,6 +94,10 @@ class Gui {
         GameplayActions();
 
         ImGui::End();
+    }
+
+    void DisplayCard(const Card& card) {
+        
     }
 };
 
