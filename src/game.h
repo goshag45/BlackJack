@@ -11,6 +11,7 @@
 #include "deck.h"
 #include "hand.h"
 #include "player.h"
+#include "gui.h"
 #include "ui.h"
 
 class Game {
@@ -117,14 +118,6 @@ class Game {
     void checkEndGameState() {
         playerBustCheck();
         playerBlackJackCheck();
-        if (player.isbusted) {
-            
-            // WHAT HERE?
-            ui.continuePrompt();
-        }
-        if (player.isBlackjack) {
-            ui.continuePrompt();
-        }
     }
 
     void resetGame() {
@@ -133,13 +126,15 @@ class Game {
     }
 
     void coreLoop() {
+        Gui gui;
+
         isRunning = true;
         while (isRunning) { 
             resetGame();
-            ui.showMessage("-----------Starting Game-----------");
-            // sleep(1000);
+
             dealInitialCards();
             player.showHandString();
+            
             checkEndGameState();
             dealer.showHandString();
             dealer.isFirstTurn = false;
