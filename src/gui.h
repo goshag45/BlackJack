@@ -35,10 +35,7 @@ class Gui {
                     window.close();
                 }
             }
-
             ImGui::SFML::Update(window, deltaClock.restart());
-
-            // Clear the window and draw ImGui interface
             window.clear();
 
             GameWindow();
@@ -53,23 +50,15 @@ class Gui {
     }
 
     void GameplayActions() {
-        if (ImGui::Button("Hit")) {
-            std::cout << "Hit\n";
-        }
-        if (ImGui::Button("Stand")) {
-            std::cout << "Stand\n";
-        }
-        if (ImGui::Button("Double Down")) {
-            std::cout << "Double Down\n";
-        }
-        if (ImGui::Button("Split")) {
-            std::cout << "Split\n";
-        }
+        if (ImGui::Button("Hit"))           { std::cout << "Hit\n"; }
+        if (ImGui::Button("Stand"))         { std::cout << "Stand\n"; }
+        if (ImGui::Button("Double Down"))   { std::cout << "Double Down\n"; }
+        if (ImGui::Button("Split"))         { std::cout << "Split\n"; }
     }
 
     void GameWindow() {
         ImGui::Begin("Game Screen");
-        DisplayCard();
+        // DisplayCard();
         ImGui::End();
     }
     void PlayerWindow() {
@@ -81,26 +70,38 @@ class Gui {
     void DisplayCard(const Card& card) {
         // Load the texture
         static sf::Texture texture;
-        std::string imgFilePath = "..\\..\\src\\img\\";
-        std::string ace = "ace_of_spades.png";
+        std::string cardName = BuildCardFileName(card);
 
-        if (!texture.loadFromFile(imgFilePath+ace)) {
+        if (!texture.loadFromFile(imgFilePath+cardName)) {
             std::cout << "Image import error\n";
         } else {
             // Get the texture size
             sf::Vector2u texSize = texture.getSize();
-
             // Render the image with the specified size
             ImGui::Image(texture, cardSize);
         }
     }
 
-    void CardFileNameBuild(const Card& card) {
-        
+    std::string BuildCardFileName(const Card& card) {
+        std::string cardName;
+        // NUMBER
+        std::string cardSuit = card.getSuit();
+        cardSuit[0] = std::tolower(cardSuit[0]);
+        // TYPE
+        std::string cardFace = card.getFace();
+        // DAMN this is ugly - please fix !!!
+        if ((card.getValue() < 11) && (card.getFace() != "JACK") && (card.getFace() != "QUEEN") && (card.getFace() != "KING")) {
+            cardSuit = std::to_string(card.getValue());
+        }
+
+        cardName = cardSuit + "_of_" + cardSuit;
+        std::cout << cardName << '\n';
+        return cardName;
     }
 
   private:
     ImVec2 cardSize = ImVec2(83.3f, 121.0f);  // Desired width and height
+    std::string imgFilePath = "..\\..\\src\\img\\";
 };
 
 #endif
