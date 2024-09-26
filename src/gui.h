@@ -72,7 +72,7 @@ class Gui {
 
         // Load the texture
         static sf::Texture texture;
-        std::string imgFilePath = "C:\\Users\\George\\Documents\\_code\\BlackJack\\src\\";
+        std::string imgFilePath = "..\\..\\src\\";
         std::string ace = "ace_of_spades.png";
 
         if (!texture.loadFromFile(imgFilePath+ace)) {
