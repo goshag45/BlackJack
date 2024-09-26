@@ -69,7 +69,16 @@ class Gui {
 
     void GameWindow() {
         ImGui::Begin("Game Screen");
+        DisplayCard();
+        ImGui::End();
+    }
+    void PlayerWindow() {
+        ImGui::Begin("Actions");
+        GameplayActions();
+        ImGui::End();
+    }
 
+    void DisplayCard(const Card& card) {
         // Load the texture
         static sf::Texture texture;
         std::string imgFilePath = "..\\..\\src\\img\\";
@@ -80,25 +89,18 @@ class Gui {
         } else {
             // Get the texture size
             sf::Vector2u texSize = texture.getSize();
-            ImVec2 cardSize = ImVec2(83.3f, 121.0f);  // Desired width and height
 
             // Render the image with the specified size
             ImGui::Image(texture, cardSize);
         }
-
-        ImGui::End();
-    }
-    void PlayerWindow() {
-        ImGui::Begin("Actions");
-
-        GameplayActions();
-
-        ImGui::End();
     }
 
-    void DisplayCard(const Card& card) {
+    void CardFileNameBuild(const Card& card) {
         
     }
+
+  private:
+    ImVec2 cardSize = ImVec2(83.3f, 121.0f);  // Desired width and height
 };
 
 #endif
