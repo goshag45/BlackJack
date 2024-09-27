@@ -126,6 +126,8 @@ class Game {
             
             dealInitialCards();
             // player.showHandString();
+            gui.DisplayCard(player.hand.getHandVector()[0]);
+            // gui.showHand(player);
             
             checkEndGameState();
             // dealer.showHandString();
@@ -137,6 +139,7 @@ class Game {
         }
     }
 
+  private:
     Deck deck;
     Cash cash;
     Player player;

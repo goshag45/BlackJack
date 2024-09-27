@@ -67,6 +67,12 @@ class Gui {
         ImGui::End();
     }
 
+    void showHand(const Player& player) {
+        for (const Card& card : player.getPlayerHand().getHandVector()) {
+            DisplayCard(card);
+        }
+    }
+
     void DisplayCard(const Card& card) {
         // Load the texture
         static sf::Texture texture;
@@ -91,18 +97,12 @@ class Gui {
         std::string cardFace = card.getFace();
         // DAMN this is ugly - please fix !!!
         if ((card.getValue() < 11) && (card.getFace() != "JACK") && (card.getFace() != "QUEEN") && (card.getFace() != "KING")) {
-            cardSuit = std::to_string(card.getValue());
+            cardFace = std::to_string(card.getValue());
         }
 
-        cardName = cardSuit + "_of_" + cardSuit;
+        cardName = cardFace + "_of_" + cardSuit + ".png";
         std::cout << cardName << '\n';
         return cardName;
-    }
-
-    void showHand(const Player& player) {
-        for (const Card& card : player.getPlayerHand().getHandVector()) {
-            DisplayCard(card);
-        }
     }
 
   private:
