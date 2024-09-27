@@ -66,20 +66,25 @@ class Hand
         secondhand.totalvalue = getTotalValue();
     }
 
-    std::string showHand(bool isDealerFirstTurn) const{
-        std::string handStr;
-        if (isDealerFirstTurn) {
-            handStr += "*CARD HIDDEN*\n";
-            handStr += hand[1].getFace() + " of " + hand[1].getSuit() + '\n';
-            return handStr;
-        }
-        for (const Card& card : hand) {
-            handStr += card.getFace() + " of " + card.getSuit() + '\n';
-        }
-        return handStr;
+    const std::vector<Card>& getHandVector() {
+        return hand;
     }
 
-  private:  
+    // DEPRACATED
+    // std::string showHand(bool isDealerFirstTurn) const{
+    //     std::string handStr;
+    //     if (isDealerFirstTurn) {
+    //         handStr += "*CARD HIDDEN*\n";
+    //         handStr += hand[1].getFace() + " of " + hand[1].getSuit() + '\n';
+    //         return handStr;
+    //     }
+    //     for (const Card& card : hand) {
+    //         handStr += card.getFace() + " of " + card.getSuit() + '\n';
+    //     }
+    //     return handStr;
+    // }
+ 
+  private:
     std::vector<Card> hand;
     int totalvalue;
 };

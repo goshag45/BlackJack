@@ -58,12 +58,13 @@ class Player {
         hands[0].clearhand();
     }
 
-    void showHandString() {
-        std::cout << "Hand Value: " << hand.getTotalValue() << '\n';
-        std::cout << getHand().showHand(false) << '\n';
-    }
+    // DEPRACATED
+    // void showHandString() {
+    //     std::cout << "Hand Value: " << hand.getTotalValue() << '\n';
+    //     std::cout << getHand().showHand(false) << '\n';
+    // }
 
-    const Hand& getHand() const {
+    const Hand& getPlayerHand() const {
         return hand;
     }
 };
