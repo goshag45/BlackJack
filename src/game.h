@@ -33,7 +33,6 @@ class Game {
             case 1: 
                 player.hit();
                 ui.choiceMessage("Hit!");
-                player.showHandString();
                 checkEndGameState();
                 playerHitLoop();
                 break;
@@ -63,14 +62,10 @@ class Game {
             switch (choice) {
                 case 1: 
                     player.hit();
-                    ui.choiceMessage("Hit!");
-                    player.showHandString();
                     checkEndGameState();
                     break;
                 case 2:
                     player.stand();
-                    ui.choiceMessage("Stand!");
-                    player.showHandString();
                     // NEED TO SOMEHOW BREAK OUT OF THE LOOP HERE
                     break;
             }
@@ -133,7 +128,7 @@ class Game {
             resetGame();
 
             dealInitialCards();
-            player.showHandString();
+            // player.showHandString();
             
             checkEndGameState();
             dealer.showHandString();

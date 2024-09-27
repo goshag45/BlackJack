@@ -104,11 +104,6 @@ class Gui {
             DisplayCard(card);
         }
     }
-    void showPlayerHand(const Player& player) {
-        for (const Card& card : player.getHand().hand) {
-            DisplayCard(card);
-        }
-    }
 
   private:
     ImVec2 cardSize = ImVec2(83.3f, 121.0f);  // Desired width and height
