@@ -76,13 +76,10 @@ class Game {
         if (dealer.canhit) { ui.showMessage("Dealer playing..."); }
         while (dealer.canhit) {
             dealer.dealerhit();
-            if (dealer.canhit) {
-                dealer.showHandString();
-            }
+            if (dealer.canhit) { }
         }
         if (!dealer.canhit) {
             ui.showMessage("Dealer Final Hand");
-            dealer.showHandString();
         }
     }
 
@@ -126,12 +123,12 @@ class Game {
         isRunning = true;
         while (isRunning) { 
             resetGame();
-
+            
             dealInitialCards();
             // player.showHandString();
             
             checkEndGameState();
-            dealer.showHandString();
+            // dealer.showHandString();
             dealer.isFirstTurn = false;
             ui.continuePrompt();
             promptPlayer();

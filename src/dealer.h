@@ -16,13 +16,13 @@ class Dealer : public Player {
             hit();            
         } else { canhit = false; }
     }
-
-    void showHandString() {
-        if (!isFirstTurn) {
-            std::cout << "Hand Value: " << hand.getTotalValue() << '\n';
-        }
-        std::cout << getHand().showHand(isFirstTurn) << '\n';
-    }
+    // DEPRACATED
+    // void showHandString() {
+    //     if (!isFirstTurn) {
+    //         std::cout << "Hand Value: " << hand.getTotalValue() << '\n';
+    //     }
+    //     std::cout << getHand().showHand(isFirstTurn) << '\n';
+    // }
 };
 
 #endif
