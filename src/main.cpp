@@ -7,6 +7,7 @@
 
 int main() {
     Game game;
+    game.coreLoop();
 
     return 0;
 }
