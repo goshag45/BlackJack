@@ -15,36 +15,24 @@
 #include "hand.h"
 #include "player.h"
 #include "ui.h"
+#include "game.h"
 
 class Gui {
   public:
-    Gui() {
-        sf::RenderWindow window(sf::VideoMode(800, 600), "Blackjack GUI");
+    Gui(): window(sf::VideoMode(800, 600), "Blackjack GUI") {
         window.setFramerateLimit(60);
-        
+    };
+
+    void startGUIWindow() {
         // Initialize ImGui and SFML
         ImGui::SFML::Init(window);
-        
-        sf::Clock deltaClock;
+    }
 
-        while (window.isOpen()) {
-            sf::Event event;
-            while (window.pollEvent(event)) {
-                ImGui::SFML::ProcessEvent(event);
-                if (event.type == sf::Event::Closed) {
-                    window.close();
-                }
-            }
-            ImGui::SFML::Update(window, deltaClock.restart());
-            window.clear();
-
-            GameWindow();
-            PlayerWindow();
-            
-            ImGui::SFML::Render(window);
-            window.display();
-        }
-
+    void startClockGUI() {
+        deltaClock.restart();
+    }
+    
+    void shutDownGUI() {
         // Clean up
         ImGui::SFML::Shutdown();
     }
@@ -105,9 +93,15 @@ class Gui {
         return cardName;
     }
 
+    sf::RenderWindow& getWindow() { return window; }
+    sf::Clock& getClock() { return deltaClock; }
+
   private:
     ImVec2 cardSize = ImVec2(83.3f, 121.0f);  // Desired width and height
     std::string imgFilePath = "..\\..\\src\\img\\";
+
+    sf::RenderWindow window;
+    sf::Clock deltaClock;
 };
 
 #endif

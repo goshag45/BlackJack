@@ -117,15 +117,14 @@ class Game {
         dealer.reset();
     }
 
-    void coreLoop() {
-        Gui gui;
-
+    void coreLoop(Gui& gui) {
         isRunning = true;
         while (isRunning) { 
             resetGame();
             
             dealInitialCards();
             // player.showHandString();
+            std::cout << "working!\n";
             gui.DisplayCard(player.hand.getHandVector()[0]);
             // gui.showHand(player);
             
