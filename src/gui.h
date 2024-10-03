@@ -44,19 +44,8 @@ class Gui {
         if (ImGui::Button("Split"))         { std::cout << "Split\n"; }
     }
 
-    void GameWindow() {
-        ImGui::Begin("Game Screen");
-        // DisplayCard();
-        ImGui::End();
-    }
-    void PlayerWindow() {
-        ImGui::Begin("Actions");
-        GameplayActions();
-        ImGui::End();
-    }
-
-    void showHand(const Player& player) {
-        for (const Card& card : player.getPlayerHand().getHandVector()) {
+    void showHand(const Hand& hand) {
+        for (const Card& card : hand.getHandVector()) {
             DisplayCard(card);
         }
     }
@@ -92,6 +81,28 @@ class Gui {
         std::cout << cardName << '\n';
         return cardName;
     }
+
+    void GameWindow(const Player& player, const Dealer& dealer) {
+        ImGui::Begin("Blackjack Game");
+
+        // Render the dealer's hand
+        ImGui::Text("Dealer's Hand:");
+        showHand(dealer.getHand()); // Renders dealer's cards within the same window
+
+        ImGui::Separator(); // Adds a visual separator in the window
+
+        // Render the player's hand
+        ImGui::Text("Player's Hand:");
+        showHand(player.getHand()); // Renders player's cards within the same window
+
+        ImGui::Separator(); // Adds another visual separator
+
+        // Add player action buttons within the same window
+        GameplayActions();
+
+        ImGui::End();
+    }
+
 
     sf::RenderWindow& getWindow() { return window; }
     sf::Clock& getClock() { return deltaClock; }

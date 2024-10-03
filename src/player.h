@@ -64,7 +64,7 @@ class Player {
     //     std::cout << getHand().showHand(false) << '\n';
     // }
 
-    const Hand& getPlayerHand() const {
+    const Hand& getHand() const {
         return hand;
     }
 };

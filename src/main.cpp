@@ -14,22 +14,21 @@ int main() {
     
     sf::RenderWindow& window = gui.getWindow();
     sf::Clock& deltaClock = gui.getClock();
-    while (window.isOpen()) {
+
+    bool isGameRunning = true;
+    while (isGameRunning) {
         sf::Event event;
         while (window.pollEvent(event)) {
             ImGui::SFML::ProcessEvent(event);
             if (event.type == sf::Event::Closed) {
                 window.close();
+                isGameRunning = false;
             }
         }
         ImGui::SFML::Update(window, deltaClock.restart());
         window.clear();
-
-        gui.GameWindow();
-        gui.PlayerWindow();
         
-        game.dealInitialCards();
-        game.displayPlayerHand(gui);
+        gui.GameWindow(game.getPlayer(), game.getDealer());
         
         ImGui::SFML::Render(window);
         window.display();

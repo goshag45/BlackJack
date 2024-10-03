@@ -107,18 +107,9 @@ class Game {
         }
     }
 
-    void checkEndGameState() {
-        playerBustCheck();
-        playerBlackJackCheck();
-    }
-
     void resetGame() {
         player.reset();
         dealer.reset();
-    }
-
-    void displayPlayerHand(Gui& gui) {
-        gui.showHand(player);
     }
 
     void coreLoop(Gui& gui) {
@@ -142,7 +133,15 @@ class Game {
         }
     }
 
+    const Player& getPlayer() const{ return player; }
+    const Dealer& getDealer() const{ return dealer; }
+
   private:
+    void checkEndGameState() {
+        playerBustCheck();
+        playerBlackJackCheck();
+    }
+
     Deck deck;
     Cash cash;
     Player player;
