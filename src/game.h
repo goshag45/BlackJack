@@ -16,6 +16,8 @@
 
 class Game {
   public:
+    bool isGameRunning;
+
     Game()
         : deck(),
           cash(),
@@ -23,30 +25,25 @@ class Game {
           dealer(deck, cash),
           ui()
     { 
-        isRunning = true; 
+        isGameRunning = true; 
     }
 
-    void promptPlayer() {
-        ui.playerPlayMenu();
-        int choice = ui.getPlayerInputInt("");
+    void promptPlayer(Gui& gui) {
+        int choice = gui.getPlayerAction();
         switch (choice) {
             case 1: 
                 player.hit();
-                ui.choiceMessage("Hit!");
                 checkEndGameState();
-                playerHitLoop();
+                playerHitLoop(gui);
                 break;
             case 2:
                 player.stand();
-                ui.choiceMessage("Stand");
                 break;
             case 3:
                 player.doubleDown();
-                ui.choiceMessage("Double Down");
                 break;
             case 4:
                 player.split();
-                ui.choiceMessage("Split");
                 break;
             case 5:
                 // nothing here yet!
@@ -56,9 +53,9 @@ class Game {
         }
     }
     
-    void playerHitLoop() {
+    void playerHitLoop(Gui& gui) {
         while (!player.hand.isBust() && !player.hand.isBlackjack() && !(player.isstanding)) {
-            int choice = ui.getPlayerInputInt("Would you like to [1] Hit or [2] Stand");
+            int choice = gui.getPlayerActionLoop();
             switch (choice) {
                 case 1: 
                     player.hit();
@@ -112,25 +109,31 @@ class Game {
         dealer.reset();
     }
 
-    void coreLoop(Gui& gui) {
-        isRunning = true;
-        while (isRunning) { 
-            resetGame();
+    // void coreLoop(Gui& gui) {
+    //     isGameRunning = true;
+    //     while (isGameRunning) { 
+    //         resetGame();
+    //         dealInitialCards();
+
+    //         // player.showHandString();
+    //         std::cout << "working!\n";
+    //         // gui.DisplayCard(player.hand.getHandVector()[0]);
+    //         // gui.showHand(player);
             
-            dealInitialCards();
-            // player.showHandString();
-            std::cout << "working!\n";
-            // gui.DisplayCard(player.hand.getHandVector()[0]);
-            // gui.showHand(player);
-            
-            checkEndGameState();
-            // dealer.showHandString();
-            dealer.isFirstTurn = false;
-            ui.continuePrompt();
-            promptPlayer();
-            dealerTurn();
-            ui.continuePrompt();
-        }
+    //         checkEndGameState();
+    //         // dealer.showHandString();
+    //         dealer.isFirstTurn = false;
+    //         ui.continuePrompt();
+    //         promptPlayer();
+    //         dealerTurn();
+    //         ui.continuePrompt();
+    //     }
+    // }
+
+    void GameLogic(Gui& gui) {
+        resetGame();
+        dealInitialCards();
+        promptPlayer(gui);
     }
 
     const Player& getPlayer() const{ return player; }
@@ -147,7 +150,6 @@ class Game {
     Player player;
     Dealer dealer;
     Ui ui;
-    bool isRunning;
     // THIS NEEDS TO LINK TO CASH
     int bet = 0;
 };
