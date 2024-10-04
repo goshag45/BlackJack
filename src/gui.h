@@ -69,6 +69,7 @@ class Gui {
             sf::Vector2u texSize = texture.getSize();
             // Render the image with the specified size
             ImGui::Image(texture, cardSize);
+            ImGui::SameLine();
         }
     }
 

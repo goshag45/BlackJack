@@ -70,7 +70,7 @@ class Game {
                     break;
                 case 2:
                     player.stand();
-                    // NEED TO SOMEHOW BREAK OUT OF THE LOOP HERE
+                    gameState = DEALER_TURN;
                     break;
             }
         }
