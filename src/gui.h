@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <string>
+#include <unordered_map> // For caching card textures
 
 #include <SFML/Graphics.hpp>
 #include <imgui.h>
@@ -19,7 +20,7 @@
 
 class Gui {
   public:
-    Gui(): window(sf::VideoMode(800, 600), "Blackjack GUI") {
+    Gui() : window(sf::VideoMode(800, 600), "Blackjack GUI") {
         window.setFramerateLimit(60);
     };
 
@@ -54,40 +55,44 @@ class Gui {
     void showHand(const Hand& hand) {
         for (const Card& card : hand.getHandVector()) {
             DisplayCard(card);
+            ImGui::SameLine(); // Display cards horizontally
         }
+        ImGui::NewLine(); // After all cards, start a new line
     }
 
     void DisplayCard(const Card& card) {
-        // Load the texture
-        static sf::Texture texture;
         std::string cardName = BuildCardFileName(card);
 
-        if (!texture.loadFromFile(imgFilePath+cardName)) {
-            std::cout << "Image import error\n";
-        } else {
-            // Get the texture size
-            sf::Vector2u texSize = texture.getSize();
-            // Render the image with the specified size
-            ImGui::Image(texture, cardSize);
-            ImGui::SameLine();
+        // Check if the texture is already loaded in the map
+        if (cardTextures.find(cardName) == cardTextures.end()) {
+            sf::Texture texture;
+            if (!texture.loadFromFile(imgFilePath + cardName)) {
+                std::cout << "Image import error for " << cardName << '\n';
+                return;
+            }
+            // Add the texture to the map
+            cardTextures[cardName] = texture;
         }
+
+        // Get the texture from the map
+        sf::Texture& texture = cardTextures[cardName];
+
+        // Render the image with the specified size
+        ImGui::Image(texture, cardSize);
     }
 
     std::string BuildCardFileName(const Card& card) {
         std::string cardName;
-        // NUMBER
         std::string cardSuit = card.getSuit();
         cardSuit[0] = std::tolower(cardSuit[0]);
-        // TYPE
         std::string cardFace = card.getFace();
-        // DAMN this is ugly - please fix !!!
-        if ((card.getValue() < 11) && (card.getFace() != "JACK") && (card.getFace() != "QUEEN") && (card.getFace() != "KING")) {
+
+        if ((card.getValue() < 11) && (card.getFace() != "JACK") && 
+            (card.getFace() != "QUEEN") && (card.getFace() != "KING")) {
             cardFace = std::to_string(card.getValue());
         }
 
         cardName = cardFace + "_of_" + cardSuit + ".png";
-        // causes log spam
-        // std::cout << cardName << '\n';
         return cardName;
     }
 
@@ -96,22 +101,18 @@ class Gui {
 
         // Render the dealer's hand
         ImGui::Text("Dealer's Hand:");
-        showHand(dealer.getHand()); // Renders dealer's cards within the same window
+        showHand(dealer.getHand());
 
-        ImGui::Separator(); // Adds a visual separator in the window
+        ImGui::Separator();
 
         // Render the player's hand
         ImGui::Text("Player's Hand:");
-        showHand(player.getHand()); // Renders player's cards within the same window
+        showHand(player.getHand());
 
-        ImGui::Separator(); // Adds another visual separator
-
-        // Add player action buttons within the same window
-        // GameplayActions();
+        ImGui::Separator();
 
         ImGui::End();
     }
-
 
     sf::RenderWindow& getWindow() { return window; }
     sf::Clock& getClock() { return deltaClock; }
@@ -122,6 +123,9 @@ class Gui {
 
     sf::RenderWindow window;
     sf::Clock deltaClock;
+
+    // Map to store textures for each card (caching)
+    std::unordered_map<std::string, sf::Texture> cardTextures;
 };
 
 #endif

@@ -65,6 +65,9 @@ class Player {
     // }
 
     const Hand& getHand() const {
+        for (Card card : hand.getHandVector()) {
+            std::cout << card.getFace() << '\n';
+        }
         return hand;
     }
 };
