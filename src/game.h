@@ -17,39 +17,46 @@
 class Game {
   public:
     bool isGameRunning;
+    enum GameState { DEALING, PLAYER_TURN, DEALER_TURN, GAME_OVER };
+    GameState gameState;
 
     Game()
         : deck(),
           cash(),
           player(deck, cash),
           dealer(deck, cash),
-          ui()
+          gameState(DEALING)
     { 
         isGameRunning = true; 
     }
 
     void promptPlayer(Gui& gui) {
         int choice = gui.getPlayerAction();
-        switch (choice) {
-            case 1: 
-                player.hit();
-                checkEndGameState();
-                playerHitLoop(gui);
-                break;
-            case 2:
-                player.stand();
-                break;
-            case 3:
-                player.doubleDown();
-                break;
-            case 4:
-                player.split();
-                break;
-            case 5:
-                // nothing here yet!
-                break;
-            default:
-                ui.showMessage("Invalid choise!");
+        if (choice != 0) {  // Ensure we wait until an action is chosen
+            switch (choice) {
+                case 1:
+                    player.hit();
+                    checkEndGameState();
+                    if (!player.hand.isBust() && !player.hand.isBlackjack()) {
+                        playerHitLoop(gui);
+                    } else {
+                        gameState = DEALER_TURN;  // Move to dealer's turn
+                    }
+                    break;
+                case 2:
+                    player.stand();
+                    gameState = DEALER_TURN;  // Move to dealer's turn after standing
+                    break;
+                case 3:
+                    player.doubleDown();
+                    gameState = DEALER_TURN;  // Double down means the player's turn is over
+                    break;
+                case 4:
+                    player.split();
+                    break;
+                default:
+                    ui.showMessage("Invalid choice!");
+            }
         }
     }
     
@@ -86,6 +93,7 @@ class Game {
         dealer.hit();
         player.hit();
         player.hit();
+        gameState = PLAYER_TURN;
     }
 
     void getPlayerBet() {
@@ -109,31 +117,25 @@ class Game {
         dealer.reset();
     }
 
-    // void coreLoop(Gui& gui) {
-    //     isGameRunning = true;
-    //     while (isGameRunning) { 
-    //         resetGame();
-    //         dealInitialCards();
-
-    //         // player.showHandString();
-    //         std::cout << "working!\n";
-    //         // gui.DisplayCard(player.hand.getHandVector()[0]);
-    //         // gui.showHand(player);
-            
-    //         checkEndGameState();
-    //         // dealer.showHandString();
-    //         dealer.isFirstTurn = false;
-    //         ui.continuePrompt();
-    //         promptPlayer();
-    //         dealerTurn();
-    //         ui.continuePrompt();
-    //     }
-    // }
-
     void GameLogic(Gui& gui) {
-        resetGame();
-        dealInitialCards();
-        promptPlayer(gui);
+        switch (gameState) {
+            case DEALING:
+                resetGame();
+                dealInitialCards();
+                gameState = PLAYER_TURN;  // Move to player turn after dealing
+                break;
+            case PLAYER_TURN:
+                promptPlayer(gui);
+                break;
+            case DEALER_TURN:
+                dealerTurn();
+                gameState = GAME_OVER;
+                break;
+            case GAME_OVER:
+                // End the game or start a new one
+                ui.showMessage("Game Over");
+                break;
+        }
     }
 
     const Player& getPlayer() const{ return player; }

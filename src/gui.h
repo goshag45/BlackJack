@@ -85,7 +85,8 @@ class Gui {
         }
 
         cardName = cardFace + "_of_" + cardSuit + ".png";
-        std::cout << cardName << '\n';
+        // causes log spam
+        // std::cout << cardName << '\n';
         return cardName;
     }
 
