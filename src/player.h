@@ -58,16 +58,7 @@ class Player {
         hands[0].clearhand();
     }
 
-    // DEPRACATED
-    // void showHandString() {
-    //     std::cout << "Hand Value: " << hand.getTotalValue() << '\n';
-    //     std::cout << getHand().showHand(false) << '\n';
-    // }
-
     const Hand& getHand() const {
-        for (Card card : hand.getHandVector()) {
-            std::cout << card.getFace() << '\n';
-        }
         return hand;
     }
 };

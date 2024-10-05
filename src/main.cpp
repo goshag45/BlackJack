@@ -19,6 +19,12 @@ int main() {
         sf::Event event;
         while (window.pollEvent(event)) {
             ImGui::SFML::ProcessEvent(event);
+            // Check if the event type is a resize event
+            if (event.type == sf::Event::Resized) {
+                // Adjust the viewport of the render window
+                sf::FloatRect visibleArea(0, 0, event.size.width, event.size.height);
+                window.setView(sf::View(visibleArea));
+            }
             if (event.type == sf::Event::Closed) {
                 window.close();
                 game.isGameRunning = false;

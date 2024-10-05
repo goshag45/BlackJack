@@ -21,7 +21,8 @@
 class Gui {
   public:
     Gui() : window(sf::VideoMode(800, 600), "Blackjack GUI") {
-        window.setFramerateLimit(60);
+        // window.setFramerateLimit(30);
+        window.setVerticalSyncEnabled(true);
     };
 
     void startGUIWindow() {
@@ -97,7 +98,7 @@ class Gui {
     }
 
     void GameWindow(const Player& player, const Dealer& dealer) {
-        ImGui::Begin("Blackjack Game");
+        ImGui::Begin("Game Window");
 
         // Render the dealer's hand
         ImGui::Text("Dealer's Hand:");
