@@ -31,20 +31,19 @@ class Game {
     }
 
     void promptPlayer(Gui& gui) {
+        ImGui::Begin("Player Actions");
         int choice = gui.getPlayerAction();
+        ImGui::End();
         if (choice != 0) {  // Ensure we wait until an action is chosen
             switch (choice) {
                 case 1:
                     player.hit();
-                    std::cout << "hit done\n";
                     checkEndGameState();
-                    std::cout << "check state done\n";
                     if (!player.hand.isBust() && !player.hand.isBlackjack()) {
                         playerHitLoop(gui);
                     } else {
                         gameState = DEALER_TURN;  // Move to dealer's turn
                     }
-                    std::cout << "player loop done\n";
                     break;
                 case 2:
                     player.stand();
@@ -65,7 +64,9 @@ class Game {
     
     void playerHitLoop(Gui& gui) {
         while (!player.hand.isBust() && !player.hand.isBlackjack() && !(player.isstanding)) {
+            ImGui::Begin("Player Actions");
             int choice = gui.getPlayerActionLoop();
+            ImGui::End();
             switch (choice) {
                 case 1: 
                     player.hit();
