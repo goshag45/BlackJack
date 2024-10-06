@@ -36,12 +36,15 @@ class Game {
             switch (choice) {
                 case 1:
                     player.hit();
+                    std::cout << "hit done\n";
                     checkEndGameState();
+                    std::cout << "check state done\n";
                     if (!player.hand.isBust() && !player.hand.isBlackjack()) {
                         playerHitLoop(gui);
                     } else {
                         gameState = DEALER_TURN;  // Move to dealer's turn
                     }
+                    std::cout << "player loop done\n";
                     break;
                 case 2:
                     player.stand();
