@@ -40,10 +40,12 @@ class Gui {
     }
 
     int getPlayerAction() {
+        ImGui::Begin("Player Actions");
         if (ImGui::Button("Hit"))           { std::cout << "Hit\n"; return 1;}
         if (ImGui::Button("Stand"))         { std::cout << "Stand\n"; return 2;}
         if (ImGui::Button("Double Down"))   { std::cout << "Double Down\n"; return 3;}
         if (ImGui::Button("Split"))         { std::cout << "Split\n"; return 4;}
+        ImGui::End();
         return 0;
     }
 
