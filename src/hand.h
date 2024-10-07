@@ -69,20 +69,6 @@ class Hand
     const std::vector<Card>& getHandVector() const {
         return hand;
     }
-
-    // DEPRACATED
-    // std::string showHand(bool isDealerFirstTurn) const{
-    //     std::string handStr;
-    //     if (isDealerFirstTurn) {
-    //         handStr += "*CARD HIDDEN*\n";
-    //         handStr += hand[1].getFace() + " of " + hand[1].getSuit() + '\n';
-    //         return handStr;
-    //     }
-    //     for (const Card& card : hand) {
-    //         handStr += card.getFace() + " of " + card.getSuit() + '\n';
-    //     }
-    //     return handStr;
-    // }
  
   private:
     std::vector<Card> hand;

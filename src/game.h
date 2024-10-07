@@ -39,6 +39,7 @@ class Game {
                 case 1:
                     player.hit();
                     checkEndGameState();
+                    ImGui::End();
                     if (!player.hand.isBust() && !player.hand.isBlackjack()) {
                         playerHitLoop(gui);
                     } else {
@@ -63,13 +64,12 @@ class Game {
     }
     
     void playerHitLoop(Gui& gui) {
-        std::cout << "entered function\n";
         while (!player.hand.isBust() && !player.hand.isBlackjack() && !(player.isstanding)) {
             std::cout << "entered loop\n";
-            ImGui::Begin("Player Actions");
+            ImGui::Begin("Hit or Stand");
             std::cout << "gui begined\n";
             int choice = gui.getPlayerActionLoop();
-            std::cout << "gui elements\n";
+            std::cout << choice << '\n';
             ImGui::End();
             switch (choice) {
                 case 1: 
