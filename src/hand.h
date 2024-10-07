@@ -62,8 +62,8 @@ class Hand
         Hand secondhand;
         secondhand.hand.push_back(Hand::hand[1]);
         Hand::hand.pop_back();
-        return secondhand;
         secondhand.totalvalue = getTotalValue();
+        return secondhand;
     }
 
     const std::vector<Card>& getHandVector() const {
