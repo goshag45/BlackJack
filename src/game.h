@@ -144,13 +144,23 @@ class Game {
                 break;
 
             case GAME_OVER:
-                ImGui::Begin("Play Again?");
-                startAgain = gui.PlayAgain();
-                ImGui::End();
-                if (startAgain) {
-                    gameState = DEALING;  // Reset to DEALING if player wants to play again
-                } else {
-                    gameState = CLOSE;    // Move to CLOSE state if player doesn't want to continue
+                // ImGui::Begin("Play Again?");
+                // startAgain = gui.YesOrNoGUI();
+                // ImGui::End();
+                // if (startAgain) {
+                //     gameState = DEALING;  // Reset to DEALING if player wants to play again
+                // } else {
+                //     gameState = CLOSE;    // Move to CLOSE state if player doesn't want to continue
+                // }
+                if (ImGui::Begin("Play Again?")) {
+                    ImGui::Text("Do you want to play again?");
+                    if (ImGui::Button("Yes")) {
+                        gameState = DEALING;
+                    }
+                    if (ImGui::Button("No")) {
+                        gameState = CLOSE;
+                    }
+                    ImGui::End();
                 }
                 ui.showMessage("Game Over");  // Display game over message
                 break;

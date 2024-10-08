@@ -53,7 +53,7 @@ class Gui {
         return 0;
     }
 
-    bool PlayAgain() {
+    bool YesOrNoGUI() {
         if (ImGui::Button("Yes"))           { std::cout << "Yes\n"; return true;}
         if (ImGui::Button("No"))         { std::cout << "No\n"; return false;}
         return false;
