@@ -53,6 +53,12 @@ class Gui {
         return 0;
     }
 
+    bool PlayAgain() {
+        if (ImGui::Button("Yes"))           { std::cout << "Yes\n"; return true;}
+        if (ImGui::Button("No"))         { std::cout << "No\n"; return false;}
+        return false;
+    }
+
     void showHand(const Hand& hand) {
         for (const Card& card : hand.getHandVector()) {
             DisplayCard(card);

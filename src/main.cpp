@@ -41,5 +41,7 @@ int main() {
     }
     gui.shutDownGUI();
 
+    std::cout << "Press Enter to exit...\n";
+    std::cin.get(); 
     return 0;
 }

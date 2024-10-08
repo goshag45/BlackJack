@@ -17,7 +17,7 @@
 class Game {
   public:
     bool isGameRunning;
-    enum GameState { DEALING, PLAYER_TURN, DEALER_TURN, GAME_OVER };
+    enum GameState { DEALING, PLAYER_TURN, DEALER_TURN, GAME_OVER, CLOSE };
     GameState gameState;
 
     Game()
@@ -39,7 +39,6 @@ class Game {
                 case 1:
                     player.hit();
                     checkEndGameState();
-                    ImGui::End();
                     if (!player.hand.isBust() && !player.hand.isBlackjack()) {
                         playerHitLoop(gui);
                     } else {
@@ -132,19 +131,35 @@ class Game {
                 dealInitialCards();
                 gameState = PLAYER_TURN;  // Move to player turn after dealing
                 break;
+
             case PLAYER_TURN:
                 promptPlayer(gui);
                 break;
+
             case DEALER_TURN:
                 dealerTurn();
-                gameState = GAME_OVER;
+                gameState = GAME_OVER;  // Once dealer's turn is done, move to game over
                 break;
+
             case GAME_OVER:
-                // End the game or start a new one
-                ui.showMessage("Game Over");
+                ImGui::Begin("Play Again?");
+                bool startAgain = gui.PlayAgain();
+                ImGui::End();
+                if (startAgain) {
+                    gameState = DEALING;  // Reset to DEALING if player wants to play again
+                } else {
+                    gameState = CLOSE;    // Move to CLOSE state if player doesn't want to continue
+                }
+                ui.showMessage("Game Over");  // Display game over message
+                break;
+
+            case CLOSE:
+                gui.getWindow().close();  // Close the window when the game is done
+                isGameRunning = false;
                 break;
         }
     }
+
 
     const Player& getPlayer() const{ return player; }
     const Dealer& getDealer() const{ return dealer; }
