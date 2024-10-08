@@ -143,15 +143,8 @@ class Game {
                 gameState = GAME_OVER;  // Once dealer's turn is done, move to game over
                 break;
 
+            // 
             case GAME_OVER:
-                // ImGui::Begin("Play Again?");
-                // startAgain = gui.YesOrNoGUI();
-                // ImGui::End();
-                // if (startAgain) {
-                //     gameState = DEALING;  // Reset to DEALING if player wants to play again
-                // } else {
-                //     gameState = CLOSE;    // Move to CLOSE state if player doesn't want to continue
-                // }
                 if (ImGui::Begin("Play Again?")) {
                     ImGui::Text("Do you want to play again?");
                     if (ImGui::Button("Yes")) {
