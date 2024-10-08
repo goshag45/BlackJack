@@ -156,8 +156,17 @@ class Game {
                 break;
 
             case CLOSE:
-                gui.getWindow().close();  // Close the window when the game is done
-                isGameRunning = false;
+                if (ImGui::Begin("Exit Game?")) {
+                    ImGui::Text("Do you want to exit?");
+                    if (ImGui::Button("Yes")) {
+                        gui.getWindow().close();  // Close the window when the user confirms
+                        isGameRunning = false;
+                    }
+                    if (ImGui::Button("No")) {
+                        gameState = GAME_OVER;  // Return to the game over state if user doesn't want to close
+                    }
+                    ImGui::End();
+                }
                 break;
         }
     }
