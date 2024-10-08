@@ -125,6 +125,8 @@ class Game {
     }
 
     void GameLogic(Gui& gui) {
+        bool startAgain = false;
+
         switch (gameState) {
             case DEALING:
                 resetGame();
@@ -143,7 +145,7 @@ class Game {
 
             case GAME_OVER:
                 ImGui::Begin("Play Again?");
-                bool startAgain = gui.PlayAgain();
+                startAgain = gui.PlayAgain();
                 ImGui::End();
                 if (startAgain) {
                     gameState = DEALING;  // Reset to DEALING if player wants to play again
