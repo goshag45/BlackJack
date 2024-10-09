@@ -17,7 +17,7 @@
 class Game {
   public:
     bool isGameRunning;
-    enum GameState { DEALING, PLAYER_TURN, DEALER_TURN, GAME_OVER, CLOSE };
+    enum GameState { DEALING, PLAYER_TURN, HIT_LOOP, DEALER_TURN, GAME_OVER, CLOSE };
     GameState gameState;
 
     Game()
@@ -40,7 +40,7 @@ class Game {
                     player.hit();
                     checkEndGameState();
                     if (!player.hand.isBust() && !player.hand.isBlackjack()) {
-                        playerHitLoop(gui);
+                        gameState = HIT_LOOP;
                     } else {
                         gameState = DEALER_TURN;  // Move to dealer's turn
                     }
@@ -62,33 +62,9 @@ class Game {
         }
     }
     
-    void playerHitLoop(Gui& gui) {
-        while (!player.hand.isBust() && !player.hand.isBlackjack() && !(player.isstanding)) {
-            std::cout << "entered loop\n";
-            int choice;
-            if (ImGui::Begin("Hit or Stand?")) {
-                    ImGui::Text("Do you want to hit or stand?");
-                    if (ImGui::Button("Hit")) {
-                        choice = 1;
-                    }
-                    if (ImGui::Button("Stand")) {
-                        choice = 2;
-                    }
-                    ImGui::End();
-                }
-
-            switch (choice) {
-                case 1: 
-                    player.hit();
-                    checkEndGameState();
-                    break;
-                case 2:
-                    player.stand();
-                    gameState = DEALER_TURN;
-                    break;
-            }
-        }
-    }
+    // void playerHitLoop() {
+        
+    // }
 
     void dealerTurn() {
         if (dealer.canhit) { ui.showMessage("Dealer playing..."); }
@@ -143,6 +119,22 @@ class Game {
 
             case PLAYER_TURN:
                 promptPlayer(gui);
+                break;
+
+            case HIT_LOOP:
+                ImGui::Begin("Hit or Stand?");
+                if (ImGui::Button("Hit")) {
+                    player.hit();
+                    checkEndGameState();
+                    if (player.hand.isBust() || player.hand.isBlackjack()) {
+                        gameState = DEALER_TURN;
+                    }
+                }
+                if (ImGui::Button("Stand")) {
+                    player.stand();
+                    gameState = DEALER_TURN;
+                }
+                ImGui::End();
                 break;
 
             case DEALER_TURN:
