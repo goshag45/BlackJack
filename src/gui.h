@@ -40,24 +40,37 @@ class Gui {
     }
 
     int getPlayerAction() {
-        if (ImGui::Button("Hit"))           { std::cout << "Hit\n"; return 1;}
-        if (ImGui::Button("Stand"))         { std::cout << "Stand\n"; return 2;}
-        if (ImGui::Button("Double Down"))   { std::cout << "Double Down\n"; return 3;}
-        if (ImGui::Button("Split"))         { std::cout << "Split\n"; return 4;}
-        return 0;
+        ImGui::Begin("Player Actions");
+        int playerChoice = 0;
+        if (ImGui::Button("Hit"))           { std::cout << "Hit\n"; playerChoice = 1;}
+        if (ImGui::Button("Stand"))         { std::cout << "Stand\n"; playerChoice = 2;}
+        if (ImGui::Button("Double Down"))   { std::cout << "Double Down\n"; playerChoice = 3;}
+        if (ImGui::Button("Split"))         { std::cout << "Split\n"; playerChoice = 4;}
+        ImGui::End();
+        return playerChoice;
     }
 
-    int getPlayerActionLoop() {
-        if (ImGui::Button("Hit"))           { std::cout << "Hit\n"; return 1;}
-        if (ImGui::Button("Stand"))         { std::cout << "Stand\n"; return 2;}
-        return 0;
+    // Inside Gui class
+    int playAgainPrompt() {
+        ImGui::Begin("Play Again?");
+        ImGui::Text("Do you want to play again?");
+        int result = -1; // No input
+        if (ImGui::Button("Yes")) { result = 1; } // Player wants to play again
+        if (ImGui::Button("No")) { result = 0; }  // Player does not want to play again
+        ImGui::End();
+        return result;
     }
 
-    bool YesOrNoGUI() {
-        if (ImGui::Button("Yes"))           { std::cout << "Yes\n"; return true;}
-        if (ImGui::Button("No"))         { std::cout << "No\n"; return false;}
-        return false;
+    int exitGamePrompt() {
+        ImGui::Begin("Exit Game?");
+        ImGui::Text("Do you want to exit?");
+        int result = -1; // No input
+        if (ImGui::Button("Yes")) { result = 1; }  // Player wants to exit
+        if (ImGui::Button("No")) { result = 0; }   // Player does not want to exit
+        ImGui::End();
+        return result;
     }
+
 
     void showHand(const Hand& hand) {
         for (const Card& card : hand.getHandVector()) {

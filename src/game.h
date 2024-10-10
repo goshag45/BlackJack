@@ -31,9 +31,7 @@ class Game {
     }
 
     void promptPlayer(Gui& gui) {
-        ImGui::Begin("Player Actions");
         int choice = gui.getPlayerAction();
-        ImGui::End();
         if (choice != 0) {  // Ensure we wait until an action is chosen
             switch (choice) {
                 case 1:
@@ -105,6 +103,8 @@ class Game {
 
     void GameLogic(Gui& gui) {
         bool startAgain = false;
+        int playAgain = -1;
+        int exitGame = -1;
         gui.GameWindow(getPlayer(), getDealer());
 
         switch (gameState) {
@@ -139,33 +139,25 @@ class Game {
                 gameState = GAME_OVER;  // Once dealer's turn is done, move to game over
                 break;
 
-            // 
             case GAME_OVER:
-                if (ImGui::Begin("Play Again?")) {
-                    ImGui::Text("Do you want to play again?");
-                    if (ImGui::Button("Yes")) {
-                        gameState = DEALING;
-                    }
-                    if (ImGui::Button("No")) {
-                        gameState = CLOSE;
-                    }
-                    ImGui::End();
-                }
-                ui.showMessage("Game Over");  // Display game over message
+                playAgain = gui.playAgainPrompt();
+                if (playAgain == 1) {
+                    gameState = DEALING;
+                } else if (playAgain == 0) {
+                    gameState = CLOSE;
+                } 
+                // If playAgain is -1, do nothing and wait for input
                 break;
 
             case CLOSE:
-                if (ImGui::Begin("Exit Game?")) {
-                    ImGui::Text("Do you want to exit?");
-                    if (ImGui::Button("Yes")) {
-                        gui.getWindow().close();  // Close the window when the user confirms
-                        isGameRunning = false;
-                    }
-                    if (ImGui::Button("No")) {
-                        gameState = GAME_OVER;  // Return to the game over state if user doesn't want to close
-                    }
-                    ImGui::End();
+                exitGame = gui.exitGamePrompt();
+                if (exitGame == 1) {
+                    gui.getWindow().close();
+                    isGameRunning = false;
+                } else if (exitGame == 0) {
+                    gameState = GAME_OVER;
                 }
+                // If exitGame is -1, do nothing and wait for input
                 break;
         }
     }
