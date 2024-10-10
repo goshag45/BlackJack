@@ -36,7 +36,7 @@ class Game {
             switch (choice) {
                 case 1:
                     player.hit();
-                    checkEndGameState();
+                    // checkEndGameState();
                     if (!player.hand.isBust() && !player.hand.isBlackjack()) {
                         gameState = HIT_LOOP;
                     } else {
@@ -84,18 +84,6 @@ class Game {
         bet = ui.getPlayerInputInt("Enter bet: ");
     }
 
-    void playerBustCheck() {
-        if (player.isbusted) {
-            ui.showMessage("You are BUST! With a hand value of: ", player.hand.getTotalValue());
-        }
-    }
-
-    void playerBlackJackCheck() {
-        if (player.isBlackjack) {
-            ui.showMessage("You have BLACKJACK!");
-        }
-    }
-
     void resetGame() {
         player.reset();
         dealer.reset();
@@ -122,7 +110,7 @@ class Game {
                 ImGui::Begin("Hit or Stand?");
                 if (ImGui::Button("Hit")) {
                     player.hit();
-                    checkEndGameState();
+                    // checkEndGameState();
                     if (player.hand.isBust() || player.hand.isBlackjack()) {
                         gameState = DEALER_TURN;
                     }
@@ -167,10 +155,10 @@ class Game {
     const Dealer& getDealer() const{ return dealer; }
 
   private:
-    void checkEndGameState() {
-        playerBustCheck();
-        playerBlackJackCheck();
-    }
+    // void checkEndGameState() {
+    //     playerBustCheck();
+    //     playerBlackJackCheck();
+    // }
 
     Deck deck;
     Cash cash;
