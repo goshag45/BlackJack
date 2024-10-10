@@ -24,20 +24,10 @@ class Gui {
         // window.setFramerateLimit(30);
         window.setVerticalSyncEnabled(true);
     };
-
-    void startGUIWindow() {
-        // Initialize ImGui and SFML
-        ImGui::SFML::Init(window);
-    }
-
-    void startClockGUI() {
-        deltaClock.restart();
-    }
-    
-    void shutDownGUI() {
-        // Clean up
-        ImGui::SFML::Shutdown();
-    }
+    // Functions to setup SFML imgui window
+    inline void startGUIWindow() { ImGui::SFML::Init(window); }
+    inline void startClockGUI() { deltaClock.restart(); }
+    inline void shutDownGUI() { ImGui::SFML::Shutdown(); }
 
     int getPlayerAction() {
         ImGui::Begin("Player Actions");
