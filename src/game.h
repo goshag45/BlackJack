@@ -61,10 +61,6 @@ class Game {
             }
         }
     }
-    
-    // void playerHitLoop() {
-        
-    // }
 
     void dealerTurn() {
         if (dealer.canhit) { ui.showMessage("Dealer playing..."); }
@@ -109,6 +105,7 @@ class Game {
 
     void GameLogic(Gui& gui) {
         bool startAgain = false;
+        gui.GameWindow(getPlayer(), getDealer());
 
         switch (gameState) {
             case DEALING:

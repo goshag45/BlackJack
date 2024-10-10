@@ -34,7 +34,6 @@ int main() {
         window.clear();
         
         game.GameLogic(gui);
-        gui.GameWindow(game.getPlayer(), game.getDealer());
         
         ImGui::SFML::Render(window);
         window.display();
