@@ -50,31 +50,14 @@ class Gui {
         return playerChoice;
     }
 
-    int hitLoopPrompt() {
-        ImGui::Begin("Hit or Stand?");
+    int binaryGUIPromp(std::string _title, const std::string _yesOption, const std::string _noOption) {
+        const char* title = _title.c_str();
+        const char* yesOption = _yesOption.c_str();
+        const char* noOption = _noOption.c_str();
+        ImGui::Begin(title);
         int result = -1;
-        if (ImGui::Button("Hit")) { result = 1; }
-        if (ImGui::Button("Stand")) { result = 0; }
-        ImGui::End();
-        return result;
-    }
-
-    int playAgainPrompt() {
-        ImGui::Begin("Play Again?");
-        ImGui::Text("Do you want to play again?");
-        int result = -1;
-        if (ImGui::Button("Yes")) { result = 1; }
-        if (ImGui::Button("No")) { result = 0; }
-        ImGui::End();
-        return result;
-    }
-
-    int exitGamePrompt() {
-        ImGui::Begin("Exit Game?");
-        ImGui::Text("Do you want to exit?");
-        int result = -1;
-        if (ImGui::Button("Yes")) { result = 1; }
-        if (ImGui::Button("No")) { result = 0; }
+        if (ImGui::Button(yesOption)) { result = 1; }
+        if (ImGui::Button(noOption)) { result = 0; }
         ImGui::End();
         return result;
     }
