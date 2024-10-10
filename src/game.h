@@ -91,6 +91,7 @@ class Game {
 
     void GameLogic(Gui& gui) {
         bool startAgain = false;
+        int hitAgain = -1;
         int playAgain = -1;
         int exitGame = -1;
         gui.GameWindow(getPlayer(), getDealer());
@@ -107,19 +108,17 @@ class Game {
                 break;
 
             case HIT_LOOP:
-                ImGui::Begin("Hit or Stand?");
-                if (ImGui::Button("Hit")) {
+                hitAgain = gui.hitLoopPrompt();
+                if (hitAgain == 1) {
                     player.hit();
                     // checkEndGameState();
                     if (player.hand.isBust() || player.hand.isBlackjack()) {
                         gameState = DEALER_TURN;
                     }
-                }
-                if (ImGui::Button("Stand")) {
+                } else if (hitAgain == 0) {
                     player.stand();
                     gameState = DEALER_TURN;
-                }
-                ImGui::End();
+                } 
                 break;
 
             case DEALER_TURN:

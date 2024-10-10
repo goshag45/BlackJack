@@ -50,13 +50,21 @@ class Gui {
         return playerChoice;
     }
 
-    // Inside Gui class
+    int hitLoopPrompt() {
+        ImGui::Begin("Hit or Stand?");
+        int result = -1;
+        if (ImGui::Button("Hit")) { result = 1; }
+        if (ImGui::Button("Stand")) { result = 0; }
+        ImGui::End();
+        return result;
+    }
+
     int playAgainPrompt() {
         ImGui::Begin("Play Again?");
         ImGui::Text("Do you want to play again?");
-        int result = -1; // No input
-        if (ImGui::Button("Yes")) { result = 1; } // Player wants to play again
-        if (ImGui::Button("No")) { result = 0; }  // Player does not want to play again
+        int result = -1;
+        if (ImGui::Button("Yes")) { result = 1; }
+        if (ImGui::Button("No")) { result = 0; }
         ImGui::End();
         return result;
     }
@@ -64,9 +72,9 @@ class Gui {
     int exitGamePrompt() {
         ImGui::Begin("Exit Game?");
         ImGui::Text("Do you want to exit?");
-        int result = -1; // No input
-        if (ImGui::Button("Yes")) { result = 1; }  // Player wants to exit
-        if (ImGui::Button("No")) { result = 0; }   // Player does not want to exit
+        int result = -1;
+        if (ImGui::Button("Yes")) { result = 1; }
+        if (ImGui::Button("No")) { result = 0; }
         ImGui::End();
         return result;
     }
