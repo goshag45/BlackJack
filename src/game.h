@@ -80,9 +80,9 @@ class Game {
         gameState = PLAYER_TURN;
     }
 
-    void getPlayerBet() {
-        bet = ui.getPlayerInputInt("Enter bet: ");
-    }
+    // void getPlayerBet() {
+    //     cash.cash = ui.getPlayerInputInt("Enter bet: ");
+    // }
 
     void resetGame() {
         player.reset();
@@ -164,8 +164,6 @@ class Game {
     Player player;
     Dealer dealer;
     Ui ui;
-    // THIS NEEDS TO LINK TO CASH
-    int bet = 0;
 };
 
 #endif

@@ -3,6 +3,9 @@
 
 class Cash {
   public:
+    int currentBet = 0;
+    int cash;
+
     Cash() {cash = 0;};
 
     Cash(int startingcash) : cash(startingcash) {};
@@ -18,9 +21,10 @@ class Cash {
 
     void setCash(int input) {cash = input;}
     
+    const int& getCash() const { return cash;}
+    const int& getCurrentBet() const { return currentBet;}
+
   protected:
-    int currentBet = 0;
-    int cash;
 };
 
 #endif 
