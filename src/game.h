@@ -101,7 +101,7 @@ class Game {
             case DEALING:
                 resetGame();
                 dealInitialCards();
-                gameState = PLAYER_TURN;  // Move to player turn after dealing
+                gameState = PLAYER_TURN;
                 break;
 
             case PLAYER_TURN:
@@ -125,7 +125,7 @@ class Game {
             case DEALER_TURN:
                 isDealerFirstTurn = false;
                 dealerTurn();
-                gameState = GAME_OVER;  // Once dealer's turn is done, move to game over
+                gameState = GAME_OVER;
                 break;
 
             case GAME_OVER:
@@ -135,7 +135,6 @@ class Game {
                 } else if (playAgain == 0) {
                     gameState = CLOSE;
                 } 
-                // If playAgain is -1, do nothing and wait for input
                 break;
 
             case CLOSE:
@@ -146,7 +145,6 @@ class Game {
                 } else if (exitGame == 0) {
                     gameState = GAME_OVER;
                 }
-                // If exitGame is -1, do nothing and wait for input
                 break;
         }
     }

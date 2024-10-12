@@ -61,7 +61,6 @@ class Gui {
             ImGui::SameLine(); // Display cards horizontally
             cardIndex++;
         }
-        std::cout << cardIndex << '\n';
         ImGui::NewLine(); // After all cards, start a new line
     }
 
