@@ -87,6 +87,7 @@ class Game {
     void resetGame() {
         player.reset();
         dealer.reset();
+        isDealerFirstTurn = true;
     }
 
     void GameLogic(Gui& gui) {
@@ -167,7 +168,7 @@ class Game {
     Dealer dealer;
     Ui ui;
 
-    bool isDealerFirstTurn = true;
+    bool isDealerFirstTurn;
 };
 
 #endif
