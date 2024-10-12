@@ -41,6 +41,7 @@ class Gui {
     }
 
     int binaryGUIPromp(std::string _title, const std::string _yesOption, const std::string _noOption) {
+        // imgui takes const char* not string FOR SOME REASON
         const char* title = _title.c_str();
         const char* yesOption = _yesOption.c_str();
         const char* noOption = _noOption.c_str();
@@ -53,16 +54,25 @@ class Gui {
     }
 
 
-    void showHand(const Hand& hand) {
+    void showHand(const Hand& hand, bool isDealerFirstTurn) {
+        int cardIndex = 0;
         for (const Card& card : hand.getHandVector()) {
-            DisplayCard(card);
+            DisplayCard(card, isDealerFirstTurn, cardIndex);
             ImGui::SameLine(); // Display cards horizontally
+            cardIndex++;
         }
+        std::cout << cardIndex << '\n';
         ImGui::NewLine(); // After all cards, start a new line
     }
 
-    void DisplayCard(const Card& card) {
-        std::string cardName = BuildCardFileName(card);
+    void DisplayCard(const Card& card, bool isDealerFirstTurn, int cardIndex) {
+        std::string cardName;
+        if (isDealerFirstTurn && cardIndex == 1) {
+            cardName = "blank.png";
+        } else {
+            cardName = BuildCardFileName(card);
+        }
+
 
         // Check if the texture is already loaded in the map
         if (cardTextures.find(cardName) == cardTextures.end()) {
@@ -77,7 +87,6 @@ class Gui {
 
         // Get the texture from the map
         sf::Texture& texture = cardTextures[cardName];
-
         // Render the image with the specified size
         ImGui::Image(texture, cardSize);
     }
@@ -97,18 +106,18 @@ class Gui {
         return cardName;
     }
 
-    void GameWindow(const Player& player, const Dealer& dealer) {
+    void GameWindow(const Player& player, const Dealer& dealer, bool isDealerFirstTurn) {
         ImGui::Begin("Game Window");
 
         // Render the dealer's hand
         ImGui::Text("Dealer's Hand:");
-        showHand(dealer.getHand());
+        showHand(dealer.getHand(), isDealerFirstTurn);
 
         ImGui::Separator();
 
         // Render the player's hand
         ImGui::Text("Player's Hand:");
-        showHand(player.getHand());
+        showHand(player.getHand(), false);
 
         ImGui::Separator();
 

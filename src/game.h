@@ -94,7 +94,7 @@ class Game {
         int hitAgain = -1;
         int playAgain = -1;
         int exitGame = -1;
-        gui.GameWindow(getPlayer(), getDealer());
+        gui.GameWindow(getPlayer(), getDealer(), isDealerFirstTurn);
 
         switch (gameState) {
             case DEALING:
@@ -122,6 +122,7 @@ class Game {
                 break;
 
             case DEALER_TURN:
+                isDealerFirstTurn = false;
                 dealerTurn();
                 gameState = GAME_OVER;  // Once dealer's turn is done, move to game over
                 break;
@@ -150,8 +151,9 @@ class Game {
     }
 
 
-    const Player& getPlayer() const{ return player; }
-    const Dealer& getDealer() const{ return dealer; }
+    const Player& getPlayer() const { return player; }
+    const Dealer& getDealer() const { return dealer; }
+    const bool& getIsFirstTurn() const {return isDealerFirstTurn; }
 
   private:
     // void checkEndGameState() {
@@ -164,6 +166,8 @@ class Game {
     Player player;
     Dealer dealer;
     Ui ui;
+
+    bool isDealerFirstTurn = true;
 };
 
 #endif
