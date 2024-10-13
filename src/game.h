@@ -17,7 +17,7 @@
 class Game {
   public:
     bool isGameRunning;
-    enum GameState { DEALING, PLAYER_TURN, HIT_LOOP, DEALER_TURN, GAME_OVER, CLOSE };
+    enum GameState { PRE_GAME, DEALING, PLAYER_TURN, HIT_LOOP, DEALER_TURN, GAME_OVER, CLOSE };
     GameState gameState;
 
     Game()
@@ -98,6 +98,12 @@ class Game {
         gui.GameWindow(getPlayer(), getDealer(), isDealerFirstTurn);
 
         switch (gameState) {
+            case PRE_GAME:
+                // start game
+                // enter bet
+                // exit game
+                break;
+
             case DEALING:
                 resetGame();
                 dealInitialCards();
