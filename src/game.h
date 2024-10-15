@@ -92,6 +92,8 @@ class Game {
 
     void GameLogic(Gui& gui) {
         bool startAgain = false;
+        int startOrQuit = -1;
+        int toBetOrNotToBet = -1;
         int hitAgain = -1;
         int playAgain = -1;
         int exitGame = -1;
@@ -102,14 +104,21 @@ class Game {
 
         switch (gameState) {
             case START:
-                gui.startWindow();
-                // start game
-                // enter bet
-                // exit game
+                startOrQuit = gui.startWindow();
+                if (startOrQuit == 1) {
+                    gameState = BET;
+                } else if (startOrQuit == 2) {
+                    gameState = CLOSE;
+                }
                 break;
             
             case BET:
-                //betting
+                toBetOrNotToBet = gui.enterBetWindow(cash.currentBet);
+                if (toBetOrNotToBet == 1) {
+                    gameState == DEALING;
+                } else if (toBetOrNotToBet == 2) {
+                    gameState == START;
+                }
                 break;
 
             case DEALING:

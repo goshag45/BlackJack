@@ -123,6 +123,7 @@ class Gui {
         ImGui::End();
     }
 
+    // NOT USING GENERIC FUNCTION AS IM LEAVING THIS ONE OPEN TO EXPANSION
     int startWindow() {
         ImGui::Begin("Menu");
         int playerChoice = 0;
@@ -132,6 +133,18 @@ class Gui {
 
         ImGui::End();
         return playerChoice;
+    }
+
+    int enterBetWindow(int& bet) {
+        ImGui::Begin("Bet");
+        ImGui::Text("Please enter your bet: ");
+        ImGui::InputInt("##intInput", &bet);
+
+        if (ImGui::Button("Submit")) { return 1; }
+        if (ImGui::Button("Cancel")) { return 2; }
+
+        ImGui::End();
+        return 0;
     }
 
     sf::RenderWindow& getWindow() { return window; }
