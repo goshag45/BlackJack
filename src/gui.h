@@ -141,8 +141,8 @@ class Gui {
         ImGui::InputInt("##intInput", &bet);
         int playerChoice = -1;
 
-        if (ImGui::Button("Submit"))    { playerChoice == 1; }
-        if (ImGui::Button("Cancel"))    { playerChoice == 0; }
+        if (ImGui::Button("Submit"))    { playerChoice = 1; }
+        if (ImGui::Button("Cancel"))    { playerChoice = 0; }
 
         ImGui::End();
         return playerChoice;

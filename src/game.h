@@ -91,7 +91,6 @@ class Game {
     }
 
     void GameLogic(Gui& gui) {
-        bool startAgain = false;
         int startOrQuit = -1;
         int toBetOrNotToBet = -1;
         int hitAgain = -1;
@@ -114,11 +113,10 @@ class Game {
             
             case BET:
                 toBetOrNotToBet = gui.enterBetWindow(cash.currentBet);
-                std::cout << cash.getCurrentBet() << 'n';
                 if (toBetOrNotToBet == 1) {
-                    gameState == DEALING;
+                    gameState = DEALING;
                 } else if (toBetOrNotToBet == 0) {
-                    gameState == START;
+                    gameState = START;
                 }
                 break;
 
