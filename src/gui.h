@@ -129,7 +129,7 @@ class Gui {
         int playerChoice = 0;
 
         if (ImGui::Button("Play Game"))    { std::cout << "Play\n"; playerChoice = 1;}
-        if (ImGui::Button("Exit"))         { std::cout << "Exit\n"; playerChoice = 2;}
+        if (ImGui::Button("Exit"))         { std::cout << "Exit\n"; playerChoice = 0;}
 
         ImGui::End();
         return playerChoice;
@@ -142,7 +142,7 @@ class Gui {
         int userInput = -1;
 
         if (ImGui::Button("Submit"))    { userInput == 1; }
-        if (ImGui::Button("Cancel"))    { userInput == 2; }
+        if (ImGui::Button("Cancel"))    { userInput == 0; }
 
         ImGui::End();
         return userInput;

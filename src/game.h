@@ -107,7 +107,7 @@ class Game {
                 startOrQuit = gui.startWindow();
                 if (startOrQuit == 1) {
                     gameState = BET;
-                } else if (startOrQuit == 2) {
+                } else if (startOrQuit == 0) {
                     gameState = CLOSE;
                 }
                 break;
@@ -116,7 +116,7 @@ class Game {
                 toBetOrNotToBet = gui.enterBetWindow(cash.currentBet);
                 if (toBetOrNotToBet == 1) {
                     gameState == DEALING;
-                } else if (toBetOrNotToBet == 2) {
+                } else if (toBetOrNotToBet == 0) {
                     gameState == START;
                 }
                 break;
