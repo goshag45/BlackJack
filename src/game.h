@@ -114,6 +114,7 @@ class Game {
             
             case BET:
                 toBetOrNotToBet = gui.enterBetWindow(cash.currentBet);
+                std::cout << cash.getCurrentBet() << 'n';
                 if (toBetOrNotToBet == 1) {
                     gameState == DEALING;
                 } else if (toBetOrNotToBet == 0) {

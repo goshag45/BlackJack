@@ -126,7 +126,7 @@ class Gui {
     // NOT USING GENERIC FUNCTION AS IM LEAVING THIS ONE OPEN TO EXPANSION
     int startWindow() {
         ImGui::Begin("Menu");
-        int playerChoice = 0;
+        int playerChoice = -1;
 
         if (ImGui::Button("Play Game"))    { std::cout << "Play\n"; playerChoice = 1;}
         if (ImGui::Button("Exit"))         { std::cout << "Exit\n"; playerChoice = 0;}
@@ -139,13 +139,13 @@ class Gui {
         ImGui::Begin("Bet");
         ImGui::Text("Please enter your bet: ");
         ImGui::InputInt("##intInput", &bet);
-        int userInput = -1;
+        int playerChoice = -1;
 
-        if (ImGui::Button("Submit"))    { userInput == 1; }
-        if (ImGui::Button("Cancel"))    { userInput == 0; }
+        if (ImGui::Button("Submit"))    { playerChoice == 1; }
+        if (ImGui::Button("Cancel"))    { playerChoice == 0; }
 
         ImGui::End();
-        return userInput;
+        return playerChoice;
     }
 
     sf::RenderWindow& getWindow() { return window; }
