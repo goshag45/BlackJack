@@ -123,6 +123,17 @@ class Gui {
         ImGui::End();
     }
 
+    int startWindow() {
+        ImGui::Begin("Menu");
+        int playerChoice = 0;
+
+        if (ImGui::Button("Play Game"))           { std::cout << "Play\n"; playerChoice = 1;}
+        if (ImGui::Button("Exit"))         { std::cout << "Exit\n"; playerChoice = 2;}
+
+        ImGui::End();
+        return playerChoice;
+    }
+
     sf::RenderWindow& getWindow() { return window; }
     sf::Clock& getClock() { return deltaClock; }
 
