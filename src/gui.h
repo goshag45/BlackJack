@@ -128,7 +128,7 @@ class Gui {
         ImGui::Begin("Menu");
         int playerChoice = 0;
 
-        if (ImGui::Button("Play Game"))           { std::cout << "Play\n"; playerChoice = 1;}
+        if (ImGui::Button("Play Game"))    { std::cout << "Play\n"; playerChoice = 1;}
         if (ImGui::Button("Exit"))         { std::cout << "Exit\n"; playerChoice = 2;}
 
         ImGui::End();
@@ -139,12 +139,13 @@ class Gui {
         ImGui::Begin("Bet");
         ImGui::Text("Please enter your bet: ");
         ImGui::InputInt("##intInput", &bet);
+        int userInput = -1;
 
-        if (ImGui::Button("Submit")) { return 1; }
-        if (ImGui::Button("Cancel")) { return 2; }
+        if (ImGui::Button("Submit"))    { userInput == 1; }
+        if (ImGui::Button("Cancel"))    { userInput == 2; }
 
         ImGui::End();
-        return 0;
+        return userInput;
     }
 
     sf::RenderWindow& getWindow() { return window; }
