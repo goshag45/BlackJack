@@ -111,7 +111,8 @@ class Game {
                 if (startOrQuit == 1) {
                     gameState = BET;
                 } else if (startOrQuit == 0) {
-                    gameState = CLOSE;
+                    gui.getWindow().close();
+                    isGameRunning = false;
                 }
                 break;
             
