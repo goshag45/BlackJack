@@ -99,7 +99,9 @@ class Game {
         if (gameState != START) {
             gui.GameWindow(getPlayer(), getDealer(), isDealerFirstTurn);
         }
-        
+        ImGui::Begin("Bet");
+        ImGui::Text("Bet: %d", cash.currentBet);
+        ImGui::End();
 
         switch (gameState) {
             case START:
@@ -170,7 +172,6 @@ class Game {
                 break;
         }
     }
-
 
     const Player& getPlayer() const { return player; }
     const Dealer& getDealer() const { return dealer; }
