@@ -101,7 +101,7 @@ class Game {
         }
         // current implementation requires it to be exactly here
         // TODO fix this
-        ImGui::Begin("Current Bet");
+        ImGui::Begin("Bet"); // only shows up when linked to existing Bet window
         ImGui::Text("Bet: %d", cash.currentBet);
         ImGui::End();
 
