@@ -99,7 +99,9 @@ class Game {
         if (gameState != START) {
             gui.GameWindow(getPlayer(), getDealer(), isDealerFirstTurn);
         }
-        ImGui::Begin("Bet");
+        // current implementation requires it to be exactly here
+        // TODO fix this
+        ImGui::Begin("Current Bet");
         ImGui::Text("Bet: %d", cash.currentBet);
         ImGui::End();
 
@@ -155,7 +157,7 @@ class Game {
             case GAME_OVER:
                 playAgain = gui.binaryGUIPromp("Play Again?", "Yes", "No");
                 if (playAgain == 1) {
-                    gameState = DEALING;
+                    gameState = START;
                 } else if (playAgain == 0) {
                     gameState = CLOSE;
                 } 
