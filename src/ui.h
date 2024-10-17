@@ -34,9 +34,9 @@ class Ui {
     }
 
     // this use of auto MAY be sus - might be better way to do this? im not sure
-    void showMessage(std::string messageText, auto inputVariable) {
-        std::cout << messageText << inputVariable << '\n';
-    }
+    // void showMessage(std::string messageText, auto inputVariable) {
+    //     std::cout << messageText << inputVariable << '\n';
+    // }
 
     void playerPlayMenu() {
         std::cout << "\n----------Choose your play----------\n";
