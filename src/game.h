@@ -96,10 +96,13 @@ class Game {
         int hitAgain = -1;
         int playAgain = -1;
         int exitGame = -1;
-        if (gameState != START && gameState != BET) {
+        if (gameState != START && gameState != BET) { // ADDING SECOND CONDITION, NOW DISPLAYS BETWINDOW???
             gui.GameWindow(getPlayer(), getDealer(), isDealerFirstTurn);
         }
-        gui.betWindow(cash.currentBet);
+        if (gameState != START) {
+            gui.cashWindow(cash.currentBet, cash.cash);
+        }
+        
 
         switch (gameState) {
             case START:
@@ -115,6 +118,7 @@ class Game {
             case BET:
                 toBetOrNotToBet = gui.enterBetWindow(cash.currentBet);
                 if (toBetOrNotToBet == 1) {
+                    cash.setBet(cash.currentBet);
                     gameState = DEALING;
                 } else if (toBetOrNotToBet == 0) {
                     gameState = START;

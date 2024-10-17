@@ -148,9 +148,10 @@ class Gui {
         return playerChoice;
     }
 
-    void betWindow(int& bet) {
-        ImGui::Begin("Current Bet");
-        ImGui::Text("Bet: %d", bet);
+    void cashWindow(int& bet, int& cash) {
+        ImGui::Begin("Cash");
+        ImGui::Text("Current Bet: %d", bet);
+        ImGui::Text("Total Cash: %d", cash);
         ImGui::End();
     }
 

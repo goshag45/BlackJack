@@ -6,11 +6,12 @@ class Cash {
     int currentBet = 0;
     int cash;
 
-    Cash() {cash = 0;};
+    Cash() {cash = 1000;};
 
     Cash(int startingcash) : cash(startingcash) {};
 
     void setBet(int bet) {
+        cash -= bet;
         currentBet = bet;
     };
 
