@@ -80,9 +80,14 @@ class Game {
         gameState = PLAYER_TURN;
     }
 
-    // void getPlayerBet() {
-    //     cash.cash = ui.getPlayerInputInt("Enter bet: ");
-    // }
+    int winCheck() {
+        if (player.hand.isBust()) {
+            return 0;
+        } else if (player.hand.isBlackjack()){
+            return 1;
+        }
+        return -1;
+    }
 
     void resetGame() {
         player.reset();
@@ -102,7 +107,6 @@ class Game {
         if (gameState != START) {
             gui.cashWindow(cash.currentBet, cash.cash);
         }
-        
 
         switch (gameState) {
             case START:
