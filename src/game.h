@@ -96,14 +96,10 @@ class Game {
         int hitAgain = -1;
         int playAgain = -1;
         int exitGame = -1;
-        if (gameState != START) {
+        if (gameState != START && gameState != BET) {
             gui.GameWindow(getPlayer(), getDealer(), isDealerFirstTurn);
         }
-        // current implementation requires it to be exactly here
-        // TODO fix this
-        ImGui::Begin("Bet"); // only shows up when linked to existing Bet window
-        ImGui::Text("Bet: %d", cash.currentBet);
-        ImGui::End();
+        gui.betWindow(cash.currentBet);
 
         switch (gameState) {
             case START:

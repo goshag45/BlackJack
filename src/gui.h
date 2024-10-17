@@ -148,11 +148,11 @@ class Gui {
         return playerChoice;
     }
 
-    // void betWindow(int& bet) {
-    //     ImGui::Begin("Current Bet");
-    //     ImGui::Text("Bet: %d", bet);
-    //     ImGui::End();
-    // }
+    void betWindow(int& bet) {
+        ImGui::Begin("Current Bet");
+        ImGui::Text("Bet: %d", bet);
+        ImGui::End();
+    }
 
     sf::RenderWindow& getWindow() { return window; }
     sf::Clock& getClock() { return deltaClock; }
