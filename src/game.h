@@ -74,6 +74,7 @@ class Game {
         }
     }
 
+    // I DONT THINK THIS FULLY WORKS - DOESNT DRAW UNTIL 17 SOMETMIES - INVESTIGATE
     void dealerTurn() {
         if (dealer.canhit) { ui.showMessage("Dealer playing..."); }
         while (dealer.canhit) {
