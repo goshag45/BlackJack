@@ -40,7 +40,7 @@ class Gui {
         return playerChoice;
     }
 
-    int binaryGUIPromp(std::string _title, const std::string _yesOption, const std::string _noOption) {
+    int binaryGUIPrompt(std::string _title, const std::string _yesOption, const std::string _noOption) {
         // imgui takes const char* not string FOR SOME REASON
         const char* title = _title.c_str();
         const char* yesOption = _yesOption.c_str();
@@ -52,6 +52,8 @@ class Gui {
         ImGui::End();
         return result;
     }
+
+    int 
 
 
     void showHand(const Hand& hand, bool isDealerFirstTurn) {

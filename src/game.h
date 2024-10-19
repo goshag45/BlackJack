@@ -140,7 +140,7 @@ class Game {
                 break;
 
             case HIT_LOOP:
-                hitAgain = gui.binaryGUIPromp("Hit or Stand?", "Hit", "Stand");
+                hitAgain = gui.binaryGUIPrompt("Hit or Stand?", "Hit", "Stand");
                 if (hitAgain == 1) {
                     player.hit();
                     // checkEndGameState();
@@ -160,7 +160,8 @@ class Game {
                 break;
 
             case GAME_OVER:
-                playAgain = gui.binaryGUIPromp("Play Again?", "Yes", "No");
+                // TODO: DISPLAY DIFFERENT MESSAGE BASED ON GAME OUTCOME
+                playAgain = gui.binaryGUIPrompt("Play Again?", "Yes", "No");
                 if (playAgain == 1) {
                     gameState = START;
                 } else if (playAgain == 0) {
@@ -169,7 +170,7 @@ class Game {
                 break;
 
             case CLOSE:
-                exitGame = gui.binaryGUIPromp("Exit Game?", "Yes", "No");
+                exitGame = gui.binaryGUIPrompt("Exit Game?", "Yes", "No");
                 if (exitGame == 1) {
                     gui.getWindow().close();
                     isGameRunning = false;
