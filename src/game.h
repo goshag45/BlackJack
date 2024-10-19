@@ -161,7 +161,7 @@ class Game {
 
             case GAME_OVER:
                 // TODO: DISPLAY DIFFERENT MESSAGE BASED ON GAME OUTCOME
-                playAgain = gui.binaryGUIPrompt("Play Again?", "Yes", "No");
+                playAgain = gui.gameOverWindow("Play Again?", "You Won!", "Yes", "No");
                 if (playAgain == 1) {
                     gameState = START;
                 } else if (playAgain == 0) {

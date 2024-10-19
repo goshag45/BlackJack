@@ -53,7 +53,19 @@ class Gui {
         return result;
     }
 
-    int 
+    int gameOverWindow(const std::string _gameStatus, std::string _title, const std::string _yesOption, const std::string _noOption) {
+        const char* title = _title.c_str();
+        const char* gameStatus = _gameStatus.c_str();
+        const char* yesOption = _yesOption.c_str();
+        const char* noOption = _noOption.c_str();
+        ImGui::Begin(title);
+        ImGui::Text(gameStatus);
+        int result = -1;
+        if (ImGui::Button(yesOption)) { result = 1; }
+        if (ImGui::Button(noOption)) { result = 0; }
+        ImGui::End();
+        return result;        
+    }
 
 
     void showHand(const Hand& hand, bool isDealerFirstTurn) {
