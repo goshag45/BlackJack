@@ -1,6 +1,8 @@
 #ifndef GUI_U
 #define GUI_U
 
+class Game;
+
 #include <iostream>
 #include <string>
 #include <unordered_map> // For caching card textures
@@ -9,6 +11,7 @@
 #include <imgui.h>
 #include <imgui-SFML.h>
 
+#include "game.h"
 #include "card.h"
 #include "cash.h"
 #include "dealer.h"
@@ -16,11 +19,10 @@
 #include "hand.h"
 #include "player.h"
 #include "ui.h"
-#include "game.h"
 
 class Gui {
   public:
-    Gui() : window(sf::VideoMode(800, 600), "Blackjack GUI") {
+   Gui() : window(sf::VideoMode(800, 600), "Blackjack GUI") {
         // window.setFramerateLimit(30);
         window.setVerticalSyncEnabled(true);
     };
@@ -53,13 +55,23 @@ class Gui {
         return result;
     }
 
-    int gameOverWindow(const std::string _gameStatus, std::string _title, const std::string _yesOption, const std::string _noOption) {
-        const char* title = _title.c_str();
-        const char* gameStatus = _gameStatus.c_str();
+    int gameOverWindow(Game::GameEndState gameStatus, std::string _text, const std::string _yesOption, const std::string _noOption) {
+        std::string gameStatusMessage;
+        Game::GameEndState::LOSE;
+        if (gameStatus == Game::GameEndState::WIN) {
+            gameStatusMessage = "You win!";
+        } else if (gameStatus == Game::GameEndState::PUSH) {
+            gameStatusMessage = "Its a push!";
+        } else if (gameStatus == Game::GameEndState::LOSE) {
+            gameStatusMessage = "You Lose!";
+        }
+        const char* title = gameStatusMessage.c_str();
+        const char* text = _text.c_str();
         const char* yesOption = _yesOption.c_str();
         const char* noOption = _noOption.c_str();
+
         ImGui::Begin(title);
-        ImGui::Text(gameStatus);
+        ImGui::Text(text);
         int result = -1;
         if (ImGui::Button(yesOption)) { result = 1; }
         if (ImGui::Button(noOption)) { result = 0; }

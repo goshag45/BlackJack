@@ -18,7 +18,9 @@ class Game {
   public:
     bool isGameRunning;
     enum GameState { START, BET, DEALING, PLAYER_TURN, HIT_LOOP, DEALER_TURN, GAME_OVER, CLOSE };
+    enum class GameEndState { WIN, LOSE, PUSH };
     GameState gameState;
+    GameEndState gameEndState;
 
     Game()
         : deck(),
@@ -80,13 +82,16 @@ class Game {
         gameState = PLAYER_TURN;
     }
 
-    int winCheck() {
+    void winCheck() {
         if (player.hand.isBust()) {
-            return 0;
+            gameEndState = GameEndState::LOSE;
+        } else if (player.hand.getTotalValue() == dealer.hand.getTotalValue()) {
+            gameEndState = GameEndState::PUSH;
         } else if (player.hand.isBlackjack()){
-            return 1;
+            gameEndState = GameEndState::WIN;
+        } else if (player.hand.getTotalValue() < dealer.hand.getTotalValue()) {
+            gameEndState = GameEndState::WIN;
         }
-        return -1;
     }
 
     void resetGame() {
@@ -160,8 +165,9 @@ class Game {
                 break;
 
             case GAME_OVER:
+                winCheck();
                 // TODO: DISPLAY DIFFERENT MESSAGE BASED ON GAME OUTCOME
-                playAgain = gui.gameOverWindow("Play Again?", "You Won!", "Yes", "No");
+                playAgain = gui.gameOverWindow(gameEndState, "Play Again?", "Yes", "No");
                 if (playAgain == 1) {
                     gameState = START;
                 } else if (playAgain == 0) {
@@ -186,11 +192,6 @@ class Game {
     const bool& getIsFirstTurn() const {return isDealerFirstTurn; }
 
   private:
-    // void checkEndGameState() {
-    //     playerBustCheck();
-    //     playerBlackJackCheck();
-    // }
-
     Deck deck;
     Cash cash;
     Player player;
