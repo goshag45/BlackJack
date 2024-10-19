@@ -14,6 +14,8 @@
 #include "gui.h"
 #include "ui.h"
 
+class Gui;
+
 class Game {
   public:
     bool isGameRunning;
@@ -30,6 +32,16 @@ class Game {
           gameState(START)
     { 
         isGameRunning = true; 
+    }
+
+    std::string getGameEndStateString() {
+        if (gameEndState == Game::GameEndState::WIN) {
+            return "You win!";
+        } else if (gameEndState == Game::GameEndState::PUSH) {
+            return "Its a push!";
+        } else if (gameEndState == Game::GameEndState::LOSE) {
+            return "You Lose!";
+        }
     }
 
     void promptPlayer(Gui& gui) {
@@ -106,6 +118,7 @@ class Game {
         int hitAgain = -1;
         int playAgain = -1;
         int exitGame = -1;
+        std::string gameEndStateStatus;
         if (gameState != START && gameState != BET) { // ADDING SECOND CONDITION, NOW DISPLAYS BETWINDOW???
             gui.GameWindow(getPlayer(), getDealer(), isDealerFirstTurn);
         }
@@ -166,8 +179,9 @@ class Game {
 
             case GAME_OVER:
                 winCheck();
+                gameEndStateStatus = getGameEndStateString();
                 // TODO: DISPLAY DIFFERENT MESSAGE BASED ON GAME OUTCOME
-                playAgain = gui.gameOverWindow(gameEndState, "Play Again?", "Yes", "No");
+                playAgain = gui.gameOverWindow(gameEndStateStatus, "Play Again?", "Yes", "No");
                 if (playAgain == 1) {
                     gameState = START;
                 } else if (playAgain == 0) {

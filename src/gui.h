@@ -12,13 +12,6 @@ class Game;
 #include <imgui-SFML.h>
 
 #include "game.h"
-#include "card.h"
-#include "cash.h"
-#include "dealer.h"
-#include "deck.h"
-#include "hand.h"
-#include "player.h"
-#include "ui.h"
 
 class Gui {
   public:
@@ -55,17 +48,8 @@ class Gui {
         return result;
     }
 
-    int gameOverWindow(Game::GameEndState gameStatus, std::string _text, const std::string _yesOption, const std::string _noOption) {
-        std::string gameStatusMessage;
-        Game::GameEndState::LOSE;
-        if (gameStatus == Game::GameEndState::WIN) {
-            gameStatusMessage = "You win!";
-        } else if (gameStatus == Game::GameEndState::PUSH) {
-            gameStatusMessage = "Its a push!";
-        } else if (gameStatus == Game::GameEndState::LOSE) {
-            gameStatusMessage = "You Lose!";
-        }
-        const char* title = gameStatusMessage.c_str();
+    int gameOverWindow(std::string _gameStatus, std::string _text, const std::string _yesOption, const std::string _noOption) {
+        const char* title = _gameStatus.c_str();
         const char* text = _text.c_str();
         const char* yesOption = _yesOption.c_str();
         const char* noOption = _noOption.c_str();
