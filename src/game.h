@@ -79,8 +79,8 @@ class Game {
         if (dealer.canhit) { ui.showMessage("Dealer playing..."); }
         while (dealer.canhit) {
             dealer.dealerhit();
-            ui.showMessage("HITTED");
-            // if (dealer.canhit) { }
+            // ui.showMessage("HITTED");
+            std::cout << dealer.canhit << '\n';
         }
         if (!dealer.canhit) {
             ui.showMessage("Dealer Final Hand");
