@@ -79,7 +79,8 @@ class Game {
         if (dealer.canhit) { ui.showMessage("Dealer playing..."); }
         while (dealer.canhit) {
             dealer.dealerhit();
-            if (dealer.canhit) { }
+            ui.showMessage("HITTED");
+            // if (dealer.canhit) { }
         }
         if (!dealer.canhit) {
             ui.showMessage("Dealer Final Hand");
