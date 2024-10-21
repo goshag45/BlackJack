@@ -182,7 +182,9 @@ class Game {
             case GAME_OVER:
                 winCheck();
                 gameEndStateStatus = getGameEndStateString();
-                cash.betWin();
+                if (gameEndState == GameEndState::WIN) {
+                    cash.betWin();
+                }
                 // TODO: DISPLAY DIFFERENT MESSAGE BASED ON GAME OUTCOME
                 playAgain = gui.gameOverWindow(gameEndStateStatus, "Play Again?", "Yes", "No");
                 if (playAgain == 1) {
