@@ -20,6 +20,10 @@ class Cash {
         currentBet *= 2;
     }
 
+    void betWin() {
+        cash += (currentBet * 2);
+    }
+
     void setCash(int input) {cash = input;}
     
     const int& getCash() const { return cash;}
