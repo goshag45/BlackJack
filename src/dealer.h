@@ -13,17 +13,10 @@ class Dealer : public Player {
 
     void dealerhit() {
         hit();
-        if (hand.getTotalValue() < 17) {
+        if (hand.getTotalValue() >= 17) {
             canhit = false;            
         }
     }
-    // DEPRACATED
-    // void showHandString() {
-    //     if (!isFirstTurn) {
-    //         std::cout << "Hand Value: " << hand.getTotalValue() << '\n';
-    //     }
-    //     std::cout << getHand().showHand(isFirstTurn) << '\n';
-    // }
 };
 
 #endif
