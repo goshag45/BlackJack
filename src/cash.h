@@ -28,8 +28,6 @@ class Cash {
     
     const int& getCash() const { return cash;}
     const int& getCurrentBet() const { return currentBet;}
-
-  protected:
 };
 
 #endif 

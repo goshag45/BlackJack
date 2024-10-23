@@ -112,6 +112,7 @@ class Game {
         player.reset();
         dealer.reset();
         isDealerFirstTurn = true;
+        betHasPayed = false;
     }
 
     void GameLogic(Gui& gui) {
@@ -182,8 +183,9 @@ class Game {
             case GAME_OVER:
                 winCheck();
                 gameEndStateStatus = getGameEndStateString();
-                if (gameEndState == GameEndState::WIN) {
+                if (gameEndState == GameEndState::WIN && betHasPayed == false) {
                     cash.betWin();
+                    betHasPayed = true;
                 }
                 // TODO: DISPLAY DIFFERENT MESSAGE BASED ON GAME OUTCOME
                 playAgain = gui.gameOverWindow(gameEndStateStatus, "Play Again?", "Yes", "No");
@@ -217,6 +219,7 @@ class Game {
     Dealer dealer;
     Ui ui;
 
+    bool betHasPayed = false;
     bool isDealerFirstTurn;
 };
 
