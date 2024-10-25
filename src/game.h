@@ -74,17 +74,13 @@ class Game {
         }
     }
 
-    void dealerHit() {
-        dealer.hit();
-        if (dealer.hand.getTotalValue() > 17) {
-            dealer.canhit = false;
-        }
-    }
-
     //DOESNT DRAW UNTIL 17 SOMETMIES - INVESTIGATE
     void dealerTurn() {
         while (dealer.canhit) {
-            dealerHit();
+            dealer.hit();
+            if (dealer.hand.getTotalValue() > 17) {
+                dealer.canhit = false;
+            }
             std::cout << dealer.canhit << '\n';
         }
         if (!dealer.canhit) {
@@ -102,13 +98,19 @@ class Game {
     }
 
     void winCheck() {
+        int playerTotal = player.hand.getTotalValue();
+        int dealerTotal = dealer.hand.getTotalValue();
+        std::cout << "playa" << playerTotal << "deala" << dealerTotal << '\n';
+
         if (player.hand.isBust()) {
             gameEndState = GameEndState::LOSE;
-        } else if (player.hand.getTotalValue() == dealer.hand.getTotalValue()) {
+        } else if (playerTotal < dealerTotal && !(dealer.isbusted)) {
+            gameEndState = GameEndState::LOSE;
+        } else if (playerTotal == dealerTotal) {
             gameEndState = GameEndState::PUSH;
         } else if (player.hand.isBlackjack()){
             gameEndState = GameEndState::WIN;
-        } else if (player.hand.getTotalValue() < dealer.hand.getTotalValue()) {
+        } else if (playerTotal > dealerTotal) {
             gameEndState = GameEndState::WIN;
         }
     }
