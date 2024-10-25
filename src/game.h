@@ -76,20 +76,19 @@ class Game {
 
     //stops drawing before 17 somtimes - INVESTIGATE
     void dealerTurn() {
+        int debug = 0;
         while (dealer.canhit) {
             dealer.hit();
+            std::cout << debug << '\n';
+            debug++;
             if (dealer.hand.getTotalValue() > 17) {
+                std::cout << "EXCEEDED 17" << '\n';
                 dealer.canhit = false;
             }
-            std::cout << dealer.canhit << '\n';
-        }
-        if (!dealer.canhit) {
-            ui.showMessage("Dealer Final Hand");
         }
     }
 
     void dealInitialCards() {
-        ui.showMessage("dealing...");
         dealer.hit();
         dealer.hit();
         player.hit();

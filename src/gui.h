@@ -27,10 +27,10 @@ class Gui {
     int getPlayerAction() {
         ImGui::Begin("Player Actions");
         int playerChoice = 0;
-        if (ImGui::Button("Hit"))           { std::cout << "Hit\n"; playerChoice = 1;}
-        if (ImGui::Button("Stand"))         { std::cout << "Stand\n"; playerChoice = 2;}
-        if (ImGui::Button("Double Down"))   { std::cout << "Double Down\n"; playerChoice = 3;}
-        if (ImGui::Button("Split"))         { std::cout << "Split\n"; playerChoice = 4;}
+        if (ImGui::Button("Hit"))           { playerChoice = 1;}
+        if (ImGui::Button("Stand"))         { playerChoice = 2;}
+        if (ImGui::Button("Double Down"))   { playerChoice = 3;}
+        if (ImGui::Button("Split"))         { playerChoice = 4;}
         ImGui::End();
         return playerChoice;
     }
@@ -137,8 +137,8 @@ class Gui {
         ImGui::Begin("Menu");
         int playerChoice = -1;
 
-        if (ImGui::Button("Play Game"))    { std::cout << "Play\n"; playerChoice = 1;}
-        if (ImGui::Button("Exit"))         { std::cout << "Exit\n"; playerChoice = 0;}
+        if (ImGui::Button("Play Game"))    { playerChoice = 1;}
+        if (ImGui::Button("Exit"))         { playerChoice = 0;}
 
         ImGui::End();
         return playerChoice;
