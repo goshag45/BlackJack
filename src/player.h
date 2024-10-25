@@ -16,9 +16,9 @@ class Player {
     std::vector<Hand> hands;
 
     bool isstanding = false;
-    bool isbusted;
-    bool issurrendered;
-    bool isBlackjack;
+    bool isbusted = false;
+    bool issurrendered = false;
+    bool isBlackjack = false;
 
     // pass deck by reference in constructor
     Player(Deck& deckref, Cash& cashref) : deck(deckref), cash(cashref), hand(), hands(1, Hand()) {}

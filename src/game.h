@@ -74,12 +74,18 @@ class Game {
         }
     }
 
+    
+    void dealerHit() {
+        dealer.hit();
+        if (dealer.hand.getTotalValue()) {
+            dealer.canhit = false;
+        }
+    }
+
     // I DONT THINK THIS FULLY WORKS - DOESNT DRAW UNTIL 17 SOMETMIES - INVESTIGATE
     void dealerTurn() {
-        if (dealer.canhit) { ui.showMessage("Dealer playing..."); }
         while (dealer.canhit) {
-            dealer.dealerhit();
-            // ui.showMessage("HITTED");
+            dealerHit();
             std::cout << dealer.canhit << '\n';
         }
         if (!dealer.canhit) {

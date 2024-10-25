@@ -11,12 +11,12 @@ class Dealer : public Player {
 
     Dealer(Deck& deckref, Cash& cashref) : Player(deckref, cashref) {}
 
-    void dealerhit() {
-        hit();
-        if (hand.getTotalValue() >= 17) {
-            canhit = false;            
-        }
-    }
+    // void dealerhit() {
+    //     hit();
+    //     if (hand.getTotalValue() >= 17) {
+    //         canhit = false;            
+    //     }
+    // }
 };
 
 #endif
