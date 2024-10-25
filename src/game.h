@@ -74,15 +74,14 @@ class Game {
         }
     }
 
-    
     void dealerHit() {
         dealer.hit();
-        if (dealer.hand.getTotalValue()) {
+        if (dealer.hand.getTotalValue() > 17) {
             dealer.canhit = false;
         }
     }
 
-    // I DONT THINK THIS FULLY WORKS - DOESNT DRAW UNTIL 17 SOMETMIES - INVESTIGATE
+    //DOESNT DRAW UNTIL 17 SOMETMIES - INVESTIGATE
     void dealerTurn() {
         while (dealer.canhit) {
             dealerHit();

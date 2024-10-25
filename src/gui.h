@@ -82,7 +82,6 @@ class Gui {
             cardName = BuildCardFileName(card);
         }
 
-
         // Check if the texture is already loaded in the map
         if (cardTextures.find(cardName) == cardTextures.end()) {
             sf::Texture texture;
