@@ -22,7 +22,7 @@ class Game {
     enum GameState { START, BET, DEALING, PLAYER_TURN, HIT_LOOP, DEALER_TURN, GAME_OVER, CLOSE };
     enum class GameEndState { WIN, LOSE, PUSH };
     GameState gameState;
-    GameEndState gameEndState;
+    GameEndState gameEndState = Game::GameEndState::LOSE;
 
     Game()
         : deck(),
@@ -188,19 +188,25 @@ class Game {
                 break;
 
             case GAME_OVER:
+                std::cout << "in\n";
                 winCheck();
+                std::cout << "1\n";
                 gameEndStateStatus = getGameEndStateString();
+                std::cout << "2\n";
                 if (gameEndState == GameEndState::WIN && betHasPayed == false) {
                     cash.betWin();
                     betHasPayed = true;
                 }
+                std::cout << "3\n";
                 // TODO: DISPLAY DIFFERENT MESSAGE BASED ON GAME OUTCOME
                 playAgain = gui.gameOverWindow(gameEndStateStatus, "Play Again?", "Yes", "No");
+                std::cout << "4\n";
                 if (playAgain == 1) {
                     gameState = START;
                 } else if (playAgain == 0) {
                     gameState = CLOSE;
                 } 
+                std::cout << "out\n";
                 break;
 
             case CLOSE:
