@@ -4,6 +4,7 @@
 #include <iostream>
 #include <chrono>
 #include <thread>
+#include <conio.h> 
 
 #include "card.h"
 #include "cash.h"
@@ -78,8 +79,9 @@ class Game {
     void dealerTurn() {
         int debug = 0;
         while (dealer.canhit) {
+            std::cout << "b4" << dealer.hand.getTotalValue() << '\n';
             dealer.hit();
-            std::cout << debug << '\n';
+            std::cout << "afta" << dealer.hand.getTotalValue() << '\n';
             debug++;
             if (dealer.hand.getTotalValue() > 17) {
                 std::cout << "EXCEEDED 17" << '\n';
@@ -116,8 +118,10 @@ class Game {
     void resetGame() {
         player.reset();
         dealer.reset();
+        dealer.canhit = true;
         isDealerFirstTurn = true;
         betHasPayed = false;
+        std::cout << "--------------------------------------------------" << '\n';
     }
 
     void GameLogic(Gui& gui) {
@@ -180,8 +184,10 @@ class Game {
                 break;
 
             case DEALER_TURN:
+                std::cout << "dealer turn" << '\n';
                 isDealerFirstTurn = false;
                 dealerTurn();
+                std::cout << "dealer value = " << dealer.hand.getTotalValue() << '\n';
                 gameState = GAME_OVER;
                 break;
 
