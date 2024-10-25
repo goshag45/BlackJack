@@ -74,7 +74,7 @@ class Game {
         }
     }
 
-    //DOESNT DRAW UNTIL 17 SOMETMIES - INVESTIGATE
+    //stops drawing before 17 somtimes - INVESTIGATE
     void dealerTurn() {
         while (dealer.canhit) {
             dealer.hit();
@@ -100,7 +100,6 @@ class Game {
     void winCheck() {
         int playerTotal = player.hand.getTotalValue();
         int dealerTotal = dealer.hand.getTotalValue();
-        std::cout << "playa" << playerTotal << "deala" << dealerTotal << '\n';
 
         if (player.hand.isBust()) {
             gameEndState = GameEndState::LOSE;
@@ -188,25 +187,19 @@ class Game {
                 break;
 
             case GAME_OVER:
-                std::cout << "in\n";
                 winCheck();
-                std::cout << "1\n";
                 gameEndStateStatus = getGameEndStateString();
-                std::cout << "2\n";
                 if (gameEndState == GameEndState::WIN && betHasPayed == false) {
                     cash.betWin();
                     betHasPayed = true;
                 }
-                std::cout << "3\n";
                 // TODO: DISPLAY DIFFERENT MESSAGE BASED ON GAME OUTCOME
                 playAgain = gui.gameOverWindow(gameEndStateStatus, "Play Again?", "Yes", "No");
-                std::cout << "4\n";
                 if (playAgain == 1) {
                     gameState = START;
                 } else if (playAgain == 0) {
                     gameState = CLOSE;
                 } 
-                std::cout << "out\n";
                 break;
 
             case CLOSE:
