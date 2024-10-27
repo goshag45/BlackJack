@@ -71,6 +71,7 @@ class Game {
                     break;
                 case 5:
                     player.surrender();
+                    gameState = GAME_OVER;
                     break;
                 default:
                     ui.showMessage("Invalid choice!");
@@ -197,6 +198,10 @@ class Game {
             case GAME_OVER:
                 winCheck();
                 gameEndStateStatus = getGameEndStateString();
+                if (player.issurrendered) {
+                    cash.surrender();
+                    betHasPayed = true;
+                }
                 if (gameEndState == GameEndState::WIN && betHasPayed == false) {
                     cash.betWin();
                     betHasPayed = true;

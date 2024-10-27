@@ -10,13 +10,6 @@ class Dealer : public Player {
     bool isFirstTurn = true;
 
     Dealer(Deck& deckref, Cash& cashref) : Player(deckref, cashref) {}
-
-    // void dealerhit() {
-    //     hit();
-    //     if (hand.getTotalValue() >= 17) {
-    //         canhit = false;            
-    //     }
-    // }
 };
 
 #endif

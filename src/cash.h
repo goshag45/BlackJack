@@ -24,6 +24,10 @@ class Cash {
         cash += (currentBet * 2);
     }
 
+    void surrender() {
+        cash += (currentBet / 2);
+    }
+
     void setCash(int input) {cash = input;}
     
     const int& getCash() const { return cash;}
