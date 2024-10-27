@@ -69,6 +69,9 @@ class Game {
                 case 4:
                     player.split();
                     break;
+                case 5:
+                    player.surrender();
+                    break;
                 default:
                     ui.showMessage("Invalid choice!");
             }

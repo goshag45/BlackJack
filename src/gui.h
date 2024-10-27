@@ -31,6 +31,7 @@ class Gui {
         if (ImGui::Button("Stand"))         { playerChoice = 2;}
         if (ImGui::Button("Double Down"))   { playerChoice = 3;}
         if (ImGui::Button("Split"))         { playerChoice = 4;}
+        if (ImGui::Button("Surrender"))         { playerChoice = 5;}
         ImGui::End();
         return playerChoice;
     }
