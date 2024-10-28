@@ -141,6 +141,7 @@ class Game {
         if (gameState != START) {
             gui.cashWindow(cash.currentBet, cash.cash);
         }
+        gui.statsWindow();
 
         switch (gameState) {
             case START:

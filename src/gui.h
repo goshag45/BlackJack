@@ -64,6 +64,11 @@ class Gui {
         return result;        
     }
 
+    void statsWindow() {
+        ImGui::Begin("Statistics:");
+        ImGui::Text("blah");
+        ImGui::End();
+    }
 
     void showHand(const Hand& hand, bool isDealerFirstTurn) {
         int cardIndex = 0;
