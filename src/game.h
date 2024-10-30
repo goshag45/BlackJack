@@ -106,6 +106,8 @@ class Game {
 
         if (player.hand.isBust()) {
             gameEndState = GameEndState::LOSE;
+        } else if (dealer.hand.isBust()) {
+            gameEndState = GameEndState::WIN;
         } else if (playerTotal < dealerTotal && !(dealer.isbusted)) {
             gameEndState = GameEndState::LOSE;
         } else if (playerTotal == dealerTotal) {
