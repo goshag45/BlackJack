@@ -106,16 +106,22 @@ class Game {
 
         if (player.hand.isBust()) {
             gameEndState = GameEndState::LOSE;
+            loseCount++;
         } else if (dealer.hand.isBust()) {
             gameEndState = GameEndState::WIN;
-        } else if (playerTotal < dealerTotal && !(dealer.isbusted)) {
-            gameEndState = GameEndState::LOSE;
-        } else if (playerTotal == dealerTotal) {
-            gameEndState = GameEndState::PUSH;
+            winCount++;
         } else if (player.hand.isBlackjack()){
             gameEndState = GameEndState::WIN;
+            winCount++;
         } else if (playerTotal > dealerTotal) {
             gameEndState = GameEndState::WIN;
+            winCount++;
+        } else if (playerTotal < dealerTotal && !(dealer.isbusted)) {
+            gameEndState = GameEndState::LOSE;
+            loseCount++;
+        } else if (playerTotal == dealerTotal) {
+            gameEndState = GameEndState::PUSH;
+            pushCount++;
         }
     }
 
@@ -140,7 +146,11 @@ class Game {
         if (gameState != START) {
             gui.cashWindow(cash.currentBet, cash.cash);
         }
-        gui.statsWindow();
+
+        if (winCount != 0 && numGames != 0) {
+            float winPercentage = winCount/numGames;
+        }
+        gui.statsWindow("Wins", winCount, "Win Rate", numGames);
 
         switch (gameState) {
             case START:
@@ -194,6 +204,7 @@ class Game {
                 break;
 
             case GAME_OVER:
+                numGames++;
                 winCheck();
                 gameEndStateStatus = getGameEndStateString();
                 if (player.issurrendered) {
@@ -238,6 +249,10 @@ class Game {
 
     bool betHasPayed = false;
     bool isDealerFirstTurn;
+    int pushCount = 0;
+    int winCount = 0;
+    int loseCount = 0;
+    int numGames = 0;
 };
 
 #endif

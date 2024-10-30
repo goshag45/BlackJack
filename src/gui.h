@@ -64,9 +64,14 @@ class Gui {
         return result;        
     }
 
-    void statsWindow() {
+    void statsWindow(std::string _stat1, int val1, std::string _stat2, int val2) {
+        std::string str1 = _stat1 + ": " + std::to_string(val1);
+        std::string str2 = _stat2 + ": " + std::to_string(val2);
+        const char* stat1 = str1.c_str();
+        const char* stat2 = str2.c_str();
         ImGui::Begin("Statistics:");
-        ImGui::Text("blah");
+        ImGui::Text(stat1);
+        ImGui::Text(stat2);
         ImGui::End();
     }
 
