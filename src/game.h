@@ -94,13 +94,9 @@ class Game {
 
     void dealInitialCards() {
         dealer.hit();
-        // std::this_thread::sleep_for(std::chrono::seconds(1));
         dealer.hit();
-        // std::this_thread::sleep_for(std::chrono::seconds(1));
         player.hit();
-        // std::this_thread::sleep_for(std::chrono::seconds(1));
         player.hit();
-        // std::this_thread::sleep_for(std::chrono::seconds(1));
         gameState = PLAYER_TURN;
     }
 
