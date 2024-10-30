@@ -43,6 +43,7 @@ class Game {
         } else if (gameEndState == Game::GameEndState::LOSE) {
             return "You Lose!";
         }
+        return "ERROR, no gameEndState";
     }
 
     void promptPlayer(Gui& gui) {
@@ -93,9 +94,13 @@ class Game {
 
     void dealInitialCards() {
         dealer.hit();
+        // std::this_thread::sleep_for(std::chrono::seconds(1));
         dealer.hit();
+        // std::this_thread::sleep_for(std::chrono::seconds(1));
         player.hit();
+        // std::this_thread::sleep_for(std::chrono::seconds(1));
         player.hit();
+        // std::this_thread::sleep_for(std::chrono::seconds(1));
         gameState = PLAYER_TURN;
     }
 
