@@ -131,6 +131,19 @@ class Game {
         dealer.canhit = true;
         isDealerFirstTurn = true;
         betHasPayed = false;
+        recordStats = true;
+    }
+
+    void startGameWindow(Gui& gui) {
+        if (gameState != START && gameState != BET) { // ADDING SECOND CONDITION, NOW DISPLAYS BETWINDOW???
+            gui.GameWindow(getPlayer(), getDealer(), isDealerFirstTurn);
+        }
+    }
+
+    void startBetWindow(Gui& gui) {
+        if (gameState != START) {
+            gui.cashWindow(cash.currentBet, cash.cash);
+        }
     }
 
     void GameLogic(Gui& gui) {
@@ -140,15 +153,13 @@ class Game {
         int playAgain = -1;
         int exitGame = -1;
         std::string gameEndStateStatus;
-        if (gameState != START && gameState != BET) { // ADDING SECOND CONDITION, NOW DISPLAYS BETWINDOW???
-            gui.GameWindow(getPlayer(), getDealer(), isDealerFirstTurn);
-        }
-        if (gameState != START) {
-            gui.cashWindow(cash.currentBet, cash.cash);
-        }
+        
+        startGameWindow(gui);
+        startBetWindow(gui);
 
-        if (winCount != 0 && numGames != 0) {
-            float winPercentage = winCount/numGames;
+        if (winCount != 0 && numGames != 0 && recordStats == true) {
+            recordStats = false;
+            float winPercentage = winCount/numGames * 100;
         }
         gui.statsWindow("Wins", winCount, "Win Rate", numGames);
 
@@ -249,6 +260,7 @@ class Game {
 
     bool betHasPayed = false;
     bool isDealerFirstTurn;
+    bool recordStats = true;
     int pushCount = 0;
     int winCount = 0;
     int loseCount = 0;
