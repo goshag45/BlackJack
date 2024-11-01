@@ -224,7 +224,7 @@ class Game {
                 }
                 winCheck();
                 gameEndStateStatus = getGameEndStateString();
-                if (player.issurrendered) {
+                if (player.issurrendered && betHasPayed == false) {
                     cash.surrender();
                     betHasPayed = true;
                 }
