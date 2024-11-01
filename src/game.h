@@ -101,27 +101,31 @@ class Game {
     }
 
     void winCheck() {
-        int playerTotal = player.hand.getTotalValue();
-        int dealerTotal = dealer.hand.getTotalValue();
+        if (!winsUpdated) {
+            int playerTotal = player.hand.getTotalValue();
+            int dealerTotal = dealer.hand.getTotalValue();
 
-        if (player.hand.isBust()) {
-            gameEndState = GameEndState::LOSE;
-            loseCount++;
-        } else if (dealer.hand.isBust()) {
-            gameEndState = GameEndState::WIN;
-            winCount++;
-        } else if (player.hand.isBlackjack()){
-            gameEndState = GameEndState::WIN;
-            winCount++;
-        } else if (playerTotal > dealerTotal) {
-            gameEndState = GameEndState::WIN;
-            winCount++;
-        } else if (playerTotal < dealerTotal && !(dealer.isbusted)) {
-            gameEndState = GameEndState::LOSE;
-            loseCount++;
-        } else if (playerTotal == dealerTotal) {
-            gameEndState = GameEndState::PUSH;
-            pushCount++;
+            if (player.hand.isBust()) {
+                gameEndState = GameEndState::LOSE;
+                loseCount++;
+            } else if (dealer.hand.isBust()) {
+                gameEndState = GameEndState::WIN;
+                winCount++;
+            } else if (player.hand.isBlackjack()){
+                gameEndState = GameEndState::WIN;
+                winCount++;
+            } else if (playerTotal > dealerTotal) {
+                gameEndState = GameEndState::WIN;
+                winCount++;
+            } else if (playerTotal < dealerTotal && !(dealer.isbusted)) {
+                gameEndState = GameEndState::LOSE;
+                loseCount++;
+            } else if (playerTotal == dealerTotal) {
+                gameEndState = GameEndState::PUSH;
+                pushCount++;
+            }
+
+            winsUpdated = true;
         }
     }
 
@@ -131,6 +135,8 @@ class Game {
         dealer.canhit = true;
         isDealerFirstTurn = true;
         betHasPayed = false;
+        winsUpdated = false;
+        numGamesUpdated = false;
         recordStats = true;
     }
 
@@ -146,6 +152,11 @@ class Game {
         }
     }
 
+    float winPercentage() {
+        if (numGames == 0) {return 0.0;}
+        return (static_cast<float>(winCount) / numGames) * 100;
+    }
+
     void GameLogic(Gui& gui) {
         int startOrQuit = -1;
         int toBetOrNotToBet = -1;
@@ -156,12 +167,7 @@ class Game {
         
         startGameWindow(gui);
         startBetWindow(gui);
-
-        if (winCount != 0 && numGames != 0 && recordStats == true) {
-            recordStats = false;
-            float winPercentage = winCount/numGames * 100;
-        }
-        gui.statsWindow("Wins", winCount, "Win Rate", numGames);
+        gui.statsWindow("Wins", winCount, "Win Rate", winPercentage());
 
         switch (gameState) {
             case START:
@@ -215,7 +221,10 @@ class Game {
                 break;
 
             case GAME_OVER:
-                numGames++;
+                if (!numGamesUpdated) {
+                    numGames++;
+                    numGamesUpdated = true;
+                }
                 winCheck();
                 gameEndStateStatus = getGameEndStateString();
                 if (player.issurrendered) {
@@ -261,6 +270,8 @@ class Game {
     bool betHasPayed = false;
     bool isDealerFirstTurn;
     bool recordStats = true;
+    bool winsUpdated = false;
+    bool numGamesUpdated = false;
     int pushCount = 0;
     int winCount = 0;
     int loseCount = 0;
