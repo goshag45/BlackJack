@@ -52,7 +52,6 @@ class Game {
             switch (choice) {
                 case 1:
                     player.hit();
-                    // checkEndGameState();
                     if (!player.hand.isBust() && !player.hand.isBlackjack()) {
                         gameState = HIT_LOOP;
                     } else {
@@ -80,12 +79,9 @@ class Game {
         }
     }
 
-    //stops drawing before 17 somtimes - INVESTIGATE
     void dealerTurn() {
-        int debug = 0;
         while (dealer.canhit) {
             dealer.hit();
-            debug++;
             if (dealer.hand.getTotalValue() > 17) {
                 dealer.canhit = false;
             }
@@ -134,14 +130,14 @@ class Game {
         dealer.reset();
         dealer.canhit = true;
         isDealerFirstTurn = true;
+        recordStats = true;
         betHasPayed = false;
         winsUpdated = false;
-        numGamesUpdated = false;
-        recordStats = true;
+        numGamesUpdated = false;  
     }
 
     void startGameWindow(Gui& gui) {
-        if (gameState != START && gameState != BET) { // ADDING SECOND CONDITION, NOW DISPLAYS BETWINDOW???
+        if (gameState != START && gameState != BET) {
             gui.GameWindow(getPlayer(), getDealer(), isDealerFirstTurn);
         }
     }
@@ -221,6 +217,7 @@ class Game {
                 break;
 
             case GAME_OVER:
+                // clean this garbage up
                 if (!numGamesUpdated) {
                     numGames++;
                     numGamesUpdated = true;
