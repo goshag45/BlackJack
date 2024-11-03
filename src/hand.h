@@ -46,24 +46,16 @@ class Hand
         return totalvalue > 21;
     };
 
-    bool canSplit() {
-        // if card 1 in hand == card 2 in hand
-        if (hand[0].getValue() == hand[1].getValue()) {
-            return true;
-        }
-        return false;
-    }
-
     void clearhand() {
         hand.clear();
     }
 
     Hand split() {
-        Hand secondhand;
-        secondhand.hand.push_back(Hand::hand[1]);
+        Hand newhand;
+        newhand.hand.push_back(Hand::hand[1]);
         Hand::hand.pop_back();
-        secondhand.totalvalue = getTotalValue();
-        return secondhand;
+        newhand.totalvalue = getTotalValue();
+        return newhand;
     }
 
     const std::vector<Card>& getHandVector() const {

@@ -39,9 +39,7 @@ class Player {
     }
 
     void split() {
-        if (hand.canSplit()) {
-            hands.push_back(hand.split());
-        }
+        hands.push_back(hand.split());
     }
 
     void stand() { isstanding = true; }
