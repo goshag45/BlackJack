@@ -153,6 +153,21 @@ class Game {
         return (static_cast<float>(winCount) / numGames) * 100;
     }
 
+
+    void betSurrenderCheck() {
+        if (player.issurrendered && betHasPayed == false) {
+            cash.surrender();
+            betHasPayed = true;
+        }
+    }
+    
+    void betWinCheck() {
+        if (gameEndState == GameEndState::WIN && betHasPayed == false) {
+            cash.betWin();
+            betHasPayed = true;
+        }
+    }
+
     void GameLogic(Gui& gui) {
         int startOrQuit = -1;
         int toBetOrNotToBet = -1;
@@ -200,7 +215,6 @@ class Game {
                 hitAgain = gui.binaryGUIPrompt("Hit or Stand?", "Hit", "Stand");
                 if (hitAgain == 1) {
                     player.hit();
-                    // checkEndGameState();
                     if (player.hand.isBust() || player.hand.isBlackjack()) {
                         gameState = DEALER_TURN;
                     }
@@ -224,14 +238,8 @@ class Game {
                 }
                 winCheck();
                 gameEndStateStatus = getGameEndStateString();
-                if (player.issurrendered && betHasPayed == false) {
-                    cash.surrender();
-                    betHasPayed = true;
-                }
-                if (gameEndState == GameEndState::WIN && betHasPayed == false) {
-                    cash.betWin();
-                    betHasPayed = true;
-                }
+                betSurrenderCheck();
+                betWinCheck();
                 // TODO: DISPLAY DIFFERENT MESSAGE BASED ON GAME OUTCOME
                 playAgain = gui.gameOverWindow(gameEndStateStatus, "Play Again?", "Yes", "No");
                 if (playAgain == 1) {
@@ -255,7 +263,6 @@ class Game {
 
     const Player& getPlayer() const { return player; }
     const Dealer& getDealer() const { return dealer; }
-    const bool& getIsFirstTurn() const {return isDealerFirstTurn; }
 
   private:
     Deck deck;
@@ -264,11 +271,12 @@ class Game {
     Dealer dealer;
     Ui ui;
 
-    bool betHasPayed = false;
-    bool isDealerFirstTurn;
+    bool isDealerFirstTurn = true;;
     bool recordStats = true;
+    bool betHasPayed = false;
     bool winsUpdated = false;
     bool numGamesUpdated = false;
+
     int pushCount = 0;
     int winCount = 0;
     int loseCount = 0;
