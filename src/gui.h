@@ -49,6 +49,7 @@ class Gui {
         return result;
     }
 
+    // basically an overload of the above ^ with addtional field for game state
     int gameOverWindow(std::string _gameStatus, std::string _text, const std::string _yesOption, const std::string _noOption) {
         const char* title = _gameStatus.c_str();
         const char* text = _text.c_str();
@@ -168,6 +169,7 @@ class Gui {
         return playerChoice;
     }
 
+    // hardcoded stats for now
     void cashWindow(int& bet, int& cash) {
         ImGui::Begin("Cash");
         ImGui::Text("Current Bet: %d", bet);

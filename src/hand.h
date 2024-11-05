@@ -54,7 +54,6 @@ class Hand
         Hand newhand;
         newhand.hand.push_back(Hand::hand[1]);
         Hand::hand.pop_back();
-        newhand.totalvalue = getTotalValue();
         return newhand;
     }
 

@@ -73,8 +73,6 @@ class Game {
                     player.surrender();
                     gameState = GAME_OVER;
                     break;
-                default:
-                    ui.showMessage("Invalid choice!");
             }
         }
     }
@@ -120,7 +118,6 @@ class Game {
                 gameEndState = GameEndState::PUSH;
                 pushCount++;
             }
-
             winsUpdated = true;
         }
     }
@@ -152,7 +149,6 @@ class Game {
         if (numGames == 0) {return 0.0;}
         return (static_cast<float>(winCount) / numGames) * 100;
     }
-
 
     void betSurrenderCheck() {
         if (player.issurrendered && betHasPayed == false) {
@@ -231,7 +227,7 @@ class Game {
                 break;
 
             case GAME_OVER:
-                // clean this garbage up
+                // function for statistics 
                 if (!numGamesUpdated) {
                     numGames++;
                     numGamesUpdated = true;

@@ -38,6 +38,7 @@ class Player {
         hit();
     }
 
+    // improve split logic here
     void split() {
         hands.push_back(hand.split());
     }
