@@ -60,6 +60,10 @@ class Player {
     const Hand& getHand() const {
         return hand;
     }
+
+    const std::vector<Hand>& getHandVector() const {
+        return hands;
+    }
 };
 
 #endif
