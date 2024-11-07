@@ -67,6 +67,7 @@ class Game {
                     gameState = DEALER_TURN;  // Double down means the player's turn is over
                     break;
                 case 4:
+                    // splitting with one card MAY cause issues
                     player.split();
                     break;
                 case 5:

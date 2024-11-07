@@ -21,7 +21,6 @@
  - UI
 
 ### Roadmap
-
 - [x] Game relevant classes
 - [x] Game logic
 - [ ] ~~Terminal UI class~~

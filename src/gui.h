@@ -135,8 +135,6 @@ class Gui {
 
         ImGui::Separator();
 
-        
-
         for (Hand hand : player.getHandVector()) {
             // Render the player's hand
             ImGui::Text("Player's Hand:");
