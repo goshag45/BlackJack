@@ -3,11 +3,11 @@
 ### TODO
  - Implement splitting hands - will need to edit card and bet GUI
  - Insurance bets
- - Surrender Option
+ - Surrender Option ✔
 
 ### MAYBETODO
- - Statistics [wins, losses, streaks, etc]
- - Animations?
+ - Statistics [wins, losses, streaks, etc] 
+ - ~~Animations?~~
  - Save cash on game close
 
 ### Classes
@@ -22,9 +22,9 @@
 
 ### Roadmap
 
-- [✓] Game relevant classes
-- [✓] Game logic
-- [✕] ~~Terminal UI class~~
+- [x] Game relevant classes
+- [x] Game logic
+- [ ] ~~Terminal UI class~~
 - [ ] GUI
 - [ ] AI players
 
