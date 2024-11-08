@@ -67,7 +67,8 @@ class Game {
                     gameState = DEALER_TURN;  // Double down means the player's turn is over
                     break;
                 case 4:
-                    // splitting with one card MAY cause issues
+                    // can split with 1 card
+                    // can split with 0 cards (and crash)
                     player.split();
                     break;
                 case 5:
@@ -75,6 +76,15 @@ class Game {
                     gameState = GAME_OVER;
                     break;
             }
+        }
+    }
+
+
+    // not sure how im gonna implement playing on multiple cards in turn
+    void split(Gui& gui) {
+        
+        for (Hand hand : player.getHandVector()) {
+            promptPlayer(gui);
         }
     }
 

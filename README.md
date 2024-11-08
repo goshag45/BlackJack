@@ -1,7 +1,7 @@
 # C++ Blackjack
 
 ### TODO
- - Implement splitting hands - will need to edit card and bet GUI
+ - Implement splitting hands - bet on each hand individually
  - Insurance bets
  - Surrender Option ✔
 
