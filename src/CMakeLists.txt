@@ -1,8 +1,8 @@
 # Add executable
 add_executable(Blackjack 
     main.cpp
-    main.cpp
     card.h
+    card.cpp
     cash.h
     dealer.h
     deck.h

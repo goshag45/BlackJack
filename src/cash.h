@@ -6,32 +6,17 @@ class Cash {
     int currentBet = 0;
     int cash;
 
-    Cash() {cash = 1000;};
+    Cash();
+    Cash(int startingcash);
 
-    Cash(int startingcash) : cash(startingcash) {};
-
-    void setBet(int bet) {
-        cash -= bet;
-        currentBet = bet;
-    };
-
-    void doubleBet() {
-        cash -= currentBet;
-        currentBet *= 2;
-    }
-
-    void betWin() {
-        cash += (currentBet * 2);
-    }
-
-    void surrender() {
-        cash += (currentBet / 2);
-    }
-
-    void setCash(int input) {cash = input;}
+    void setBet(int bet);
+    void doubleBet();
+    void betWin();
+    void surrender();
+    void setCash(int input);
     
-    const int& getCash() const { return cash;}
-    const int& getCurrentBet() const { return currentBet;}
+    const int& getCash() const;
+    const int& getCurrentBet() const;
 };
 
-#endif 
+#endif
