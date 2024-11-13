@@ -1,65 +1,24 @@
 #ifndef HAND_H
 #define HAND_H 
 
-#include <vector>
-#include <algorithm>
-#include <iostream>
-#include "card.h"
-
 class Hand
 {
   public:
     Hand() : hand() {}
 
-    void addCard(Card card) {
-        hand.push_back(card);
-        totalvalue = getTotalValue();
-    };
+    void addCard(Card card) {}
 
-    int getTotalValue() {
-        int value = 0;
-        int acecount = 0;
+    int getTotalValue() {}
 
-        for (const Card& card : hand) {
-            if (card.getValue() == 11) {
-                acecount++;
-            }
-            value += card.getValue();
-        }
+    bool isBlackjack() {}
 
-        if (value > 21) {
-            while (value > 21 && acecount > 0) {
-                value -= 10;
-                acecount--;
-            }
-        }
+    bool isBust() {}
 
-        totalvalue = value;
-        return value;
-    };
+    void clearhand() {}
 
-    bool isBlackjack() {
-        return totalvalue == 21;
-    };
+    Hand split() {}
 
-    bool isBust() {
-        return totalvalue > 21;
-    };
-
-    void clearhand() {
-        hand.clear();
-    }
-
-    Hand split() {
-        Hand newhand;
-        newhand.hand.push_back(Hand::hand[1]);
-        Hand::hand.pop_back();
-        return newhand;
-    }
-
-    const std::vector<Card>& getHandVector() const {
-        return hand;
-    }
+    const std::vector<Card>& getHandVector() const {}
  
   private:
     std::vector<Card> hand;

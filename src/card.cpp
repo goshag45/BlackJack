@@ -1,3 +1,6 @@
+#include <map>
+#include <string>
+
 #include "card.h"
 
 Card::Card(Suit _suit, Value _value) : suit(_suit), value(_value) {}

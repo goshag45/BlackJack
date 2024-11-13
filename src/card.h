@@ -1,9 +1,6 @@
 #ifndef CARD_H
 #define CARD_H
 
-#include <map>
-#include <string>
-
 class Card {
   public:
     enum class Suit { HEARTS, CLUBS, SPADES, DIAMONDS };
